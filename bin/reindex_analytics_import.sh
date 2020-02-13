@@ -14,7 +14,7 @@ scriptDir=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 [ ! -z ${EXP_ACC+x} ] || ( echo "Env var EXP_ACC ie. E-*-* needs to be defined." && exit 1 )
 
 # Set path (this is done at this level since this will be executed directly):
-for mod in gxa-data-migration/bin; do
+for mod in index-gxa/bin; do
   export PATH=$ATLASPROD_PATH/$mod:$PATH
 done
 
