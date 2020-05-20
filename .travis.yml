@@ -15,5 +15,5 @@ install:
 
 script:
   - sleep 20
-  - docker exec -it --user=solr my_solr bin/solr create_collection -c gxa-bioentities
+  - docker exec -it --user=solr my_solr bin/solr create_collection -c bioentities-v1
   - docker run -i --net mynet -v $( pwd )/tests:/usr/local/tests -e SOLR_HOST=$SOLR_HOST --entrypoint=/usr/local/tests/run_tests_inside_container.sh test/index-gxa-module
