@@ -12,7 +12,7 @@ NUM_SHARDS=${SOLR_NUM_SHARDS:-1}
 REPLICATION_FACTOR=${SOLR_REPLICATION_FACTOR:-1}
 
 printf "\n\nDeleting collection $COLLECTION based on $HOST\n"
-curl "http://$HOST/solr/admin/collections?action=DELETE&name=$COLLECTION&numShards=$NUM_SHARD&replicationFactor=$NUM_REPL"
+curl "http://$HOST/solr/admin/collections?action=DELETE&name=$COLLECTION&numShards=$NUM_SHARD&replicationFactor=$REPLICATION_FACTOR"
 
 printf "\n\nDelete config $COLLECTION\n"
 curl "http://$HOST/solr/admin/configs?action=DELETE&name=$COLLECTION"

@@ -51,8 +51,8 @@ setup() {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping load to SOLR"
   fi
-  export CONDENSED_SDRF_TSV=$BATS_TEST_DIRNAME/example.homo_sapiens.ensgene.tsv
-  run load_scxa_analytics_index.sh
+  export BIOENTITIES_TSV=$BATS_TEST_DIRNAME/example.homo_sapiens.ensgene.tsv
+  run load_gxa_bioentities_index.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
 }
