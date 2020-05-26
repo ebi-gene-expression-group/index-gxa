@@ -11,4 +11,4 @@ export ONTOLOGY_PROCESSOR=$SOLR_COLLECTION\_ontology_expansion
 echo "Loading bioentities $BIOENTITIES_JSON into host $SOLR_HOST collection $SOLR_COLLECTION..."
 
 #cat $BIOENTITIES_JSON | jsonFilterEmptyFields.sh | loadJSONIndexToSolr.sh
-cat $BIOENTITIES_JSON | jq '{"add": .geneAnnotation} | del(.from)' | loadJSONIndexToSolr.sh
+cat $BIOENTITIES_JSON | loadJSONIndexToSolr.sh

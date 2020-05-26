@@ -21,6 +21,7 @@ exec 3>&1
 # and sending the content to this command's STDOUT with -o >(cat >&3)
 HTTP_STATUS=$(curl -w "%{http_code}" -o >(cat >&3) "http://$HOST/solr/$COLLECTION/update?commit=true" --data-binary @- -H 'Content-type:application/json')
 
+
 if [[ ! $HTTP_STATUS == 2* ]];
 then
 	 # HTTP Status is not a 2xx code, so it is an error.
