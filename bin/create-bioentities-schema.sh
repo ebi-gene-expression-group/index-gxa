@@ -42,6 +42,14 @@ curl -X POST -H 'Content-type:application/json' --data-binary '{
 
 #############################################################################################
 
+printf "\n\delete copy-field bioentity_identifier_dv"
+curl -X POST -H 'Content-type:application/json' --data-binary '{
+  "delete-copy-field":{
+     "source": "bioentity_identifier",
+     "dest": "bioentity_identifier_dv"
+   }
+}' http://localhost:8983/solr/bioentities/schema
+
 printf "\n\nDelete field bioentity_identifier"
 curl -X POST -H 'Content-type:application/json' --data-binary '{
   "delete-field":
@@ -58,6 +66,30 @@ curl -X POST -H 'Content-type:application/json' --data-binary '{
     "type":"lowercase"
   }
 }' http://${HOST}/solr/${COLLECTION}/schema
+
+printf "\n\nDelete field bioentity_identifier_dv"
+curl -X POST -H 'Content-type:application/json' --data-binary '{
+  "delete-field":
+  {
+    "name":"bioentity_identifier_dv" 
+  }
+}' http://${HOST}/solr/${COLLECTION}/schema
+
+printf "\n\create field bioentity_identifier_dv"
+curl -X POST -H 'Content-type:application/json' --data-binary '{
+  "add-field":{
+     "name": "bioentity_identifier_dv",
+     "type": "string"
+  }
+}' http://localhost:8983/solr/bioentities/schema
+
+printf "\n\create copy-field bioentity_identifier_dv"
+curl -X POST -H 'Content-type:application/json' --data-binary '{
+  "add-copy-field":{
+     "source": "bioentity_identifier",
+     "dest": "bioentity_identifier_dv"
+   }
+}' http://localhost:8983/solr/bioentities/schema
 
 #############################################################################################
 
@@ -80,6 +112,14 @@ curl -X POST -H 'Content-type:application/json' --data-binary '{
 
 #############################################################################################
 
+printf "\n\nDelete copy-field property_name_dv"
+curl -X POST -H 'Content-type:application/json' --data-binary '{
+  "delete-copy-field":{
+     "source": "property_name",
+     "dest": "property_name_dv"
+   }
+}' http://localhost:8983/solr/bioentities/schema
+
 printf "\n\nDelete field property_name"
 curl -X POST -H 'Content-type:application/json' --data-binary '{
   "delete-field":
@@ -97,7 +137,39 @@ curl -X POST -H 'Content-type:application/json' --data-binary '{
   }
 }' http://${HOST}/solr/${COLLECTION}/schema
 
+printf "\n\nDelete field property_name_dv"
+curl -X POST -H 'Content-type:application/json' --data-binary '{
+  "delete-field":
+  {
+    "name":"property_name_dv" 
+  }
+}' http://${HOST}/solr/${COLLECTION}/schema
+
+printf "\n\nCreate field property_name_dv"
+curl -X POST -H 'Content-type:application/json' --data-binary '{
+  "add-field":{
+     "name": "property_name_dv",
+     "type": "string"
+  }
+}' http://localhost:8983/solr/bioentities/schema
+
+printf "\n\nCreate copy-field property_name_dv"
+curl -X POST -H 'Content-type:application/json' --data-binary '{
+  "add-copy-field":{
+     "source": "property_name",
+     "dest": "property_name_dv"
+   }
+}' http://localhost:8983/solr/bioentities/schema
+
 #############################################################################################
+
+printf "\n\nDelete copy-field property_value"
+curl -X POST -H 'Content-type:application/json' --data-binary '{
+  "delete-copy-field":{
+     "source": "property_value",
+     "dest": "property_value_dv"
+   }
+}' http://localhost:8983/solr/bioentities/schema
 
 printf "\n\nDelete field property_value"
 curl -X POST -H 'Content-type:application/json' --data-binary '{
@@ -116,7 +188,31 @@ curl -X POST -H 'Content-type:application/json' --data-binary '{
   }
 }' http://${HOST}/solr/${COLLECTION}/schema
 
+printf "\n\nCreate field property_value_dv"
+curl -X POST -H 'Content-type:application/json' --data-binary '{
+  "add-field":{
+     "name": "property_value_dv",
+     "type": "string"
+  }
+}' http://localhost:8983/solr/bioentities/schema
+
+printf "\n\nCreate copy-field property_value (text_en_tight)"
+curl -X POST -H 'Content-type:application/json' --data-binary '{
+  "add-copy-field":{
+     "source": "property_value",
+     "dest": "property_value_dv"
+   }
+}' http://localhost:8983/solr/bioentities/schema
+
 #############################################################################################
+
+printf "\n\nDelete copy-field species_dev (lowercase)"
+curl -X POST -H 'Content-type:application/json' --data-binary '{
+  "delete-copy-field":{
+     "source": "species",
+     "dest": "species_dv"
+   }
+}' http://localhost:8983/solr/bioentities/schema
 
 printf "\n\nDelete field species"
 curl -X POST -H 'Content-type:application/json' --data-binary '{
@@ -134,6 +230,30 @@ curl -X POST -H 'Content-type:application/json' --data-binary '{
     "type":"lowercase"
   }
 }' http://${HOST}/solr/${COLLECTION}/schema
+
+printf "\n\nDelete field species_dv"
+curl -X POST -H 'Content-type:application/json' --data-binary '{
+  "delete-field":
+  {
+    "name":"species_dv"
+  }
+}' http://${HOST}/solr/${COLLECTION}/schema
+
+printf "\n\nCreate field species_dev (lowercase)"
+curl -X POST -H 'Content-type:application/json' --data-binary '{
+  "add-field":{
+     "name": "species_dv",
+     "type": "string"
+  }
+}' http://localhost:8983/solr/bioentities/schema
+
+printf "\n\nCreate copy-field species_dev (lowercase)"
+curl -X POST -H 'Content-type:application/json' --data-binary '{
+  "add-copy-field":{
+     "source": "species",
+     "dest": "species_dv"
+   }
+}' http://localhost:8983/solr/bioentities/schema
 
 #############################################################################################
 
