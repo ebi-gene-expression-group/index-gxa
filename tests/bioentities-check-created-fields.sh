@@ -5,7 +5,7 @@ set -e
 
 # on developers environment export SOLR_HOST_PORT and export SOLR_COLLECTION before running
 HOST=${SOLR_HOST:-"localhost:8983"}
-CORE=${SOLR_COLLECTION:-"bioentities"}
+CORE=${SOLR_COLLECTION:-"bioentities-v$SCHEMA_VERSION"}
 
 echo "Retrieving fields in the schema"
 curl "http://$HOST/solr/$CORE/schema?wt=json" \

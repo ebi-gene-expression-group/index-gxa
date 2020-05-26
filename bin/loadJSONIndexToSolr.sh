@@ -14,11 +14,12 @@ elif [ $ONTOLOGY_PROCESSOR ]; then
 	PROCESSOR="&processor="$ONTOLOGY_PROCESSOR
 fi
 
+echo $PROCESSOR
 #creates a new file descriptor 3 that redirects to 1 (STDOUT)
 exec 3>&1
 # Run curl in a separate command, capturing output of -w "%{http_code}" into HTTP_STATUS
 # and sending the content to this command's STDOUT with -o >(cat >&3)
-HTTP_STATUS=$(curl -w "%{http_code}" -o >(cat >&3) "http://$HOST/solr/$COLLECTION/update?commit=true$PROCESSOR" --data-binary @- -H 'Content-type:application/json')
+HTTP_STATUS=$(curl -w "%{http_code}" -o >(cat >&3) "http://$HOST/solr/$COLLECTION/update?commit=true" --data-binary @- -H 'Content-type:application/json')
 
 if [[ ! $HTTP_STATUS == 2* ]];
 then
