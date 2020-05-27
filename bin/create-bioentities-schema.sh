@@ -184,7 +184,7 @@ curl -X POST -H 'Content-type:application/json' --data-binary '{
   "add-field":
   {
     "name":"property_value",
-    "type":"text_en_tight"
+    "type":"text_en"
   }
 }' http://${HOST}/solr/${COLLECTION}/schema
 
