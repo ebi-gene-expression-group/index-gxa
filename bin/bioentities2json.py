@@ -39,10 +39,6 @@ def get_species_name_from_file(file_name):
     species = join_string(file_name.split("/")[-1].split('_')[0:2]).capitalize()
     return species
 
-def get_species_name_from_file(file_name):
-    species = join_string(file_name.split("/")[-1].split('_')[0:2]).capitalize()
-    return species
-
 def get_property_weight(property_name):
     property_names = ['gene_biotype', 'hgnc_symbol', 'uniprot', 'entrezgene']
 
