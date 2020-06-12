@@ -1,4 +1,2 @@
-tests/expected.json
-tests/result.json
-tests/expected_loaded_fields.txt
-tests/loaded_fields.txt
+tests/bioentities_expected_loaded_fields.txt
+tests/bioentities_loaded_fields.txt

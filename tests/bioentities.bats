@@ -42,7 +42,7 @@ setup() {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping check of fields on schema"
   fi
-  run analytics-check-created-fields.sh
+  run bioentities-check-created-fields.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
 }
