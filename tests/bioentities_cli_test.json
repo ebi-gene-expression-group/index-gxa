@@ -1,0 +1,82 @@
+[
+  {
+    "bioentity_identifier": "ENSG00000224166",
+    "species": "Homo_sapiens",
+    "property_name": "ensgene",
+    "property_value": "ENSG00000224166",
+    "property_weight": 15,
+    "property_name_id_weight": 100
+  },
+  {
+    "bioentity_identifier": "ENSG00000224166",
+    "species": "Homo_sapiens",
+    "property_name": "symbol",
+    "property_value": "PRYP1",
+    "property_weight": 20,
+    "property_name_id_weight": 90
+  },
+  {
+    "bioentity_identifier": "ENSG00000224166",
+    "species": "Homo_sapiens",
+    "property_name": "description",
+    "property_value": "PTPN13 like Y-linked pseudogene 1 [Source:HGNC Symbol;Acc:HGNC:34018]",
+    "property_weight": 0,
+    "property_name_id_weight": 0
+  },
+  {
+    "bioentity_identifier": "ENSG00000224166",
+    "species": "Homo_sapiens",
+    "property_name": "gene_biotype",
+    "property_value": "unprocessed_pseudogene",
+    "property_weight": 0,
+    "property_name_id_weight": 80
+  },
+  {
+    "bioentity_identifier": "ENSG00000224166",
+    "species": "Homo_sapiens",
+    "property_name": "hgnc_symbol",
+    "property_value": "PRYP1",
+    "property_weight": 0,
+    "property_name_id_weight": 80
+  },
+  {
+    "bioentity_identifier": "ENSG00000224166",
+    "species": "Homo_sapiens",
+    "property_name": "enstranscript",
+    "property_value": "ENST00000412474",
+    "property_weight": 0,
+    "property_name_id_weight": 0
+  },
+  {
+    "bioentity_identifier": "ENSG00000224166",
+    "species": "Homo_sapiens",
+    "property_name": "synonym",
+    "property_value": "PRY4P",
+    "property_weight": 10,
+    "property_name_id_weight": 0
+  },
+  {
+    "bioentity_identifier": "ENSG00000224166",
+    "species": "Homo_sapiens",
+    "property_name": "synonym",
+    "property_value": "PRYP7",
+    "property_weight": 10,
+    "property_name_id_weight": 0
+  },
+  {
+    "bioentity_identifier": "ENSG00000262090",
+    "species": "Homo_sapiens",
+    "property_name": "ensgene",
+    "property_value": "ENSG00000262090",
+    "property_weight": 15,
+    "property_name_id_weight": 100
+  },
+  {
+    "bioentity_identifier": "ENSG00000262090",
+    "species": "Homo_sapiens",
+    "property_name": "symbol",
+    "property_value": "AC136944.5",
+    "property_weight": 20,
+    "property_name_id_weight": 90
+  }
+]
