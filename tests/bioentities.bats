@@ -51,7 +51,7 @@ setup() {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping load to SOLR"
   fi
-  export BIOENTITIES_TSV=$BATS_TEST_DIRNAME/example.homo_sapiens.ensgene.tsv
+  export BIOENTITIES_TSV=$BATS_TEST_DIRNAME/homo_sapiens.ensgene.tsv
   export PROPERTY_WEIGHTS_YAML=$BATS_TEST_DIRNAME/../property_weights.yaml
   run load_gxa_bioentities_index.sh
   echo "output = ${output}"

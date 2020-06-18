@@ -7,18 +7,18 @@ COLLECTION=${SOLR_COLLECTION:-"bioentities-v${SCHEMA_VERSION}"}
 
 #############################################################################################
 
-printf "\n\nDelete field type text_en_tight"
+printf "\n\nDelete field type text_en"
 curl -X POST -H 'Content-type:application/json' --data-binary '{
   "delete-field-type":
   {
-    "name": "text_en_tight"
+    "name": "text_en"
   }
 }' http://${HOST}/solr/${COLLECTION}/schema
 
-printf "\n\Create field type text_en_tight"
+printf "\n\Create field type text_en"
 curl -X POST -H 'Content-type:application/json' --data-binary '{
   "add-field-type": {
-    "name": "text_en_tight",
+    "name": "text_en",
     "class": "solr.TextField",
     "positionIncrementGap": "100",
     "analyzer" : {
@@ -179,7 +179,7 @@ curl -X POST -H 'Content-type:application/json' --data-binary '{
   }
 }' http://${HOST}/solr/${COLLECTION}/schema
 
-printf "\n\nCreate field property_value (text_en_tight)"
+printf "\n\nCreate field property_value (text_en)"
 curl -X POST -H 'Content-type:application/json' --data-binary '{
   "add-field":
   {
@@ -196,7 +196,7 @@ curl -X POST -H 'Content-type:application/json' --data-binary '{
   }
 }' http://localhost:8983/solr/bioentities/schema
 
-printf "\n\nCreate copy-field property_value (text_en_tight)"
+printf "\n\nCreate copy-field property_value (text_en)"
 curl -X POST -H 'Content-type:application/json' --data-binary '{
   "add-copy-field":{
      "source": "property_value",
