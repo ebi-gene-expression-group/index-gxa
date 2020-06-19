@@ -4,7 +4,5 @@ RUN apk update && apk add bash curl jq
 RUN apk add --no-cache g++
 RUN pip install pandas
 
-ENV BIOSOLR_JAR_PATH /usr/local/lib/solr-ontology-update-processor-1.1.jar
-
 COPY bin/* /usr/local/bin/
 COPY lib/* /usr/local/lib/
