@@ -1,0 +1,11 @@
+*_rel_iris
+*_rel_labels
+*_s
+*_t
+cell_id
+characteristic_*
+experiment_accession
+facet_characteristic_*
+facet_factor_*
+factor_*
+ontology_annotation
