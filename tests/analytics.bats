@@ -1,5 +1,5 @@
 setup() {
-  export SOLR_COLLECTION=gxa-analytics-v3
+  export SOLR_COLLECTION=gxa-analytics-v1
 }
 
 @test "Check that curl is in the path" {
@@ -18,7 +18,7 @@ setup() {
 }
 
 @test "Check that sdrf converter is in the path" {
-    run which condSdrf2tsvForgxaJSONFactorsIndex.sh
+    run which condSdrf2tsvForGXAJSONFactorsIndex.sh
     [ "$status" -eq 0 ]
 }
 
@@ -92,9 +92,9 @@ setup() {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping load to SOLR"
   fi
-  export EXP_ID=E-GEOD-DELETE
+  export EXP_ID=E-MTAB-DELETE
   export CONDENSED_SDRF_TSV=$BATS_TEST_DIRNAME/example-conds-sdrf-delete.tsv
-  sed s/E-GEOD-106540/$EXP_ID/ $BATS_TEST_DIRNAME/example-conds-sdrf.tsv > $CONDENSED_SDRF_TSV
+  sed s/E-MTAB-6870/$EXP_ID/ $BATS_TEST_DIRNAME/example-conds-sdrf.tsv > $CONDENSED_SDRF_TSV
   run load_gxa_analytics_index.sh && rm $CONDENSED_SDRF_TSV && analytics-check-experiment-available.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
@@ -104,7 +104,7 @@ setup() {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping load to SOLR"
   fi
-  export EXP_ID=E-GEOD-DELETE
+  export EXP_ID=E-MTAB-DELETE
   run delete_gxa_analytics_index.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
