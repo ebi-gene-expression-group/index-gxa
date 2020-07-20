@@ -33,8 +33,8 @@ setup() {
 }
 
 @test "Check that filtering doesn't remove any cell IDs" {
-    CELL_ID_COUNT=`condSdrf2tsvForSCXAJSONFactorsIndex.sh $BATS_TEST_DIRNAME/example-conds-sdrf.tsv | jsonFilterEmptyFields.sh | grep \"cell_id\": | sort -u | wc -l`
-    UNIQUE_CELL_ID_COUNT=`condSdrf2tsvForSCXAJSONFactorsIndex.sh $BATS_TEST_DIRNAME/example-conds-sdrf.tsv | grep \"cell_id\": | sort -u | wc -l`
+    CELL_ID_COUNT=`condSdrf2tsvForGXAJSONFactorsIndex.sh $BATS_TEST_DIRNAME/example-conds-sdrf.tsv | jsonFilterEmptyFields.sh | grep \"cell_id\": | sort -u | wc -l`
+    UNIQUE_CELL_ID_COUNT=`condSdrf2tsvForGXAJSONFactorsIndex.sh $BATS_TEST_DIRNAME/example-conds-sdrf.tsv | grep \"cell_id\": | sort -u | wc -l`
     [ $CELL_ID_COUNT = $UNIQUE_CELL_ID_COUNT ]
 }
 
@@ -92,7 +92,7 @@ setup() {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping load to SOLR"
   fi
-  export EXP_ID=E-MTAB-DELETE
+  export EXP_ID=E-MTAB-111
   export CONDENSED_SDRF_TSV=$BATS_TEST_DIRNAME/example-conds-sdrf-delete.tsv
   sed s/E-MTAB-6870/$EXP_ID/ $BATS_TEST_DIRNAME/example-conds-sdrf.tsv > $CONDENSED_SDRF_TSV
   run load_gxa_analytics_index.sh && rm $CONDENSED_SDRF_TSV && analytics-check-experiment-available.sh
@@ -100,11 +100,11 @@ setup() {
   [ "$status" -eq 0 ]
 }
 
-@test '[analytics] Delete additional dataset' {
+@test "[analytics] Delete additional dataset" {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping load to SOLR"
   fi
-  export EXP_ID=E-MTAB-DELETE
+  export EXP_ID=E-MTAB-111
   run delete_gxa_analytics_index.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
@@ -120,8 +120,8 @@ setup() {
   [ "$status" -eq 0 ]
 }
 
-@test '[analytics] Check that deleted experiment is no longer available, but previous one is' {
-  export EXP_ID=E-MTAB-DELETE
+@test "[analytics] Check that deleted experiment is no longer available, but previous one is" {
+  export EXP_ID=E-MTAB-111
   run analytics-check-experiment-available.sh
   # this will return exit code 1 if the experiment is not available
   [ "$status" -eq 1 ]

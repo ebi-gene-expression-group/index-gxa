@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-SCHEMA_VERSION=3
+SCHEMA_VERSION=1
 
 set -e
 

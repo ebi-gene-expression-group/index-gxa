@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -e
-SCHEMA_VERSION=3
+SCHEMA_VERSION=1
 
 # on developers environment export SOLR_HOST_PORT and export SOLR_COLLECTION before running
 HOST=${SOLR_HOST:-"localhost:8983"}
@@ -8,10 +8,10 @@ CORE=${SOLR_COLLECTION:-"gxa-analytics-v$SCHEMA_VERSION"}
 
 # This is the dependant of the example file.
 # We will query for organism_part and cell_id SRR6257788
-characteristic="organism_part"
-cell_id="SRR6257788"
+characteristic="disease"
+cell_id="ERR2619175"
 
-org_part=$(grep $cell_id $CONDENSED_SDRF_TSV | grep 'organism part' | awk -F'\t' '{ print $6 }')
+org_part=$(grep $cell_id $CONDENSED_SDRF_TSV | grep 'disease' | awk -F'\t' '{ print $6 }')
 
 # BioSolr seems to do the ontology expansion in the background and not blocking
 # the loading call. As such, we need to wait during testing to make sure that
@@ -42,4 +42,4 @@ fi
 echo ${response} | jq -e --arg org_part "$org_part" '.docs[0].characteristic_value | contains([$org_part])'
 
 # Check ontology expansion was successful - we only care about the labels for the ontology terms, rather than the URIs
-echo ${response} | jq -e '.docs | map(has("ontology_annotation_label_t", "ontology_annotation_parent_labels_t", "ontology_annotation_ancestors_labels_t", "ontology_annotation_part_of_rel_labels_t", "ontology_annotation_develops_from_rel_labels_t")) | all'
+#echo ${response} | jq -e '.docs | map(has("ontology_annotation_label_t", "ontology_annotation_parent_labels_t", "ontology_annotation_ancestors_labels_t", "ontology_annotation_part_of_rel_labels_t", "ontology_annotation_develops_from_rel_labels_t")) | all'
