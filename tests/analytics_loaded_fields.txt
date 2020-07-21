@@ -65,8 +65,8 @@
 _root_
 _text_
 _version_
+assay
 attr_*
-cell_id
 characteristic_*
 experiment_accession
 facet_characteristic_*

@@ -27,19 +27,19 @@ curl -X POST -H 'Content-type:application/json' --data-binary '{
 
 #############################################################################################
 
-printf "\n\nDelete field cell_id "
+printf "\n\nDelete field assay "
 curl -X POST -H 'Content-type:application/json' --data-binary '{
   "delete-field" :
   {
-    "name": "cell_id"
+    "name": "assay"
   }
 }' http://$HOST/solr/$CORE/schema
 
-printf "\n\nCreate field cell_id (string) "
+printf "\n\nCreate field assay (string) "
 curl -X POST -H 'Content-type:application/json' --data-binary '{
   "add-field":
   {
-    "name": "cell_id",
+    "name": "assay",
     "type": "string",
     "docValues": true
   }
@@ -293,7 +293,7 @@ curl -X POST -H 'Content-type:application/json' --data-binary '{
     "enabled": "true",
     "signatureField": "id",
     "overwriteDupes": "true",
-    "fields": "experiment_accession,cell_id,characteristic_name,factor_name",
+    "fields": "experiment_accession,assay,characteristic_name,factor_name",
     "signatureClass": "solr.processor.Lookup3Signature"
   }
 }' http://$HOST/solr/$CORE/config
