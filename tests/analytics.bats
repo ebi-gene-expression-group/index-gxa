@@ -28,14 +28,14 @@ setup() {
 }
 
 @test "Check valid json output from sdrf converter" {
-    condSdrf2tsvForgxaJSONFactorsIndex.sh $BATS_TEST_DIRNAME/example-conds-sdrf.tsv | jq -s .
+    condSdrf2tsvForgxaJSONFactorsIndex.sh $BATS_TEST_DIRNAME/example-bulk-conds-sdrf.tsv | jq -s .
     [  $? -eq 0 ]
 }
 
-@test "Check that filtering doesn't remove any cell IDs" {
-    CELL_ID_COUNT=`condSdrf2tsvForGXAJSONFactorsIndex.sh $BATS_TEST_DIRNAME/example-conds-sdrf.tsv | jsonFilterEmptyFields.sh | grep \"cell_id\": | sort -u | wc -l`
-    UNIQUE_CELL_ID_COUNT=`condSdrf2tsvForGXAJSONFactorsIndex.sh $BATS_TEST_DIRNAME/example-conds-sdrf.tsv | grep \"cell_id\": | sort -u | wc -l`
-    [ $CELL_ID_COUNT = $UNIQUE_CELL_ID_COUNT ]
+@test "Check that filtering doesn't remove any assays" {
+    ASSAY_COUNT=`condSdrf2tsvForGXAJSONFactorsIndex.sh $BATS_TEST_DIRNAME/example-bulk-conds-sdrf.tsv | jsonFilterEmptyFields.sh | grep \"assay\": | sort -u | wc -l`
+    UNIQUE_ASSAY_COUNT=`condSdrf2tsvForGXAJSONFactorsIndex.sh $BATS_TEST_DIRNAME/example-bulk-conds-sdrf.tsv | grep \"assay\": | sort -u | wc -l`
+    [ $ASSAY_COUNT = $UNIQUE_ASSAY_COUNT ]
 }
 
 @test "[analytics] Create collection on solr" {
@@ -82,7 +82,7 @@ setup() {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping load to SOLR"
   fi
-  export CONDENSED_SDRF_TSV=$BATS_TEST_DIRNAME/example-conds-sdrf.tsv
+  export CONDENSED_SDRF_TSV=$BATS_TEST_DIRNAME/example-bulk-conds-sdrf.tsv
   run load_gxa_analytics_index.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
@@ -94,7 +94,7 @@ setup() {
   fi
   export EXP_ID=E-MTAB-111
   export CONDENSED_SDRF_TSV=$BATS_TEST_DIRNAME/example-conds-sdrf-delete.tsv
-  sed s/E-MTAB-6870/$EXP_ID/ $BATS_TEST_DIRNAME/example-conds-sdrf.tsv > $CONDENSED_SDRF_TSV
+  sed s/E-MTAB-6870/$EXP_ID/ $BATS_TEST_DIRNAME/example-bulk-conds-sdrf.tsv > $CONDENSED_SDRF_TSV
   run load_gxa_analytics_index.sh && rm $CONDENSED_SDRF_TSV && analytics-check-experiment-available.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
@@ -123,7 +123,7 @@ setup() {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping load to SOLR"
   fi
-  export CONDENSED_SDRF_TSV=$BATS_TEST_DIRNAME/example-conds-sdrf.tsv
+  export CONDENSED_SDRF_TSV=$BATS_TEST_DIRNAME/example-bulk-conds-sdrf.tsv
   run analytics-check-index-content.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
