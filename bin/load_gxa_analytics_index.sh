@@ -11,5 +11,4 @@ export PROCESSOR=$SOLR_COLLECTION\_dedup
 echo "Loading cond. sdrf $CONDENSED_SDRF_TSV into host $SOLR_HOST collection $SOLR_COLLECTION..."
 
 condSdrf2tsvForGXAJSONFactorsIndex.sh $CONDENSED_SDRF_TSV | jsonFilterEmptyFields.sh | loadJSONIndexToSolr.sh
-#condSdrf2tsvForGXAFactorsIndex.sh $CONDENSED_SDRF_TSV | jsonFilterEmptyFields.sh | loadJSONIndexToSolr.sh
 
