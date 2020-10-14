@@ -114,7 +114,7 @@ setup() {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping load to SOLR"
   fi
-  run create-gxa-analytics-biosolr-lib.sh
+  run add-biosolr-lib.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
 }
