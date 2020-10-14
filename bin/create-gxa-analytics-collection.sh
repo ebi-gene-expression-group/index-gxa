@@ -14,7 +14,7 @@ curl "http://$HOST/solr/admin/collections?action=CREATE&name=$CORE&numShards=$NU
 
 # Set this value to whatever is needed, it doesn’t really matter with current Lucene versions
 # https://issues.apache.org/jira/browse/SOLR-4586
-MAX_BOOLEAN_CLAUSES=16384
+MAX_BOOLEAN_CLAUSES=100000000
 printf "\n\nRaising value of maxBooleanClauses to $MAX_BOOLEAN_CLAUSES."
 curl "http://$HOST/solr/$CORE/config" -H 'Content-type:application/json' -d "
 {
