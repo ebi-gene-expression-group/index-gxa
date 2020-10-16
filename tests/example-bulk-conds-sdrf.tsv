@@ -1,0 +1,20 @@
+E-MTAB-6870		ERR2619174	characteristic	cell line	Hep3B	http://www.ebi.ac.uk/efo/EFO_0002205
+E-MTAB-6870		ERR2619174	characteristic	cell type	hepatocyte	http://purl.obolibrary.org/obo/CL_0000182
+E-MTAB-6870		ERR2619174	characteristic	disease	hepatocellular carcinoma	http://www.ebi.ac.uk/efo/EFO_0000182
+E-MTAB-6870		ERR2619174	characteristic	genotype	wild type genotype
+E-MTAB-6870		ERR2619174	characteristic	growth condition	2D
+E-MTAB-6870		ERR2619174	characteristic	individual	not applicable
+E-MTAB-6870		ERR2619174	characteristic	organism	Homo sapiens	http://purl.obolibrary.org/obo/NCBITaxon_9606
+E-MTAB-6870		ERR2619174	characteristic	organism part	liver	http://purl.obolibrary.org/obo/UBERON_0002107
+E-MTAB-6870		ERR2619174	factor	cell line	Hep3B	http://www.ebi.ac.uk/efo/EFO_0002205
+E-MTAB-6870		ERR2619174	factor	growth condition	2D
+E-MTAB-6870		ERR2619175	characteristic	cell line	Hep3B	http://www.ebi.ac.uk/efo/EFO_0002205
+E-MTAB-6870		ERR2619175	characteristic	cell type	hepatocyte	http://purl.obolibrary.org/obo/CL_0000182
+E-MTAB-6870		ERR2619175	characteristic	disease	hepatocellular carcinoma	http://www.ebi.ac.uk/efo/EFO_0000182
+E-MTAB-6870		ERR2619175	characteristic	genotype	wild type genotype
+E-MTAB-6870		ERR2619175	characteristic	growth condition	2D
+E-MTAB-6870		ERR2619175	characteristic	individual	not applicable
+E-MTAB-6870		ERR2619175	characteristic	organism	Homo sapiens	http://purl.obolibrary.org/obo/NCBITaxon_9606
+E-MTAB-6870		ERR2619175	characteristic	organism part	liver	http://purl.obolibrary.org/obo/UBERON_0002107
+E-MTAB-6870		ERR2619175	factor	cell line	Hep3B	http://www.ebi.ac.uk/efo/EFO_0002205
+E-MTAB-6870		ERR2619175	factor	growth condition	2D

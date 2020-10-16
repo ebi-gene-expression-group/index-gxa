@@ -1,2 +1,4 @@
 tests/bioentities_expected_loaded_fields.txt
 tests/bioentities_loaded_fields.txt
+tests/analytics_expected_loaded_fields.txt
+tests/analytics_loaded_fields.txt
