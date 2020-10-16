@@ -66,7 +66,7 @@ create-bioentities-schema.sh
 ## Load data
 Before loading, the bioentities (tests file homo_sapiens.ensgene.tsv) which is in tsv format are converted to JSON. Property yaml file contains predefined weights for an attribute that is given priority while searching in webapp
 
-```` 
+```
 export BIOENTITIES_TSV=./tests/homo_sapiens.ensgene.tsv
 export ROPERTY_WEIGHTS_YAML=./property_weights
 
