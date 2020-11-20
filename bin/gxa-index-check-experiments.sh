@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # check the health of experiments
 
 # $1: path to the list of experiments 
