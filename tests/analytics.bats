@@ -139,3 +139,16 @@ setup() {
   echo "output = ${output}"
   [ "$status" -eq 0 ]
 }
+
+@test "[analytics] Check the health of experiments" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping load to SOLR"
+  fi
+  export ATLAS_EXPS=E-MTAB-6870
+  export EXP_MATCH_MIN=50
+  export EXP_MATCH_WARNING=100
+  run gxa-index-check-experiments.sh 
+  echo "output = ${output}"
+  [ "$status" -eq 0 ]
+}
+
