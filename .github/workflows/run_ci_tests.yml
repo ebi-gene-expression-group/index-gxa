@@ -6,4 +6,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run tests from containers
-        run: bash run_tests_in_containers.sh
+        run: ls -l && bash run_tests_in_containers.sh
