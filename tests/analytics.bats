@@ -145,8 +145,12 @@ setup() {
     skip "SOLR_HOST not defined, skipping load to SOLR"
   fi
   export ATLAS_EXPS=E-MTAB-6870
-  export EXP_MATCH_MIN=50
+  export EXP_MATCH_MIN=999999999
   export EXP_MATCH_WARNING=100
+  # expect exit code 1 as the number of entries is lower than specified
+  run gxa-index-check-experiments.sh 
+  [ "$status" -eq 1 ]
+  export EXP_MATCH_MIN=50
   run gxa-index-check-experiments.sh 
   echo "output = ${output}"
   [ "$status" -eq 0 ]
