@@ -150,7 +150,7 @@ setup() {
   # expect exit code 1 as the number of entries is lower than specified
   run gxa-index-check-experiments.sh 
   [ "$status" -eq 1 ]
-  export EXP_MATCH_MIN=50
+  export EXP_MATCH_MIN=3
   run gxa-index-check-experiments.sh 
   echo "output = ${output}"
   [ "$status" -eq 0 ]

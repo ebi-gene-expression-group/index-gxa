@@ -1,4 +1,4 @@
-name: CI
+name: INDEX_GXA_CI
 on: [push, pull_request]
 
 jobs:
@@ -7,4 +7,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run tests from containers
-        run: ls -l && bash run_tests_in_containers.sh
+        run: bash run_tests_in_containers.sh
