@@ -147,6 +147,7 @@ setup() {
   export ATLAS_EXPS=E-MTAB-6870
   export EXP_MATCH_MIN=999999999
   export EXP_MATCH_WARNING=100
+  export EXPERIMENT_TYPE="gxa"
   # expect exit code 1 as the number of entries is lower than specified
   run gxa-index-check-experiments.sh 
   [ "$status" -eq 1 ]
