@@ -144,7 +144,7 @@ setup() {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping load to SOLR"
   fi
-  export ATLAS_EXPS=E-MTAB-6870
+  export EXPERIMENT_ID=E-MTAB-6870
   export EXP_MATCH_MIN=999999999
   export EXP_MATCH_WARNING=100
   export EXPERIMENT_TYPE="gxa"
