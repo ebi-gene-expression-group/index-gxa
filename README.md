@@ -49,6 +49,17 @@ export SOLR_HOST=localhost:8983
 delete_gxa_analytics_index.sh
 ```
 
+## Check the number of entries per experiment in the Solr index
+To make sure experiments have a sufficient number of matches in the index, run  
+```
+bin/gxa-index-check-experiments.sh
+```
+This script expects the following variables to be defined: 
+- `EXPERIMENT_ID`: one or more experiment accessions for which index state should be checked
+- `EXP_MATCH_MIN`: minimal accepted number of matches per experiment
+- `EXP_MATCH_WARNING`: fewer matches than this number cause a warning 
+- `EXPERIMENT_TYPE`: gxa or bulk 
+
 ## Tests
 Tests are located in the `tests` directory and use bats. To run them, execute `bash tests/run-tests.sh`. The `tests` folder includes example data in tsv (a condensed SDRF) and in JSON (as it should be produced by the first step that translates the cond. SDRF to JSON).
 
