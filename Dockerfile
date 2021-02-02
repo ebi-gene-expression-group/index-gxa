@@ -1,8 +1,10 @@
-FROM python:3.8.3-alpine3.11
+FROM python:3.9-alpine
 
-RUN apk update && apk add bash curl jq
-RUN apk add --no-cache g++
-RUN pip install pandas
+RUN apk add --no-cache --update bash curl jq \
+    g++ # To compile Pandas
+
+RUN pip install pyyaml pandas
 
 COPY bin/* /usr/local/bin/
 COPY lib/* /usr/local/lib/
+COPY property_weights.yaml /usr/local/
