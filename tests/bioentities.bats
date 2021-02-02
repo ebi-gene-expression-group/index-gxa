@@ -56,4 +56,25 @@ setup() {
   run load_gxa_bioentities_index.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
+}}
+
+@test "[bioentities] Check suggesters for bulk Expression Atlas have been properly created" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping suggesters check"
+  fi
+  run create-bioentities-suggesters-gxa.sh
+  run bioentities-check-created-suggesters-gxa.sh
+  echo "output = ${output}"
+  [ "$status" -eq 0 ]
 }
+
+@test "[bioentities] Check suggesters for Single Cell Expression Atlas have been properly created" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping suggesters check"
+  fi
+  run create-bioentities-suggesters-scxa.sh
+  run bioentities-check-created-suggesters-scxa.sh
+  echo "output = ${output}"
+  [ "$status" -eq 0 ]
+}
+
