@@ -3,7 +3,7 @@
 This module provides scripts for building gxa indexing for Atlas Production data release process:
 
 - Update experiment designs
-- Update coexpressions 
+- Update coexpressions
 - Reindex bioentities collection
 - Reindex analytics import
 
@@ -12,12 +12,15 @@ Scripts to create and load data into the `gxa-*` Solr indexes (for bionetities a
 - awk
 - jq (1.5)
 - curl
+- Python 3 (with Pandas and PyYAML support)
+
+* Run `pip install pyyaml pandas`; you’ll need `g++` as some parts of Pandas are optimised in Cython
 
 # `gxa-analytics` index v1
 
 To create the schema, set the environment variable `SOLR_HOST` to the appropriate server, and execute as shown
 
-```
+```bash
 export SOLR_HOST=localhost:8983
 
 create-gxa-analytics-config-set.sh
@@ -25,7 +28,7 @@ create-gxa-analytics-collection.sh
 ```
 
 ## Create schema
-```
+```bash
 create-gxa-scxa-analytics-schema.sh
 ```
 
@@ -42,7 +45,7 @@ export CONDENSED_SDRF_TSV=./test/example-bulk-conds-sdrf.tsv
 ## Delete an experiment
 In order to delete a particular experiment's analytics solr documents based on its accession from a live index, do:
 
-```
+```bash
 export EXP_ID=desired-exp-identifier
 export SOLR_HOST=localhost:8983
 
@@ -57,7 +60,7 @@ Tests are located in the `tests` directory and use bats. To run them, execute `b
 
 To create the schema, set the environment variable `SOLR_HOST` to the appropriate server, and execute as shown
 
-```
+```bash
 export SOLR_HOST=localhost:8983
 
 create-bioentities-collections.sh
@@ -66,7 +69,7 @@ create-bioentities-schema.sh
 ## Load data
 Before loading, the bioentities (tests file homo_sapiens.ensgene.tsv) which is in tsv format are converted to JSON. Property yaml file contains predefined weights for an attribute that is given priority while searching in webapp
 
-```
+```bash
 export BIOENTITIES_TSV=./tests/homo_sapiens.ensgene.tsv
 export ROPERTY_WEIGHTS_YAML=./property_weights
 
@@ -75,4 +78,4 @@ load_gxa_bioentities_index.sh
 ```
 
 ## Tests
-Tests are located in the `tests` directory and use bats. To run them, execute `bash tests/run-tests.sh`. The `tests` folder includes example data in tsv (homo_sapiens.ensgene.tsv)
+Tests are located in the `tests` directory and use bats. To run them, execute `bash tests/run-tests.sh`. The `tests` folder includes example data in the TSV file `homo_sapiens.ensgene.tsv`.
