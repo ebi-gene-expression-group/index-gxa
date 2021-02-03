@@ -4,17 +4,13 @@ This module provides scripts for building gxa indexing for Atlas Production data
 
 - Update experiment designs
 - Update coexpressions
-- Reindex bioentities collection
 - Reindex analytics import
 
-Scripts to create and load data into the `gxa-*` Solr indexes (for bionetities and analytics). Execution of tasks here require that `bin/` directory in the root of this repo is part of the path, and that the following executables are available:
+Scripts to create and load data into the `gxa-*` Solr indexes (for analytics). Execution of tasks here require that `bin/` directory in the root of this repo is part of the path, and that the following executables are available:
 
 - awk
 - jq (1.5)
 - curl
-- Python 3 (with Pandas and PyYAML support)
-
-* Run `pip install pyyaml pandas`; you’ll need `g++` as some parts of Pandas are optimised in Cython
 
 # `gxa-analytics` index v1
 
@@ -33,17 +29,6 @@ create-gxa-scxa-analytics-schema.sh
 ```
 
 You can override the default target Solr collection name by setting `SOLR_COLLECTION`, but remember to include the additional `v<schema-version-number>` at the end, or the loader might refuse to load this.
-
-## Create suggesters
-For bulk Expression Atlas run:
-```bash
-create-bioentities-suggesters-gxa.sh
-```
-
-For Single Cell Expression Atlas run:
-```bash
-create-bioentities-suggesters-scxa.sh
-```
 
 ## Load data
 This module loads data from a condensed SDRF in an GXA experiment to the gxa-analytics-v? collection in Solr. These routines expect the collection to be created already, and work as an update to the content of the collection.
@@ -95,28 +80,3 @@ This script expects the following variables to be defined:
 
 ## Tests
 Tests are located in the `tests` directory and use bats. To run them, execute `bash tests/run-tests.sh`. The `tests` folder includes example data in tsv (a condensed SDRF) and in JSON (as it should be produced by the first step that translates the cond. SDRF to JSON).
-
-
-# `bioentities-collection` index v1
-
-To create the schema, set the environment variable `SOLR_HOST` to the appropriate server, and execute as shown
-
-```bash
-export SOLR_HOST=localhost:8983
-
-create-bioentities-collections.sh
-create-bioentities-schema.sh
-```
-## Load data
-Before loading, the bioentities (tests file homo_sapiens.ensgene.tsv) which is in tsv format are converted to JSON. Property yaml file contains predefined weights for an attribute that is given priority while searching in webapp
-
-```bash
-export BIOENTITIES_TSV=./tests/homo_sapiens.ensgene.tsv
-export ROPERTY_WEIGHTS_YAML=./property_weights
-
-load_gxa_bioentities_index.sh
-
-```
-
-## Tests
-Tests are located in the `tests` directory and use bats. To run them, execute `bash tests/run-tests.sh`. The `tests` folder includes example data in the TSV file `homo_sapiens.ensgene.tsv`.
