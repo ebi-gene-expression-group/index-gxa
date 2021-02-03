@@ -17,7 +17,7 @@ setup() {
     [ "$status" -eq 0 ]
 }
 
-@test "Check that sdrf converter is in the path" {
+@test "Check that SDRF converter is in the path" {
     run which condSdrf2tsvForGXAJSONFactorsIndex.sh
     [ "$status" -eq 0 ]
 }
@@ -27,7 +27,7 @@ setup() {
     [ "$status" -eq 0 ]
 }
 
-@test "Check valid json output from sdrf converter" {
+@test "Check valid JSON output from SDRF converter" {
     condSdrf2tsvForgxaJSONFactorsIndex.sh $BATS_TEST_DIRNAME/example-bulk-conds-sdrf.tsv | jq -s .
     [  $? -eq 0 ]
 }
@@ -38,12 +38,12 @@ setup() {
     [ $ASSAY_COUNT = $UNIQUE_ASSAY_COUNT ]
 }
 
-@test "[analytics] Create collection on solr" {
+@test "[analytics] Create collection on Solr" {
   if [ -z ${SOLR_HOST+x} ]; then
-    skip "SOLR_HOST not defined, skipping loading of schema on solr"
+    skip "SOLR_HOST not defined, skipping loading of schema on Solr"
   fi
   if [ ! -z ${SOLR_COLLECTION_EXISTS+x} ]; then
-    skip "solr collection has been predifined on the current setup"
+    skip "Solr collection has been predefined on the current setup"
   fi
   run create-gxa-analytics-config-set.sh
   run create-gxa-analytics-collection.sh
@@ -51,18 +51,18 @@ setup() {
   [ "$status" -eq 0 ]
 }
 
-@test "[analytics] Set no auto-create on solr" {
+@test "[analytics] Set no auto-create on Solr" {
   if [ -z ${SOLR_HOST+x} ]; then
-    skip "SOLR_HOST not defined, skipping loading of schema on solr"
+    skip "SOLR_HOST not defined, skipping loading of schema on Solr"
   fi
   run gxa-index-set-no-autocreate.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
 }
 
-@test "[analytics] Load schema to collection on solr" {
+@test "[analytics] Load schema to collection on Solr" {
   if [ -z ${SOLR_HOST+x} ]; then
-    skip "SOLR_HOST not defined, skipping loading of schema on solr"
+    skip "SOLR_HOST not defined, skipping loading of schema on Solr"
   fi
   run create-gxa-analytics-schema.sh
   echo "output = ${output}"
@@ -78,9 +78,9 @@ setup() {
   [ "$status" -eq 0 ]
 }
 
-@test "[analytics] Load data to solr" {
+@test "[analytics] Load data to Solr" {
   if [ -z ${SOLR_HOST+x} ]; then
-    skip "SOLR_HOST not defined, skipping load to SOLR"
+    skip "SOLR_HOST not defined, skipping load to Solr"
   fi
   export CONDENSED_SDRF_TSV=$BATS_TEST_DIRNAME/example-bulk-conds-sdrf.tsv
   run load_gxa_analytics_index.sh
@@ -90,7 +90,7 @@ setup() {
 
 @test "[analytics] Load additional dataset for deletion testing" {
   if [ -z ${SOLR_HOST+x} ]; then
-    skip "SOLR_HOST not defined, skipping load to SOLR"
+    skip "SOLR_HOST not defined, skipping additional dataset load"
   fi
   export EXP_ID=E-MTAB-111
   export CONDENSED_SDRF_TSV=$BATS_TEST_DIRNAME/example-conds-sdrf-delete.tsv
@@ -102,7 +102,7 @@ setup() {
 
 @test "[analytics] Delete additional dataset" {
   if [ -z ${SOLR_HOST+x} ]; then
-    skip "SOLR_HOST not defined, skipping load to SOLR"
+    skip "SOLR_HOST not defined, skipping additional dataset deletion"
   fi
   export EXP_ID=E-MTAB-111
   run delete_gxa_analytics_index.sh
@@ -110,9 +110,9 @@ setup() {
   [ "$status" -eq 0 ]
 }
 
-@test "[analytics] ontology biosolr" {
+@test "[analytics] BioSolr ontology update processor" {
   if [ -z ${SOLR_HOST+x} ]; then
-    skip "SOLR_HOST not defined, skipping load to SOLR"
+    skip "SOLR_HOST not defined, skipping BioSolr update processor test"
   fi
   run add-biosolr-lib.sh
   echo "output = ${output}"
@@ -121,7 +121,7 @@ setup() {
 
 @test "[analytics] Check correctness of load" {
   if [ -z ${SOLR_HOST+x} ]; then
-    skip "SOLR_HOST not defined, skipping load to SOLR"
+    skip "SOLR_HOST not defined, skipping load correctness check"
   fi
   export CONDENSED_SDRF_TSV=$BATS_TEST_DIRNAME/example-bulk-conds-sdrf.tsv
   run analytics-check-index-content.sh
@@ -140,20 +140,18 @@ setup() {
   [ "$status" -eq 0 ]
 }
 
-@test "[analytics] Check the health of experiments" {
+@test "[analytics] Check health of experiments" {
   if [ -z ${SOLR_HOST+x} ]; then
-    skip "SOLR_HOST not defined, skipping load to SOLR"
+    skip "SOLR_HOST not defined, skipping experiments health check"
   fi
   export EXPERIMENT_ID=E-MTAB-6870
   export EXP_MATCH_MIN=999999999
   export EXP_MATCH_WARNING=100
-  export EXPERIMENT_TYPE="gxa"
   # expect exit code 1 as the number of entries is lower than specified
-  run gxa-index-check-experiments.sh 
+  run gxa-index-check-experiments.sh
   [ "$status" -eq 1 ]
   export EXP_MATCH_MIN=3
-  run gxa-index-check-experiments.sh 
+  run gxa-index-check-experiments.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
 }
-
