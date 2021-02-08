@@ -3,7 +3,7 @@
 This module provides scripts for building gxa indexing for Atlas Production data release process:
 
 - Update experiment designs
-- Update coexpressions 
+- Update coexpressions
 - Reindex bioentities collection
 - Reindex analytics import
 
@@ -26,7 +26,7 @@ create-gxa-analytics-collection.sh
 
 ## Create schema
 ```
-create-gxa-scxa-analytics-schema.sh
+create-gxa-analytics-schema.sh
 ```
 
 You can override the default target Solr collection name by setting `SOLR_COLLECTION`, but remember to include the additional `v<schema-version-number>` at the end, or the loader might refuse to load this.
@@ -38,6 +38,26 @@ This module loads data from a condensed SDRF in an GXA experiment to the gxa-ana
 export SOLR_HOST=localhost:8983
 export CONDENSED_SDRF_TSV=./test/example-bulk-conds-sdrf.tsv
 
+This is still WIP.
+
+### Legacy method
+
+The current setup still in use loads bulk-analytics-v1 through the web application:
+
+```bash
+export ATLASPROD_PATH=...
+export TOMCAT_HOST_USERNAME=...
+export TOMCAT_HOST_PASSWORD=...
+export TOMCAT_HOST=... # Tomcat host where Atlas GXA is running, usually the prod environment.
+
+# Optionally, you can parametrise the execution with
+export SOLR_DOCS_BATCH=30000 # for the number of documents per batch to load to Solr
+export SOLR_THREADS=4 # Number of concurrent operations to run against solr
+export SOLR_TIMEOUT_HRS=72 # hours for connection timeout.
+
+#run
+index_analytics.sh
+```
 
 ## Delete an experiment
 In order to delete a particular experiment's analytics solr documents based on its accession from a live index, do:
@@ -54,11 +74,11 @@ To make sure experiments have a sufficient number of matches in the index, run
 ```
 bin/gxa-index-check-experiments.sh
 ```
-This script expects the following variables to be defined: 
+This script expects the following variables to be defined:
 - `EXPERIMENT_ID`: one or more experiment accessions for which index state should be checked
 - `EXP_MATCH_MIN`: minimal accepted number of matches per experiment
-- `EXP_MATCH_WARNING`: fewer matches than this number cause a warning 
-- `EXPERIMENT_TYPE`: gxa or bulk 
+- `EXP_MATCH_WARNING`: fewer matches than this number cause a warning
+- `EXPERIMENT_TYPE`: gxa or bulk
 
 ## Tests
 Tests are located in the `tests` directory and use bats. To run them, execute `bash tests/run-tests.sh`. The `tests` folder includes example data in tsv (a condensed SDRF) and in JSON (as it should be produced by the first step that translates the cond. SDRF to JSON).
