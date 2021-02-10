@@ -9,17 +9,18 @@
 
 out=$(curl "http://$SOLR_HOST/solr/$EXPERIMENT_TYPE-analytics-v1/select?fl=experiment_accession&q=*:*&rows=10000000&group=true&group.field=experiment_accession")
 status="$?" 
-if [[ "$status" -ne "0" ]]; then
+if [ "$status" -ne "0" ]; then
     echo $out
     exit 1
 fi 
 for exp in $EXPERIMENT_ID; do
     n_entries=$(echo "$out" | grep -A 1 $exp | egrep -o '"numFound":[0-9]+' | egrep -o "[0-9]+")
-    if [[ $n_entries -lt $EXP_MATCH_MIN ]]; then
+    [ -z "$n_entries" ] && n_entries=0
+    if [ "$n_entries" -lt "$EXP_MATCH_MIN" ]; then
         echo "Error: experiment $exp has $n_entries entries which is below the minimum of $EXP_MATCH_MIN."
         expFail=true
-    elif [[ $n_entries -lt $EXP_MATCH_WARNING ]]; then
-        echo "Warning: experiment $exp has $n_entries matches. Experiments are expected to have over $EXP_MATCH_WARN entries." 
+    elif [ "$n_entries" -lt "$EXP_MATCH_WARNING" ]; then
+        echo "Warning: experiment $exp has $n_entries matches. Experiments are expected to have over $EXP_MATCH_WARNING entries." 
     fi
 done
 if [ "$expFail" = true ]; then
