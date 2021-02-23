@@ -14,7 +14,7 @@ if [ "$status" -ne "0" ]; then
     exit 1
 fi 
 for exp in $EXPERIMENT_ID; do
-    n_entries=$(echo "$out" | grep -A 1 $exp | egrep -o '"numFound":[0-9]+' | egrep -o "[0-9]+")
+    n_entries=$(echo "$out" | grep -A 1 -e "\"$exp\"" | egrep -o '"numFound":[0-9]+' | egrep -o "[0-9]+")
     [ -z "$n_entries" ] && n_entries=0
     if [ "$n_entries" -lt "$EXP_MATCH_MIN" ]; then
         echo "Error: experiment $exp has $n_entries entries which is below the minimum of $EXP_MATCH_MIN."
