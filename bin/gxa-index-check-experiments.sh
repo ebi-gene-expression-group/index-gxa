@@ -7,7 +7,7 @@
 [ -z ${EXP_MATCH_WARNING+x} ] && echo "Env var EXP_MATCH_WARN needs to be defined." && exit 1
 [ -z ${EXPERIMENT_TYPE+x} ] && echo "Env var EXPERIMENT_TYPE needs to be defined." && exit 1
 
-out=$(curl "http://$SOLR_HOST/solr/$EXPERIMENT_TYPE-analytics-v1/select?fl=experiment_accession&q=*:*&rows=10000000&group=true&group.field=experiment_accession")
+out=$(curl --silent "http://$SOLR_HOST/solr/$EXPERIMENT_TYPE-analytics-v1/select?fl=experiment_accession&q=*:*&rows=10000000&group=true&group.field=experiment_accession")
 status="$?" 
 if [ "$status" -ne "0" ]; then
     echo $out
