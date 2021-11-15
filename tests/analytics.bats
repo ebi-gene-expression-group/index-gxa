@@ -168,6 +168,7 @@ setup() {
   export BIN_MAP=$( pwd )
   export SPECIES=homo_sapiens
   export ACCESSIONS=E-MTAB-4754
+  echo $BIN_MAP
 
   generate_analytics_JSONL_files.sh
 
