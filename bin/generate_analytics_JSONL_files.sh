@@ -8,9 +8,9 @@ source $scriptDir/common_routines.sh
 require_env_var "SOLR_HOST"
 require_env_var "ZK_HOST"
 require_env_var "ZK_PORT"
-require_env_var "BIN_MAP"
+require_env_var "BIOENTITIES"
 require_env_var "output_dir"
-#require_env_var "EXPERIMENT_FILES"
+require_env_var "EXPERIMENT_FILES"
 require_env_var "jdbc_url"
 require_env_var "jdbc_username"
 require_env_var "jdbc_password"
@@ -18,7 +18,7 @@ require_env_var "server_port"
 
 require_env_var "SPECIES" 
 require_env_var "ACCESSIONS"
-
+require_env_var "BIN_MAP"
 
 SOLR_PORT=$(get_port_from_hostport $SOLR_HOST)
 SOLR_HOST=$(get_host_from_hostport $SOLR_HOST)
@@ -29,7 +29,7 @@ java_opts="-Dsolr.host=$SOLR_HOST"
 java_opts="$java_opts -Dsolr.port=$SOLR_PORT"
 java_opts="$java_opts -Dzk.host=$ZK_HOST"
 java_opts="$java_opts -Dzk.port=$ZK_PORT"
-java_opts="$java_opts -Ddata.files.location=$BIN_MAP"
+java_opts="$java_opts -Ddata.files.location=$BIOENTITIES"
 java_opts="$java_opts -Dexperiment.files.location=$EXPERIMENT_FILES"
 java_opts="$java_opts -Djdbc.url=$jdbc_url"
 java_opts="$java_opts -Djdbc.username=$jdbc_username"
