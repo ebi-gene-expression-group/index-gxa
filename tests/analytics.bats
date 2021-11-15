@@ -155,3 +155,22 @@ setup() {
   echo "output = ${output}"
   [ "$status" -eq 0 ]
 }
+
+
+@test "[bioentities] Load analytics files into SOLR" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping load to Solr"
+  fi
+
+  if [ -z ${ACCESSIONS+x} ]; then
+    skip "ACCESSIONS not defined, skipping load to solr"
+  fi
+
+  export output_dir=$( pwd )
+
+  run load_analytics_files_in_Solr.sh
+
+  echo "output = ${output}"
+  [ "${status}" -eq 0 ]
+}
+
