@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
 require_env_var "SOLR_HOST"
-require_env_var "ZK_HOST"
-require_env_var "ZK_PORT"
 require_env_var "ACCESSIONS"
 require_env_var "output_dir"
 
