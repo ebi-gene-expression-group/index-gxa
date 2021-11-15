@@ -55,7 +55,7 @@ docker run --rm -i --net mynet \
 
 
 docker exec -it --user=solr my_solr bin/solr create_collection -c gxa-analytics-v1
-docker run --rm -i --net mynet -v $( pwd )/tests:/usr/local/tests -e SOLR_HOST=$SOLR_HOST --entrypoint=/usr/local/tests/run_tests_inside_container.sh test/index-gxa-module
+docker run --rm -i --net mynet -v $( pwd )/tests:/usr/local/tests -e SOLR_HOST=$SOLR_HOST -e ZK_HOST=$ZK_HOST -e ZK_PORT=$ZK_PORT --entrypoint=/usr/local/tests/run_tests_inside_container.sh test/index-gxa-module
 
 #docker stop my_solr
 #docker network rm mynet
