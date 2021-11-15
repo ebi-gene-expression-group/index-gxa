@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+scriptDir=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+source $scriptDir/common_routines.sh
+
 require_env_var "SOLR_HOST"
 require_env_var "ACCESSIONS"
 require_env_var "output_dir"
