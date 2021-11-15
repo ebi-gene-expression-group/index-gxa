@@ -183,9 +183,7 @@ setup() {
     skip "SOLR_HOST not defined, skipping load to Solr"
   fi
 
-  if [ -z ${ACCESSIONS+x} ]; then
-    skip "ACCESSIONS not defined, skipping load to solr"
-  fi
+  export ACCESSIONS=E-MTAB-4754
 
   export output_dir=$( pwd )
 
