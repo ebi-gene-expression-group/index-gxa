@@ -167,7 +167,6 @@ setup() {
   
   export SPECIES=homo_sapiens
   export ACCESSIONS=E-MTAB-4754
-  export ZK_HOST=${ZK_HOST:localhost}
 
   generate_analytics_JSONL_files.sh
 
