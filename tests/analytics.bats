@@ -165,6 +165,7 @@ setup() {
   export output_dir=$( pwd )
   export CONDA_PREFIX=/opt/conda
   
+  export BIN_MAP=$( pwd )
   export SPECIES=homo_sapiens
   export ACCESSIONS=E-MTAB-4754
 
