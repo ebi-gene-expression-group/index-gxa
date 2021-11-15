@@ -157,6 +157,26 @@ setup() {
 }
 
 
+
+@test "[bioentities] Generate analytics JSONL files for human" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
+  fi
+  export output_dir=$( pwd )
+  export CONDA_PREFIX=/opt/conda
+  
+  export SPECIES=homo_sapiens
+  export ACCESSIONS=E-MTAB-4754
+
+  generate_analytics_JSONL_files.sh
+
+  echo "output = ${output}"
+  [ "${status}" -eq 0 ]
+  [ -f "$( pwd )/E-MTAB-4754.jsonl" ]
+  # Check that the JSONL output exists
+}
+
+
 @test "[bioentities] Load analytics files into SOLR" {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping load to Solr"
