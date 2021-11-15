@@ -10,11 +10,12 @@ require_env_var "ZK_HOST"
 require_env_var "ZK_PORT"
 require_env_var "BIN_MAP"
 require_env_var "output_dir"
-require_env_var "EXPERIMENT_FILES"
+#require_env_var "EXPERIMENT_FILES"
 require_env_var "jdbc_url"
 require_env_var "jdbc_username"
 require_env_var "jdbc_password"
 require_env_var "server_port"
+
 require_env_var "SPECIES" 
 require_env_var "ACCESSIONS"
 
