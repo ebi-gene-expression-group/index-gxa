@@ -8,7 +8,7 @@ source $scriptDir/common_routines.sh
 require_env_var "SOLR_HOST"
 require_env_var "ZK_HOST"
 require_env_var "ZK_PORT"
-require_env_var "BIOENTITIES"
+require_env_var "BIN_MAP"
 require_env_var "output_dir"
 require_env_var "EXPERIMENT_FILES"
 require_env_var "jdbc_url"
@@ -28,7 +28,7 @@ java_opts="-Dsolr.host=$SOLR_HOST"
 java_opts="$java_opts -Dsolr.port=$SOLR_PORT"
 java_opts="$java_opts -Dzk.host=$ZK_HOST"
 java_opts="$java_opts -Dzk.port=$ZK_PORT"
-java_opts="$java_opts -Ddata.files.location=$BIOENTITIES"
+java_opts="$java_opts -Ddata.files.location=$BIN_MAP"
 java_opts="$java_opts -Dexperiment.files.location=$EXPERIMENT_FILES"
 java_opts="$java_opts -Djdbc.url=$jdbc_url"
 java_opts="$java_opts -Djdbc.username=$jdbc_username"
@@ -38,7 +38,7 @@ java_opts="$java_opts -Dserver.port=$server_port"
 # Generate JSONL files from bulk experiments
 
 cmd="java $java_opts -jar $jar_dir/atlas-cli-bulk.jar"
-cmd=$cmd" bulk-analytics-json -o $output_dir -i $output_dir/$SPECIES.map.bin " 
+cmd=$cmd" bulk-analytics-json -o $output_dir -i ${BIN_MAP}/$SPECIES.map.bin " 
 
 
 status=0
