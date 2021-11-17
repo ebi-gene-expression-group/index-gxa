@@ -10,11 +10,11 @@ export POSTGRES_PASSWORD=postgresPass
 export POSTGRES_PORT=5432
 export jdbc_url="jdbc:postgresql://$POSTGRES_HOST:$POSTGRES_PORT/$POSTGRES_DB"
 
-#export jdbc_username=$POSTGRES_USER
-#export jdbc_password=$POSTGRES_PASSWORD
-#export server_port=8081 #fake
-#export BIOENTITIES=./tests/fixtures/
-#export EXPERIMENT_FILES=./tests/fixtures/experiment_files
+export jdbc_username=$POSTGRES_USER
+export jdbc_password=$POSTGRES_PASSWORD
+export server_port=8081 #fake
+export BIOENTITIES=./tests/fixtures/
+export EXPERIMENT_FILES=./tests/fixtures/experiment_files
 
 docker network create mynet
 # create container with zookeeper
