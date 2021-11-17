@@ -1,0 +1,14 @@
+E-MTAB-111 A-AFFY-2	8311_FLTAGES2_25_Ferl.Paul_(ATH1-121501).CEL	characteristic	age	12 day
+E-MTAB-111	A-AFFY-2	8311_FLTAGES2_25_Ferl.Paul_(ATH1-121501).CEL	characteristic	ecotype	Wassilewskija	http://www.ebi.ac.uk/efo/EFO_0005156
+E-MTAB-111	A-AFFY-2	8311_FLTAGES2_25_Ferl.Paul_(ATH1-121501).CEL	characteristic	growth condition	Advanced Biological Research System (ABRS) at International Space Station
+E-MTAB-111	A-AFFY-2	8311_FLTAGES2_25_Ferl.Paul_(ATH1-121501).CEL	characteristic	organism	Arabidopsis thaliana	http://purl.obolibrary.org/obo/NCBITaxon_3702
+E-MTAB-111	A-AFFY-2	8311_FLTAGES2_25_Ferl.Paul_(ATH1-121501).CEL	characteristic	organism part	whole plant	http://purl.obolibrary.org/obo/UBERON_0000468
+E-MTAB-111	A-AFFY-2	8311_FLTAGES2_25_Ferl.Paul_(ATH1-121501).CEL	factor	growth condition	spaceflight environment
+E-MTAB-111	A-AFFY-2	8311_FLTAGES2_25_Ferl.Paul_(ATH1-121501).CEL	factor	organism part	whole plant	http://purl.obolibrary.org/obo/UBERON_0000468
+E-MTAB-111	A-AFFY-2	8312_GCTAGES2_26_Ferl.Paul_(ATH1-121501).CEL	characteristic	age	12 day
+E-MTAB-111	A-AFFY-2	8312_GCTAGES2_26_Ferl.Paul_(ATH1-121501).CEL	characteristic	ecotype	Wassilewskija	http://www.ebi.ac.uk/efo/EFO_0005156
+E-MTAB-111	A-AFFY-2	8312_GCTAGES2_26_Ferl.Paul_(ATH1-121501).CEL	characteristic	growth condition	Advanced Biological Research System (ABRS) at Ground Control Orbiter Environmental Simulator at Kennedy Space Center
+E-MTAB-111	A-AFFY-2	8312_GCTAGES2_26_Ferl.Paul_(ATH1-121501).CEL	characteristic	organism	Arabidopsis thaliana	http://purl.obolibrary.org/obo/NCBITaxon_3702
+E-MTAB-111	A-AFFY-2	8312_GCTAGES2_26_Ferl.Paul_(ATH1-121501).CEL	characteristic	organism part	whole plant	http://purl.obolibrary.org/obo/UBERON_0000468
+E-MTAB-111	A-AFFY-2	8312_GCTAGES2_26_Ferl.Paul_(ATH1-121501).CEL	factor	growth condition	ground control
+E-MTAB-111	A-AFFY-2	8312_GCTAGES2_26_Ferl.Paul_(ATH1-121501).CEL	factor	organism part	whole plant	http://purl.obolibrary.org/obo/UBERON_0000468
