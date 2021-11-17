@@ -165,7 +165,7 @@ setup() {
   export BIN_MAP=$BATS_TEST_DIRNAME
   export SPECIES=homo_sapiens
   export ACCESSIONS=E-MTAB-4754
-  generate_analytics_JSONL_files.sh
+  run generate_analytics_JSONL_files.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
   [ -f "$( pwd )/E-MTAB-4754.jsonl" ]
