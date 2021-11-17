@@ -61,6 +61,10 @@ docker run --rm -i --net mynet \
 
 docker exec --user=solr my_solr bin/solr create_collection -c gxa-analytics-v1
 
+# disable data driven schema functionality - not recommended for production
+curl http://localhost:8983/solr/gxa-analytics-v1/config -d '{"set-user-property": {"update.autoCreateFields":"false"}}'
+
+
 docker run --rm -i --net mynet -v $( pwd )/tests:/usr/local/tests \
   -v $( pwd )/bin:/usr/local/bin \
   -e SOLR_HOST=$SOLR_HOST -e ZK_HOST=$ZK_HOST -e ZK_PORT=$ZK_PORT \
