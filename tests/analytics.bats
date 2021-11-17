@@ -172,7 +172,7 @@ setup() {
   generate_analytics_JSONL_files.sh
 
   echo "output = ${output}"
-  [ "${status}" -eq 0 ]
+  [ "$status" -eq 0 ]
   [ -f "$( pwd )/E-MTAB-4754.jsonl" ]
   # Check that the JSONL output exists
 }
@@ -190,6 +190,6 @@ setup() {
   run load_analytics_files_in_Solr.sh
 
   echo "output = ${output}"
-  [ "${status}" -eq 0 ]
+  [ "$status" -eq 0 ]
 }
 
