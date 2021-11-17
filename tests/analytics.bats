@@ -185,7 +185,7 @@ setup() {
 
   export ACCESSIONS=E-MTAB-4754
 
-  export output_dir=$BATS_TEST_DIRNAME/fixtures/experiment_files/magetab  #$( pwd )
+  export output_dir=$( pwd )
 
   run load_analytics_files_in_Solr.sh
 
