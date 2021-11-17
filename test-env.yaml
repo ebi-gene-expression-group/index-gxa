@@ -1,11 +1,10 @@
 name: index-gxa
  channels:
-   - conda-forge
-   - ebi-gene-expression-group
-   - bioconda
+  - conda-forge
+  - ebi-gene-expression-group
+  - bioconda
  dependencies:
-   - bash
-   - curl
-   - jq
-   # - bats-core # bats provided by atlas-web-bulk-cli
-   - atlas-web-bulk-cli
+  - bash
+  - curl
+  - jq
+  - atlas-web-bulk-cli
