@@ -10,11 +10,11 @@ export POSTGRES_PASSWORD=postgresPass
 export POSTGRES_PORT=5432
 export jdbc_url="jdbc:postgresql://$POSTGRES_HOST:$POSTGRES_PORT/$POSTGRES_DB"
 
-export jdbc_username=$POSTGRES_USER
-export jdbc_password=$POSTGRES_PASSWORD
-export server_port=8081 #fake
-export BIOENTITIES=./tests/fixtures/
-export EXPERIMENT_FILES=./tests/fixtures/experiment_files
+#export jdbc_username=$POSTGRES_USER
+#export jdbc_password=$POSTGRES_PASSWORD
+#export server_port=8081 #fake
+#export BIOENTITIES=./tests/fixtures/
+#export EXPERIMENT_FILES=./tests/fixtures/experiment_files
 
 docker network create mynet
 # create container with zookeeper
@@ -60,6 +60,7 @@ docker run --rm -i --net mynet \
 
 
 docker exec -it --user=solr my_solr bin/solr create_collection -c gxa-analytics-v1
+
 docker run --rm -i --net mynet -v $( pwd )/tests:/usr/local/tests -e SOLR_HOST=$SOLR_HOST -e ZK_HOST=$ZK_HOST -e ZK_PORT=$ZK_PORT \
   -e jdbc_username=$jdbc_username -e jdbc_password=$jdbc_password -e server_port=$server_port -e BIOENTITIES=$BIOENTITIES\
   -e EXPERIMENT_FILES=$EXPERIMENT_FILES -e jdbc_url=$jdbc_url --entrypoint=/usr/local/tests/run_tests_inside_container.sh test/index-gxa-module
