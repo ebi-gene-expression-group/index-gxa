@@ -94,8 +94,8 @@ setup() {
   fi
   export EXP_ID=E-MTAB-111
   export CONDENSED_SDRF_TSV=$BATS_TEST_DIRNAME/example-conds-sdrf-delete.tsv
-  sed s/E-MTAB-6870/$EXP_ID/ $BATS_TEST_DIRNAME/example-bulk-conds-sdrf.tsv > $CONDENSED_SDRF_TSV
-  run load_gxa_analytics_index.sh && rm $CONDENSED_SDRF_TSV && analytics-check-experiment-available.sh
+  sed s/E-MTAB-6870/$EXP_ID/ $BATS_TEST_DIRNAME/example-bulk-conds-sdrf.tsv > $BATS_TEST_DIRNAME/$CONDENSED_SDRF_TSV
+  run load_gxa_analytics_index.sh && rm $BATS_TEST_DIRNAME/$CONDENSED_SDRF_TSV && analytics-check-experiment-available.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
 }
@@ -160,7 +160,7 @@ setup() {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
   fi
-  export output_dir=$( pwd )
+  export output_dir=$BATS_TEST_DIRNAME
   export CONDA_PREFIX=/opt/conda
   export BIN_MAP=$BATS_TEST_DIRNAME
   export SPECIES=homo_sapiens
@@ -168,7 +168,7 @@ setup() {
   generate_analytics_JSONL_files.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
-  [ -f "$( pwd )/E-MTAB-4754.jsonl" ]
+  [ -f "$BATS_TEST_DIRNAME/E-MTAB-4754.jsonl" ]
   # Check that the JSONL output exists
 }
 
@@ -177,7 +177,7 @@ setup() {
     skip "SOLR_HOST not defined, skipping load to Solr"
   fi
   export ACCESSIONS=E-MTAB-4754
-  export output_dir=$( pwd )
+  export output_dir=$BATS_TEST_DIRNAME
   run load_analytics_files_in_Solr.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
