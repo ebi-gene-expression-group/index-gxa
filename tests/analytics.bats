@@ -165,10 +165,9 @@ setup() {
   export output_dir=$( pwd )
   export CONDA_PREFIX=/opt/conda
   
-  export BIN_MAP=$( pwd )
+  export BIN_MAP=$BATS_TEST_DIRNAME
   export SPECIES=homo_sapiens
   export ACCESSIONS=E-MTAB-4754
-  echo $BIN_MAP
 
   generate_analytics_JSONL_files.sh
 
