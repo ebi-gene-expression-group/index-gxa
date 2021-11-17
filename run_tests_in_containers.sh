@@ -62,6 +62,7 @@ docker run --rm -i --net mynet \
 docker exec --user=solr my_solr bin/solr create_collection -c gxa-analytics-v1
 
 docker run --rm -i --net mynet -v $( pwd )/tests:/usr/local/tests \
+  -v $( pwd )/bin:/usr/local/bin \
   -e SOLR_HOST=$SOLR_HOST -e ZK_HOST=$ZK_HOST -e ZK_PORT=$ZK_PORT \
   -e POSTGRES_USER=$POSTGRES_USER \
   -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD \
