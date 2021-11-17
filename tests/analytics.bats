@@ -160,7 +160,7 @@ setup() {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
   fi
-  export output_dir=$BATS_TEST_DIRNAME
+  export output_dir=$( pwd )
   export CONDA_PREFIX=/opt/conda
   export BIN_MAP=$BATS_TEST_DIRNAME
   export SPECIES=homo_sapiens
@@ -168,7 +168,7 @@ setup() {
   generate_analytics_JSONL_files.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
-  [ -f "$BATS_TEST_DIRNAME/E-MTAB-4754.jsonl" ]
+  [ -f "$( pwd )/E-MTAB-4754.jsonl" ]
   # Check that the JSONL output exists
 }
 
@@ -177,7 +177,7 @@ setup() {
     skip "SOLR_HOST not defined, skipping load to Solr"
   fi
   export ACCESSIONS=E-MTAB-4754
-  export output_dir=$BATS_TEST_DIRNAME
+  export output_dir=$( pwd )
   run load_analytics_files_in_Solr.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
