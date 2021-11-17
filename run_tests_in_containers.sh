@@ -59,7 +59,7 @@ docker run --rm -i --net mynet \
 
 
 
-docker exec -it --user=solr my_solr bin/solr create_collection -c gxa-analytics-v1
+docker exec --user=solr my_solr bin/solr create_collection -c gxa-analytics-v1
 
 docker run --rm -i --net mynet -v $( pwd )/tests:/usr/local/tests -e SOLR_HOST=$SOLR_HOST -e ZK_HOST=$ZK_HOST -e ZK_PORT=$ZK_PORT \
   -e jdbc_username=$jdbc_username -e jdbc_password=$jdbc_password -e server_port=$server_port -e BIOENTITIES=$BIOENTITIES\
