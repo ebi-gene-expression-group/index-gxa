@@ -7,7 +7,8 @@ dependencies:
   - bash
   - curl
   - jq
-  # - bats-core # bats provided by atlas-web-bulk-cli
   - pyyaml
   - pandas
   - atlas-web-bulk-cli
+
+  # - bats-core # bats provided by atlas-web-bulk-cli
