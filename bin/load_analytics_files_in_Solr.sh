@@ -13,7 +13,7 @@ failed=0
 
 for FILE in $output_dir/$ACCESSIONS
 do
-  INPUT_JSONL=$FILE SOLR_COLLECTION=bioentities SOLR_COLLECTION=bulk-analytics SCHEMA_VERSION=1 SOLR_PROCESSORS=dedupe solr-jsonl-chunk-loader.sh
+  INPUT_JSONL=${FILE}.jsonl SOLR_COLLECTION=bioentities SOLR_COLLECTION=bulk-analytics SCHEMA_VERSION=1 SOLR_PROCESSORS=dedupe solr-jsonl-chunk-loader.sh
   if [ $? -ne 0 ]; then
     echo "Loading JSONL to $SOLR_HOST failed for $FILE"
     failed=1
