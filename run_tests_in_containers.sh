@@ -60,7 +60,7 @@ docker run --rm -i --net mynet \
 
 
 # disable data driven schema functionality - not recommended for production
-curl http://localhost:8983/solr/gxa-analytics-v1/config -d '{"set-user-property": {"update.autoCreateFields":"false"}}'
+# curl http://localhost:8983/solr/gxa-analytics-v1/config -d '{"set-user-property": {"update.autoCreateFields":"false"}}'
 
 docker exec -i --user=solr my_solr bin/solr create_collection -c gxa-analytics-v1
 
