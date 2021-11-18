@@ -12,4 +12,4 @@ COPY --chown=micromamba:micromamba test-env.yaml /tmp/env.yaml
 RUN micromamba install -y -n base -f /tmp/env.yaml && \
      micromamba clean --all --yes
 
-RUN chmod a+w /usr/local/tests
+#RUN chmod a+w /usr/local/tests
