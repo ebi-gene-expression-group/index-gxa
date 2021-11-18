@@ -5,7 +5,7 @@ set -e
 
 # on developers environment export SOLR_HOST and export SOLR_COLLECTION before running
 HOST=${SOLR_HOST:-"localhost:8983"}
-CORE=${SOLR_COLLECTION:-"gxa-analytics-v$SCHEMA_VERSION"}
+CORE=${SOLR_COLLECTION:-"bulk-analytics-v$SCHEMA_VERSION"}
 BIOSOLR_JAR_PATH="${BIOSOLR_JAR_PATH:-${PWD}/../lib/solr-ontology-update-processor-1.1.jar}"
 
 #creates a new file descriptor 3 that redirects to 1 (STDOUT)
