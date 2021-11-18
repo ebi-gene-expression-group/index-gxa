@@ -92,7 +92,7 @@ setup() {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping additional dataset load"
   fi
-  export EXP_ID=E-MTAB-111
+  export EXP_ID=E-MTAB-4754  #E-MTAB-111
   export CONDENSED_SDRF_TSV=/tmp/example-conds-sdrf-delete.tsv
   run sed s/E-MTAB-6870/$EXP_ID/ $BATS_TEST_DIRNAME/example-bulk-conds-sdrf.tsv > $CONDENSED_SDRF_TSV
   #run load_gxa_analytics_index.sh && rm $CONDENSED_SDRF_TSV && analytics-check-experiment-available.sh
