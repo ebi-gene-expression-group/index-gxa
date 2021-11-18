@@ -5,7 +5,7 @@ set -e
 
 # on developers environment export SOLR_HOST_PORT and export SOLR_COLLECTION before running
 HOST=${SOLR_HOST:-"localhost:8983"}
-CORE=${SOLR_COLLECTION:-"gxa-analytics-v$SCHEMA_VERSION"}
+CORE=${SOLR_COLLECTION:-"bulk-analytics-v$SCHEMA_VERSION"}
 
 entries=$(curl "http://$HOST/solr/$CORE/select?fl=experiment_accession&q=experiment_accession:%22$EXP_ID%22" |   jq '.response.numFound')
 
