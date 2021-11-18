@@ -5,7 +5,7 @@ set -e
 
 # on developers environment export SOLR_HOST_PORT and export SOLR_COLLECTION before running
 HOST=${SOLR_HOST:-"localhost:8983"}
-CORE=${SOLR_COLLECTION:-"gxa-analytics-v$SCHEMA_VERSION"}
+CORE=${SOLR_COLLECTION:-"bulk-analytics-v$SCHEMA_VERSION"}
 BASE=${SOLR_BASE_CONFIG:-"_default"}
 
 printf "\n\nCreating config based on $BASE for our collection."
