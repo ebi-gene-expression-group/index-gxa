@@ -7,5 +7,5 @@ CORE=${SOLR_COLLECTION:-"bulk-analytics-v$SCHEMA_VERSION"}
 
 
 curl -X POST -H 'Content-type:application/json' --data-binary '{
-  "set-user-property": {"update.autoCreateFields":"false"}
+  "set-user-property": {"update.autoCreateFields":"true"}
 }' http://$HOST/solr/$CORE/config
