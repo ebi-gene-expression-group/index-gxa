@@ -1,5 +1,5 @@
 setup() {
-  export SOLR_COLLECTION=gxa-analytics-v1
+  export SOLR_COLLECTION=bulk-analytics-v1
 }
 
 @test "Check that curl is in the path" {
