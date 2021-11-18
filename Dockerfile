@@ -5,17 +5,9 @@
 #COPY bin/* /usr/local/bin/
 #COPY lib/* /usr/local/lib/
 
-USER root
-RUN chmod -R 755 "/usr/local/tests"
-
 FROM mambaorg/micromamba:0.17.0 
 
 COPY --chown=micromamba:micromamba test-env.yaml /tmp/env.yaml
 
 RUN micromamba install -y -n base -f /tmp/env.yaml && \
      micromamba clean --all --yes
- 
-USER micromamba
-
-
-#RUN chmod a+w /usr/local/tests
