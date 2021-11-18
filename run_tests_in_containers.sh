@@ -65,7 +65,7 @@ docker run --rm -i --net mynet \
 docker exec -i --user=solr my_solr bin/solr create_collection -c bulk-analytics-v1
 
 
-docker run --rm -it --net mynet -v $( pwd )/tests:/usr/local/tests \
+docker run --rm -i --net mynet -v $( pwd )/tests:/usr/local/tests \
   -v $( pwd )/bin:/usr/local/bin \
   --device=$( pwd )/tests:/usr/local/tests \
   -e SOLR_HOST=$SOLR_HOST -e ZK_HOST=$ZK_HOST -e ZK_PORT=$ZK_PORT \
