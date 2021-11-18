@@ -62,11 +62,12 @@ docker run --rm -i --net mynet \
 # disable data driven schema functionality - not recommended for production
 # curl http://localhost:8983/solr/bulk-analytics-v1/config -d '{"set-user-property": {"update.autoCreateFields":"false"}}'
 
-docker exec -it --user=solr my_solr bin/solr create_collection -c bulk-analytics-v1
+docker exec -i --user=solr my_solr bin/solr create_collection -c bulk-analytics-v1
 
 
-docker run --rm -i --net mynet -v $( pwd )/tests:/usr/local/tests \
+docker run --rm -it --net mynet -v $( pwd )/tests:/usr/local/tests \
   -v $( pwd )/bin:/usr/local/bin \
+  --device=$( pwd )/tests:/usr/local/tests \
   -e SOLR_HOST=$SOLR_HOST -e ZK_HOST=$ZK_HOST -e ZK_PORT=$ZK_PORT \
   -e POSTGRES_USER=$POSTGRES_USER \
   -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD \
