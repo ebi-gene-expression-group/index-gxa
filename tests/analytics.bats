@@ -17,6 +17,11 @@ setup() {
     [ "$status" -eq 0 ]
 }
 
+@test "Check that java is in the path" {
+    run which java
+    [ "$status" -eq 0 ]
+}
+
 @test "Check that SDRF converter is in the path" {
     run which condSdrf2tsvForGXAJSONFactorsIndex.sh
     [ "$status" -eq 0 ]
