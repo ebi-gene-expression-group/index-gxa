@@ -1,10 +1,3 @@
-#FROM python:3.9-alpine
-
-#RUN apk add --no-cache --update bash curl jq
-
-#COPY bin/* /usr/local/bin/
-#COPY lib/* /usr/local/lib/
-
 FROM mambaorg/micromamba:0.17.0 
 
 COPY --chown=micromamba:micromamba test-env.yaml /tmp/env.yaml
