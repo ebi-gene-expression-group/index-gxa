@@ -12,4 +12,4 @@ dependencies:
   - atlas-web-bulk-cli
 
   # - bats-core # bats provided by atlas-web-bulk-cli
-  # - openjdk=11
+  # - openjdk=11 provided by atlas-web-bulk-cli
