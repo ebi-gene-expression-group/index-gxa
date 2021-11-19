@@ -28,7 +28,7 @@ create-gxa-analytics-collection.sh
 create-gxa-scxa-analytics-schema.sh
 ```
 
-You can override the default target Solr collection name by setting `SOLR_COLLECTION`, but remember to include the additional `v<schema-version-number>` at the end, or the loader might refuse to load this.
+You can override the default target Solr collection name by setting `SOLR_COLLECTION`, but remember to include the additional `v<schema-version-number>` at the end, or the loader might refuse to load this. For instance, in the tests the collection name used is `bulk-analytics-v1`.
 
 ## Load data
 This module loads data from a condensed SDRF in an GXA experiment to the gxa-analytics-v? collection in Solr. These routines expect the collection to be created already, and work as an update to the content of the collection.
