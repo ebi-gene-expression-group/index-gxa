@@ -22,6 +22,11 @@ setup() {
     [ "$status" -eq 0 ]
 }
 
+@test "Check that sed is in the path" {
+    run which sed
+    [ "$status" -eq 0 ]
+}
+
 @test "Check that SDRF converter is in the path" {
     run which condSdrf2tsvForGXAJSONFactorsIndex.sh
     [ "$status" -eq 0 ]
@@ -99,8 +104,9 @@ setup() {
   fi
   export EXP_ID=E-MTAB-111
   export CONDENSED_SDRF_TSV=/tmp/example-conds-sdrf-delete.tsv
-  run sed s/E-MTAB-6870/$EXP_ID/ $BATS_TEST_DIRNAME/example-bulk-conds-sdrf.tsv > $CONDENSED_SDRF_TSV
+  run 'sed s/E-MTAB-6870/${EXP_ID}/' $BATS_TEST_DIRNAME/example-bulk-conds-sdrf.tsv > $CONDENSED_SDRF_TSV
   #run load_gxa_analytics_index.sh && rm $CONDENSED_SDRF_TSV && analytics-check-experiment-available.sh
+  [ -f "$CONDENSED_SDRF_TSV" ]
   run load_gxa_analytics_index.sh
   rm $CONDENSED_SDRF_TSV
   run analytics-check-experiment-available.sh
