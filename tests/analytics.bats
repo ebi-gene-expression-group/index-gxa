@@ -22,11 +22,6 @@ setup() {
     [ "$status" -eq 0 ]
 }
 
-@test "Check that sed is in the path" {
-    run which sed
-    [ "$status" -eq 0 ]
-}
-
 @test "Check that SDRF converter is in the path" {
     run which condSdrf2tsvForGXAJSONFactorsIndex.sh
     [ "$status" -eq 0 ]
