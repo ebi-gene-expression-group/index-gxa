@@ -41,17 +41,7 @@ JAVA_OPTS="$JAVA_OPTS -Dserver.port=$server_port"
 cmd="java $JAVA_OPTS -jar $jar_dir/atlas-cli-bulk.jar"
 cmd=$cmd" bulk-analytics-json -o $output_dir -i ${BIN_MAP}/$SPECIES.map.bin " 
 
-
-status=0
-if [ -z ${ACCESSIONS+x} ]; then
-  # we have no accessions
-  echo "Env variable ACCESSIONS not defined"
-  status=1
-else
-  # we run for specific accessions
-  # ACCESSIONS should be comma separated if more than one
-  $cmd -e $ACCESSIONS
-  status=$?
-fi
+$cmd -e $ACCESSIONS
+status=$?
 
 exit $status
