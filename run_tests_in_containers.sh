@@ -24,8 +24,6 @@ docker run --rm --net mynet --name $POSTGRES_HOST \
   -e POSTGRES_DB=$POSTGRES_DB \
   -p $POSTGRES_PORT:$POSTGRES_PORT -d postgres:10.3-alpine
 
-# create docker for tests
-docker build -t test/index-gxa-module .
 sleep 20
 
 # Setup the database schema
@@ -64,10 +62,8 @@ docker run --rm -i --net mynet -v $( pwd )/tests:/usr/local/tests \
   -e SOLR_HOST=$SOLR_HOST -e ZK_HOST=$ZK_HOST -e ZK_PORT=$ZK_PORT \
   -e POSTGRES_USER=$POSTGRES_USER \
   -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD \
-  -e jdbc_url=$jdbc_url --entrypoint=/usr/local/tests/run_tests_inside_container.sh test/index-gxa-module
+  -e jdbc_url=$jdbc_url --entrypoint=/usr/local/tests/run_tests_inside_container.sh quay.io/ebigxa/atlas-index-base:1.0
 
 
 #docker stop my_solr
 #docker network rm mynet
-
-
