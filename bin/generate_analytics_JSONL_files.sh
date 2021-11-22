@@ -25,20 +25,20 @@ SOLR_HOST=$(get_host_from_hostport $SOLR_HOST)
 
 require_env_var "SOLR_PORT"
 
-java_opts="-Dsolr.host=$SOLR_HOST"
-java_opts="$java_opts -Dsolr.port=$SOLR_PORT"
-java_opts="$java_opts -Dzk.host=$ZK_HOST"
-java_opts="$java_opts -Dzk.port=$ZK_PORT"
-java_opts="$java_opts -Ddata.files.location=$BIOENTITIES"
-java_opts="$java_opts -Dexperiment.files.location=$EXPERIMENT_FILES"
-java_opts="$java_opts -Djdbc.url=$jdbc_url"
-java_opts="$java_opts -Djdbc.username=$jdbc_username"
-java_opts="$java_opts -Djdbc.password=$jdbc_password"
-java_opts="$java_opts -Dserver.port=$server_port"
+JAVA_OPTS="-Dsolr.host=$SOLR_HOST"
+JAVA_OPTS="$JAVA_OPTS -Dsolr.port=$SOLR_PORT"
+JAVA_OPTS="$JAVA_OPTS -Dzk.host=$ZK_HOST"
+JAVA_OPTS="$JAVA_OPTS -Dzk.port=$ZK_PORT"
+JAVA_OPTS="$JAVA_OPTS -Ddata.files.location=$BIOENTITIES"
+JAVA_OPTS="$JAVA_OPTS -Dexperiment.files.location=$EXPERIMENT_FILES"
+JAVA_OPTS="$JAVA_OPTS -Djdbc.url=$jdbc_url"
+JAVA_OPTS="$JAVA_OPTS -Djdbc.username=$jdbc_username"
+JAVA_OPTS="$JAVA_OPTS -Djdbc.password=$jdbc_password"
+JAVA_OPTS="$JAVA_OPTS -Dserver.port=$server_port"
 
 # Generate JSONL files from bulk experiments
 
-cmd="java $java_opts -jar $jar_dir/atlas-cli-bulk.jar"
+cmd="java $JAVA_OPTS -jar $jar_dir/atlas-cli-bulk.jar"
 cmd=$cmd" bulk-analytics-json -o $output_dir -i ${BIN_MAP}/$SPECIES.map.bin " 
 
 
