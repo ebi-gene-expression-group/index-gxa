@@ -152,15 +152,6 @@ setup() {
   [ "$status" -eq 0 ]
 }
 
-@test "[bioentities] Disable automatic field generation in the Solr collection" {
-  if [ -z ${SOLR_HOST+x} ]; then
-    skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
-  fi
-  run gxa-index-set-no-autocreate.sh
-  echo "output = ${output}"
-  [ "$status" -eq 0 ]
-}
-
 @test "[bioentities] Generate analytics JSONL files for human" {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
@@ -184,6 +175,15 @@ setup() {
   export ACCESSIONS=E-MTAB-4754
   export output_dir=$( pwd )
   run load_analytics_files_in_Solr.sh
+  echo "output = ${output}"
+  [ "$status" -eq 0 ]
+}
+
+@test "[bioentities] Disable automatic field generation in the Solr collection" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
+  fi
+  run gxa-index-set-no-autocreate.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
 }
