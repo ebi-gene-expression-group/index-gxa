@@ -168,6 +168,15 @@ setup() {
   # Check that the JSONL output exists
 }
 
+@test "[bioentities] Enable automatic field generation in the Solr collection" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
+  fi
+  run gxa-index-set-autocreate.sh
+  echo "output = ${output}"
+  [ "$status" -eq 0 ]
+}
+
 @test "[bioentities] Load analytics files into SOLR" {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping load to Solr"
