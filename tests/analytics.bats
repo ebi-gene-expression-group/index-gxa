@@ -56,15 +56,6 @@ setup() {
   [ "$status" -eq 0 ]
 }
 
-@test "[analytics] Set auto-create fields on Solr to true" {
-  if [ -z ${SOLR_HOST+x} ]; then
-    skip "SOLR_HOST not defined, skipping loading of schema on Solr"
-  fi
-  run gxa-index-set-no-autocreate.sh
-  echo "output = ${output}"
-  [ "$status" -eq 0 ]
-}
-
 @test "[analytics] Load schema to collection on Solr" {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping loading of schema on Solr"
