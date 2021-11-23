@@ -38,7 +38,7 @@ JAVA_OPTS="$JAVA_OPTS -Dserver.port=$server_port"
 
 # Generate JSONL files from bulk experiments
 
-cmd="java $JAVA_OPTS -jar $jar_dir/atlas-cli-bulk.jar"
+cmd="java -jar $jar_dir/atlas-cli-bulk.jar"
 cmd=$cmd" bulk-analytics-json -o $output_dir -i ${BIN_MAP}/$SPECIES.map.bin " 
 
 $cmd -e $ACCESSIONS
