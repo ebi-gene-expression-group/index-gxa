@@ -1,5 +1,5 @@
 setup() {
-  export SOLR_COLLECTION=gxa-analytics-v1
+  export SOLR_COLLECTION=bulk-analytics-v1
 }
 
 @test "Check that curl is in the path" {
@@ -14,6 +14,11 @@ setup() {
 
 @test "Check that jq is in the path" {
     run which jq
+    [ "$status" -eq 0 ]
+}
+
+@test "Check that java is in the path" {
+    run which java
     [ "$status" -eq 0 ]
 }
 
@@ -47,15 +52,6 @@ setup() {
   fi
   run create-gxa-analytics-config-set.sh
   run create-gxa-analytics-collection.sh
-  echo "output = ${output}"
-  [ "$status" -eq 0 ]
-}
-
-@test "[analytics] Set no auto-create on Solr" {
-  if [ -z ${SOLR_HOST+x} ]; then
-    skip "SOLR_HOST not defined, skipping loading of schema on Solr"
-  fi
-  run gxa-index-set-no-autocreate.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
 }
@@ -94,8 +90,8 @@ setup() {
   fi
   export EXP_ID=E-MTAB-111
   export CONDENSED_SDRF_TSV=$BATS_TEST_DIRNAME/example-conds-sdrf-delete.tsv
-  sed s/E-MTAB-6870/$EXP_ID/ $BATS_TEST_DIRNAME/example-bulk-conds-sdrf.tsv > $CONDENSED_SDRF_TSV
-  run load_gxa_analytics_index.sh && rm $CONDENSED_SDRF_TSV && analytics-check-experiment-available.sh
+  run load_gxa_analytics_index.sh
+  run analytics-check-experiment-available.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
 }
@@ -152,6 +148,51 @@ setup() {
   [ "$status" -eq 1 ]
   export EXP_MATCH_MIN=3
   run gxa-index-check-experiments.sh
+  echo "output = ${output}"
+  [ "$status" -eq 0 ]
+}
+
+@test "[bioentities] Generate analytics JSONL files for human" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
+  fi
+  export output_dir=$( pwd )
+  export CONDA_PREFIX=/opt/conda
+  export BIN_MAP=$BATS_TEST_DIRNAME
+  export SPECIES=homo_sapiens
+  export ACCESSIONS=E-MTAB-4754
+  run generate_analytics_JSONL_files.sh
+  echo "output = ${output}"
+  [ "$status" -eq 0 ]
+  [ -f "$( pwd )/E-MTAB-4754.jsonl" ]
+  # Check that the JSONL output exists
+}
+
+@test "[bioentities] Enable automatic field generation in the Solr collection" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
+  fi
+  run gxa-index-set-autocreate.sh
+  echo "output = ${output}"
+  [ "$status" -eq 0 ]
+}
+
+@test "[bioentities] Load analytics files into SOLR" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping load to Solr"
+  fi
+  export ACCESSIONS=E-MTAB-4754
+  export output_dir=$( pwd )
+  run load_analytics_files_in_Solr.sh
+  echo "output = ${output}"
+  [ "$status" -eq 0 ]
+}
+
+@test "[bioentities] Disable automatic field generation in the Solr collection" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
+  fi
+  run gxa-index-set-no-autocreate.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
 }
