@@ -152,6 +152,19 @@ setup() {
   [ "$status" -eq 0 ]
 }
 
+@test "[bioentities] Update experiment design" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
+  fi
+
+  export export CONDA_PREFIX=/opt/conda
+  export ACCESSIONS=E-MTAB-4754
+
+  run update_experiment_designs_cli.sh
+  echo "output = ${output}"
+  [ "$status" -eq 0 ]
+}
+
 @test "[bioentities] Generate analytics JSONL files for human" {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
