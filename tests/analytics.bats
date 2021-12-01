@@ -174,7 +174,7 @@ setup() {
   fi
 
   export CONDA_PREFIX=/opt/conda
-  export ACCESSIONS=E-MTAB-5072
+  export ACCESSIONS=E-MTAB-5072,E-MTAB-4754
 
   run update_coexpressions_cli.sh
   # TODO it would be nice to add here a query against
@@ -182,6 +182,20 @@ setup() {
   # psql - for now I have checked that the table gets populated.
   echo "output = ${output}"
   [ "$status" -eq 0 ]
+}
+
+@test "[external] Try failed coexpression" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
+  fi
+
+  export CONDA_PREFIX=/opt/conda
+  # try with one experiment that doesn't exist and see if it fails as expected
+  export ACCESSIONS=E-MTAB-4444,E-MTAB-5072
+
+  run update_coexpressions_cli.sh
+  echo "output = ${output}"
+  [ "$status" -eq 1 ]
 }
 
 @test "[bioentities] Generate analytics JSONL files for human" {
