@@ -160,13 +160,18 @@ setup() {
   export CONDA_PREFIX=/opt/conda
   export ACCESSIONS=E-MTAB-4754,E-MTAB-5072
 
+  # shorten lines in exp design file to check that update re-instates them
+  FILE_TO_CHECK=$EXPERIMENT_FILES/expdesign/ExpDesign-E-MTAB-4754.tsv
+  sed -i '$ d' $FILE_TO_CHECK
+
   run update_experiment_designs_cli.sh
   echo "output = ${output}"
   # we should see an increase from 4 to 5 lines
-  exp_design_4754_lines=$(wc -l $EXPERIMENT_FILES/expdesign/ExpDesign-E-MTAB-4754.tsv | awk '{ print $1 }')
+  exp_design_4754_lines=$(wc -l $FILE_TO_CHECK | awk '{ print $1 }')
   [ "$exp_design_4754_lines" -eq 5 ]
   [ "$status" -eq 0 ]
 }
+
 
 @test "[external] Update coexpressions" {
   if [ -z ${SOLR_HOST+x} ]; then
