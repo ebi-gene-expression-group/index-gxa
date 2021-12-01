@@ -36,7 +36,7 @@ java_opts="$java_opts -Dserver.port=$server_port"
 # Generate JSONL files from bulk experiments
 
 cmd="java $java_opts -jar $jar_dir/atlas-cli-bulk.jar"
-cmd=$cmd" update-experiment-design"
+cmd=$cmd" update-baseline-coexpression"
 
 $cmd -e $ACCESSIONS
 status=$?

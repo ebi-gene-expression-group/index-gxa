@@ -152,15 +152,34 @@ setup() {
   [ "$status" -eq 0 ]
 }
 
-@test "[bioentities] Update experiment design" {
+@test "[external] Update experiment designs" {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
   fi
 
-  export export CONDA_PREFIX=/opt/conda
-  export ACCESSIONS=E-MTAB-4754
+  export CONDA_PREFIX=/opt/conda
+  export ACCESSIONS=E-MTAB-4754,E-MTAB-5072
 
   run update_experiment_designs_cli.sh
+  echo "output = ${output}"
+  # we should see an increase from 4 to 5 lines
+  exp_design_4754_lines=$(wc -l $EXPERIMENT_FILES/expdesign/ExpDesign-E-MTAB-4754.tsv | awk '{ print $1 }')
+  [ "$exp_design_4754_lines" -eq 5 ]
+  [ "$status" -eq 0 ]
+}
+
+@test "[external] Update coexpressions" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
+  fi
+
+  export CONDA_PREFIX=/opt/conda
+  export ACCESSIONS=E-MTAB-5072
+
+  run update_coexpressions_cli.sh
+  # TODO it would be nice to add here a query against
+  # rnaseq_bsln_ce_profiles table, once the index-base container includes
+  # psql - for now I have checked that the table gets populated.
   echo "output = ${output}"
   [ "$status" -eq 0 ]
 }
@@ -174,6 +193,8 @@ setup() {
   export BIN_MAP=$BATS_TEST_DIRNAME
   export SPECIES=homo_sapiens
   export ACCESSIONS=E-MTAB-4754
+
+  export JAVA_OPTS="-Xmx1g"
   run generate_analytics_JSONL_files.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]

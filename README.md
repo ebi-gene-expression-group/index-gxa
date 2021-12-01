@@ -93,3 +93,22 @@ This script expects the following variables to be defined:
 
 ## Tests
 Tests are located in the `tests` directory and use bats. To run them, execute `bash tests/run-tests.sh`. The `tests` folder includes example data in tsv (a condensed SDRF) and in JSON (as it should be produced by the first step that translates the cond. SDRF to JSON).
+
+## Generating tests datasets for baseline
+
+1.- Get the contents of a small baseline experiments from $ATLAS_EXPS or the ftp into the `tmp` directory.
+
+2.- Get a subset of genes (50 genes starting from gene 4000 in this example) from the coexpression matrix in the `tmp` directory:
+
+```
+cd tests
+bash get_baseline_subset_from_coexpression_file.sh ../tmp/E-MTAB-5072-coexpressions.tsv.gz fixtures/experiment_files/magetab/E-MTAB-5072 4000 50
+```
+
+3.- Obtain subsets of other files from this slim list created:
+
+```
+bash reduce_dataset_to_ids.sh slim_list.txt ../tmp/ fixtures/experiment_files/magetab/E-MTAB-5072
+```
+
+4.- Clean up `tmp`.
