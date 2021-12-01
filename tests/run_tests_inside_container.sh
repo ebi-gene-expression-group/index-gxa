@@ -1,5 +1,5 @@
 #!/bin/sh
 
-#apk add bash bats openjdk11
+ls -l /usr/local/tests/fixtures/experiment_files/expdesign
 
 /usr/local/tests/run-tests.sh
