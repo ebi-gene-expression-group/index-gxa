@@ -19,6 +19,7 @@ require_env_var "ACCESSIONS"
 
 SOLR_PORT=$(get_port_from_hostport $SOLR_HOST)
 SOLR_HOST=$(get_host_from_hostport $SOLR_HOST)
+CORES=${CORES:-2}
 
 require_env_var "SOLR_PORT"
 
@@ -32,6 +33,7 @@ java_opts="$java_opts -Djdbc.url=$jdbc_url"
 java_opts="$java_opts -Djdbc.username=$jdbc_username"
 java_opts="$java_opts -Djdbc.password=$jdbc_password"
 java_opts="$java_opts -Dserver.port=$server_port"
+java_opts="$java_opts -Djava.util.concurrent.ForkJoinPool.common.parallelism=$CORES"
 
 # Generate JSONL files from bulk experiments
 
