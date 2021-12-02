@@ -19,7 +19,6 @@ require_env_var "ACCESSIONS"
 
 SOLR_PORT=$(get_port_from_hostport $SOLR_HOST)
 SOLR_HOST=$(get_host_from_hostport $SOLR_HOST)
-CORES=${CORES:-2}
 
 require_env_var "SOLR_PORT"
 
