@@ -237,7 +237,7 @@ setup() {
     skip "SOLR_HOST not defined, skipping load to Solr"
   fi
   export ACCESSIONS=E-MTAB-4754
-  export output_dir=$( pwd )
+  export analytics_jsonl_dir=$( pwd )
   run load_analytics_files_in_Solr.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
