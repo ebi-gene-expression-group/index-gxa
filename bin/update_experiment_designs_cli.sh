@@ -38,6 +38,12 @@ java_opts="$java_opts -Dserver.port=$server_port"
 cmd="java $java_opts -jar $jar_dir/atlas-cli-bulk.jar"
 cmd=$cmd" update-experiment-design"
 
+if [ ! -z ${failed_accessions_output+x} ]; then
+  cmd="$cmd -f $failed_accessions_output"
+fi
+
+echo "$cmd -e $ACCESSIONS"
+
 $cmd -e $ACCESSIONS
 status=$?
 

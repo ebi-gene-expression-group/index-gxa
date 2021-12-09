@@ -41,6 +41,10 @@ java_opts="$java_opts -Dserver.port=$server_port"
 cmd="java $java_opts -jar $jar_dir/atlas-cli-bulk.jar"
 cmd=$cmd" bulk-analytics-json -o $output_dir -i ${BIN_MAP}/$SPECIES.map.bin "
 
+if [ ! -z ${failed_accessions_output+x} ]; then
+  cmd="$cmd -f $failed_accessions_output"
+fi
+
 $cmd -e $ACCESSIONS
 status=$?
 

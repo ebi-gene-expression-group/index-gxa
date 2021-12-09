@@ -172,6 +172,26 @@ setup() {
   [ "$status" -eq 0 ]
 }
 
+@test "[external] Fail to update experiment designs" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
+  fi
+
+  export CONDA_PREFIX=/opt/conda
+  # first accession is not available,
+  # so it fails on that one and leaves it in the failed file
+  export ACCESSIONS=E-MTAB-4700,E-MTAB-5072
+  export failed_accessions_output="/tmp/failed_accessions_exp_design.txt"
+
+  run update_experiment_designs_cli.sh
+  echo "output = ${output}"
+
+  failed_acc=$(wc -l $failed_accessions_output | awk '{ print $1 }')
+  [ "$status" -eq 1 ]
+  [ "$failed_acc" -eq 1 ]
+  [ -f "$failed_accessions_output" ]
+}
+
 
 @test "[external] Update coexpressions" {
   if [ -z ${SOLR_HOST+x} ]; then
@@ -220,6 +240,37 @@ setup() {
   echo "output = ${output}"
   [ "$status" -eq 0 ]
   [ -f "$( pwd )/E-MTAB-4754.jsonl" ]
+  # Check that the JSONL output exists
+}
+
+@test "[bioentities] Fail Generating analytics JSONL files for human" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
+  fi
+  export output_dir=$( pwd )
+  export CONDA_PREFIX=/opt/conda
+  export BIN_MAP=$BATS_TEST_DIRNAME
+  export SPECIES=homo_sapiens
+  export ACCESSIONS=E-MTAB-4754 # use two fake ACCESSIONS
+  export failed_accessions_output="/tmp/failed_accessions_analytics_JSONL.txt"
+
+  mkdir -p /tmp/magetab
+  mkdir -p /tmp/expdesign
+  cp -r $EXPERIMENT_FILES/magetab/E-MTAB-4754 /tmp/magetab/
+  cp $EXPERIMENT_FILES/expdesign/ExpDesign-E-MTAB-4754.tsv /tmp/expdesign/
+  cp $EXPERIMENT_FILES/*.json /tmp/
+  rm /tmp/magetab/E-MTAB-4754/E-MTAB-4754.idf.txt
+
+  export EXPERIMENT_FILES=/tmp
+
+  export JAVA_OPTS="-Xmx1g"
+  run generate_analytics_JSONL_files.sh
+  echo "output = ${output}"
+  failed_acc=$(wc -l $failed_accessions_output | awk '{ print $1 }')
+  [ "$status" -eq 1 ]
+  [ "$failed_acc" -eq 1 ]
+  [ -f "$( pwd )/E-MTAB-4754.jsonl" ]
+  [ -f "$failed_accessions_output" ]
   # Check that the JSONL output exists
 }
 
