@@ -15,6 +15,7 @@ if [[ "$ACCESSIONS" == *","* ]]; then
 fi
 
 for EXP_ID in $ACCESSIONS; do
+  export EXP_ID # needed for delete to see it
   if [ ! -z ${delete_existing+x} ]; then
     $scriptDir/delete_gxa_analytics_index.sh
   fi
