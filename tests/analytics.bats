@@ -274,6 +274,33 @@ setup() {
   # Check that the JSONL output exists
 }
 
+@test "[bioentities] Fail Generating analytics JSONL files for human without failed acc file" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
+  fi
+  export output_dir=$( pwd )
+  export CONDA_PREFIX=/opt/conda
+  export BIN_MAP=$BATS_TEST_DIRNAME
+  export SPECIES=homo_sapiens
+  export ACCESSIONS=E-MTAB-4754 # use two fake ACCESSIONS
+
+  mkdir -p /tmp/magetab
+  mkdir -p /tmp/expdesign
+  cp -r $EXPERIMENT_FILES/magetab/E-MTAB-4754 /tmp/magetab/
+  cp $EXPERIMENT_FILES/expdesign/ExpDesign-E-MTAB-4754.tsv /tmp/expdesign/
+  cp $EXPERIMENT_FILES/*.json /tmp/
+  rm /tmp/magetab/E-MTAB-4754/E-MTAB-4754.idf.txt
+
+  export EXPERIMENT_FILES=/tmp
+
+  export JAVA_OPTS="-Xmx1g"
+  run generate_analytics_JSONL_files.sh
+  echo "output = ${output}"
+  [ "$status" -eq 1 ]
+  [ -f "$( pwd )/E-MTAB-4754.jsonl" ]
+  # Check that the JSONL output exists
+}
+
 @test "[bioentities] Enable automatic field generation in the Solr collection" {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
