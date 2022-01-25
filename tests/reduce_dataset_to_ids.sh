@@ -10,6 +10,6 @@ cp -a $SOURCE/*.xml $DEST/
 cp -a $SOURCE/*condensed-sdrf.tsv $DEST/
 cp -a $SOURCE/*idf.txt $DEST/
 
-for SUFFIX in -fpkms.tsv .tsv.undecorated -tpms.tsv -raw-counts.tsv.undecorated; do
+for SUFFIX in -fpkms.tsv .tsv.undecorated -tpms.tsv -raw-counts.tsv.undecorated -transcripts-tpms.tsv; do
   grep -f $ID_SLIM_FILE $SOURCE/${ACCESSION}${SUFFIX} > $DEST/${ACCESSION}${SUFFIX}
 done

@@ -172,6 +172,24 @@ setup() {
   [ "$status" -eq 0 ]
 }
 
+@test "[external] Update experiment designs which errors out" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
+  fi
+
+  export CONDA_PREFIX=/opt/conda
+  export ACCESSIONS=E-ERAD-475
+
+  # shorten lines in exp design file to check that update re-instates them
+  FILE_TO_CHECK=$EXPERIMENT_FILES/expdesign/ExpDesign-E-ERAD-475.tsv
+
+  run update_experiment_designs_cli.sh
+  echo "output = ${output}"
+  grep_count=$(echo $output | grep -c 'Only in XML configuration file: ERR1442629, ERR1442663, ERR1442683, ERR1442695, ERR1442731')
+  (( grep_count == 1 ))
+  [ "$status" -eq 1 ]
+}
+
 @test "[external] Fail to update experiment designs" {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
