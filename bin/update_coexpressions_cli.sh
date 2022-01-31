@@ -9,16 +9,13 @@ require_env_var "SOLR_HOST"
 require_env_var "ZK_HOST"
 require_env_var "ZK_PORT"
 require_env_var "BIOENTITIES"
-require_env_var "output_dir"
 require_env_var "EXPERIMENT_FILES"
 require_env_var "jdbc_url"
 require_env_var "jdbc_username"
 require_env_var "jdbc_password"
 require_env_var "server_port"
 
-require_env_var "SPECIES"
 require_env_var "ACCESSIONS"
-require_env_var "BIN_MAP"
 
 SOLR_PORT=$(get_port_from_hostport $SOLR_HOST)
 SOLR_HOST=$(get_host_from_hostport $SOLR_HOST)
@@ -40,7 +37,7 @@ java_opts="$java_opts -Dserver.port=$server_port"
 # Generate JSONL files from bulk experiments
 
 cmd="java $java_opts -jar $jar_dir/atlas-cli-bulk.jar"
-cmd=$cmd" bulk-analytics-json -o $output_dir -i ${BIN_MAP}/$SPECIES.map.bin "
+cmd=$cmd" update-baseline-coexpression"
 
 if [ ! -z ${failed_accessions_output+x} ]; then
   cmd="$cmd -f $failed_accessions_output"

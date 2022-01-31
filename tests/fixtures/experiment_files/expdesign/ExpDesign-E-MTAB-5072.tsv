@@ -1,0 +1,4 @@
+"Run"	"Sample Characteristic[ecotype]"	"Sample Characteristic Ontology Term[ecotype]"	"Sample Characteristic[organism]"	"Sample Characteristic Ontology Term[organism]"	"Sample Characteristic[organism part]"	"Sample Characteristic Ontology Term[organism part]"	"Factor Value[organism part]"	"Factor Value Ontology Term[organism part]"
+"SRR891267"	"MN47"		"Arabidopsis lyrata"	"http://purl.obolibrary.org/obo/NCBITaxon_59689"	"seed"	"http://purl.obolibrary.org/obo/PO_0009010"	"seed"	"http://purl.obolibrary.org/obo/PO_0009010"
+"SRR891293"	"MN47"		"Arabidopsis lyrata"	"http://purl.obolibrary.org/obo/NCBITaxon_59689"	"root"	"http://purl.obolibrary.org/obo/PO_0009005"	"root"	"http://purl.obolibrary.org/obo/PO_0009005"
+"SRR891324"	"MN47"		"Arabidopsis lyrata"	"http://purl.obolibrary.org/obo/NCBITaxon_59689"	"flower bud"	"http://purl.obolibrary.org/obo/PO_0000056"	"flower bud"	"http://purl.obolibrary.org/obo/PO_0000056"

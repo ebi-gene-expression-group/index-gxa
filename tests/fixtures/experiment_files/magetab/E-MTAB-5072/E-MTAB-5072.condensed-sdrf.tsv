@@ -1,0 +1,12 @@
+E-MTAB-5072		SRR891267	characteristic	ecotype	MN47
+E-MTAB-5072		SRR891267	characteristic	organism	Arabidopsis lyrata	http://purl.obolibrary.org/obo/NCBITaxon_59689
+E-MTAB-5072		SRR891267	characteristic	organism part	seed	http://purl.obolibrary.org/obo/PO_0009010
+E-MTAB-5072		SRR891267	factor	organism part	seed	http://purl.obolibrary.org/obo/PO_0009010
+E-MTAB-5072		SRR891293	characteristic	ecotype	MN47
+E-MTAB-5072		SRR891293	characteristic	organism	Arabidopsis lyrata	http://purl.obolibrary.org/obo/NCBITaxon_59689
+E-MTAB-5072		SRR891293	characteristic	organism part	root	http://purl.obolibrary.org/obo/PO_0009005
+E-MTAB-5072		SRR891293	factor	organism part	root	http://purl.obolibrary.org/obo/PO_0009005
+E-MTAB-5072		SRR891324	characteristic	ecotype	MN47
+E-MTAB-5072		SRR891324	characteristic	organism	Arabidopsis lyrata	http://purl.obolibrary.org/obo/NCBITaxon_59689
+E-MTAB-5072		SRR891324	characteristic	organism part	flower bud	http://purl.obolibrary.org/obo/PO_0000056
+E-MTAB-5072		SRR891324	factor	organism part	flower bud	http://purl.obolibrary.org/obo/PO_0000056

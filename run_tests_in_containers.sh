@@ -50,6 +50,25 @@ docker run --rm -i --net mynet \
   quay.io/ebigxa/atlas-schemas-base:1.0 \
   /tmp/load_experiment_query.sh E-MTAB-4754 RNASEQ_MRNA_BASELINE 'Homo sapiens'
 
+docker run --rm -i --net mynet \
+  -v $( pwd )/tests/load_experiment_query.sh:/tmp/load_experiment_query.sh \
+  -e PGPASSWORD=$POSTGRES_PASSWORD \
+  -e PGUSER=$POSTGRES_USER \
+  -e PGDATABASE=$POSTGRES_DB \
+  -e PGPORT=$POSTGRES_PORT \
+  -e PGHOST=$POSTGRES_HOST \
+  quay.io/ebigxa/atlas-schemas-base:1.0 \
+    /tmp/load_experiment_query.sh E-MTAB-5072 RNASEQ_MRNA_BASELINE 'Arabidopsis lyrata'
+
+    docker run --rm -i --net mynet \
+      -v $( pwd )/tests/load_experiment_query.sh:/tmp/load_experiment_query.sh \
+      -e PGPASSWORD=$POSTGRES_PASSWORD \
+      -e PGUSER=$POSTGRES_USER \
+      -e PGDATABASE=$POSTGRES_DB \
+      -e PGPORT=$POSTGRES_PORT \
+      -e PGHOST=$POSTGRES_HOST \
+      quay.io/ebigxa/atlas-schemas-base:1.0 \
+        /tmp/load_experiment_query.sh E-ERAD-475 RNASEQ_MRNA_BASELINE 'Danio rerio'
 
 
 # disable data driven schema functionality - not recommended for production
@@ -57,12 +76,12 @@ docker run --rm -i --net mynet \
 
 docker exec -i --user=solr my_solr bin/solr create_collection -c bulk-analytics-v1
 
-docker run --rm -i --net mynet -v $( pwd )/tests:/usr/local/tests \
+docker run --rm -i --net mynet -v $( pwd )/tests:/usr/local/tests:rw \
   -v $( pwd )/bin:/usr/local/bin \
   -e SOLR_HOST=$SOLR_HOST -e ZK_HOST=$ZK_HOST -e ZK_PORT=$ZK_PORT \
   -e POSTGRES_USER=$POSTGRES_USER \
   -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD \
-  -e jdbc_url=$jdbc_url --entrypoint=/usr/local/tests/run_tests_inside_container.sh quay.io/ebigxa/atlas-index-base:1.0
+  -e jdbc_url=$jdbc_url --entrypoint=/usr/local/tests/run-tests.sh quay.io/ebigxa/atlas-index-base:1.5
 
 
 #docker stop my_solr

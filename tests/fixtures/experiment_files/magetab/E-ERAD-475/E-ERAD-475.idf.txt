@@ -1,0 +1,71 @@
+MAGE-TAB Version	1.1			
+Investigation Title	Baseline expression from transcriptional profiling of zebrafish developmental stages			
+				
+Experimental Design				
+Experimental Design Term Source REF				
+Experimental Design Term Accession Number				
+				
+Experimental Factor Name	developmental stage			
+Experimental Factor Type	developmental stage			
+Experimental Factor Term Source REF				
+Experimental Factor Term Accession Number				
+				
+Person Last Name	Collins	Datahose		
+Person First Name	John			
+Person Mid Initials				
+Person Email	jec@sanger.ac.uk	datahose@sanger.ac.uk		
+Person Phone				
+Person Fax				
+Person Affiliation	SC, Wellcome Trust Sanger Institute	SC, Wellcome Trust Sanger Institute		
+Person Address	Wellcome Trust Sanger Institute, Hinxton, Cambridgeshire, CB10 1SA	Wellcome Trust Sanger Institute, Hinxton, Cambridgeshire, CB10 1SA		
+Person Roles	investigator	submitter		
+Person Roles Term Source REF				
+Person Roles Term Accession Number				
+				
+Quality Control Type				
+Quality Control Term Source REF				
+Quality Control Term Accession Number				
+				
+Replicate Type				
+Replicate Term Source REF				
+Replicate Term Accession Number				
+				
+Normalization Type				
+Normalization Term Source REF				
+Normalization Term Accession Number				
+				
+Date of Experiment				
+Public Release Date	2016-06-12			
+				
+PubMed ID	29144233			
+Publication DOI	10.7554/eLife.30860			
+Publication Author List	Richard J White, John E Collins, Ian M Sealy, Neha Wali, Christopher M Dooley, Zsofia Digby, Derek L Stemple, Daniel N Murphy, Konstantinos Billis, Thibaut Hourlier, Anja Füllgrabe, Matthew P Davis, Anton J Enright, Elisabeth M Busch-Nentwich 			
+Publication Title	A high-resolution mRNA expression time course of embryonic development in zebrafish			
+Publication Status	published			
+Publication Status Term Source REF	EFO			
+Publication Status Term Accession Number	EFO_0001796			
+				
+Experiment Description	Establish baseline expression transcriptional signatures for zebrafish developmental stages. Total RNA was extracted from single wild type zebrafish embryos at a series of different developmental stages. RNA from 12 embryos was pooled to generate a replicate.The RNA was DNase treated.  Stranded RNAseq libraries were constructed using the Illumina TruSeq Stranded RNA protocol with oligo dT pulldown.This data is part of a pre-publication release. For information on the proper use of pre-publication data shared by the Wellcome Trust Sanger Institute (including details of any publication moratoria), please see http://www.sanger.ac.uk/datasharing/			
+				
+Protocol Name	P-MTAB-50954	P-MTAB-50955	P-MTAB-50956	P-MTAB-50957
+Protocol Type	nucleic acid sequencing protocol	nucleic acid library construction protocol	sample collection protocol	nucleic acid extraction protocol
+Protocol Term Source REF	EFO	EFO	EFO	EFO
+Protocol Term Accession Number	EFO_0004170	EFO_0004184	EFO_0005518	EFO_0002944
+Protocol Description	Libraries were sequenced on Illumina HiSeq 2500 in 100bp paired-end mode.	RNA from 12 single wild type zebrafish embryos was pooled per replicate. ERCC spike mix 2 (Ambion) was added to each library. In total, 5 pools were sequenced per developmental stage. Strand-specific RNA-seq libraries were generated following the dUTP method. All 90 libraries made simultaneously in a 96 well plate.	Breeding zebrafish (Danio rerio) were maintained at 25°C on 14h light/10h dark cycle.  Fertilised eggs were obtained from group lays of fish by natural spawning, then grown in incubators at 29.5°C to the correct morphological developmental stage, a representative sample photographed and snap frozen in dry ice. 18 developmental stages between one cell and 5 dpf were sampled.	Whole embryos collected in deep well 2ml round well blocks were snap frozen on dry ice and stored at –80. They were mechanically lysed in 100 microlitres RLT buffer containing 1 microlitre of 14.3M beta mercaptoethanol (Sigma) using a 5mm steel bead on a Qiagen TissueLyser for 5 mins at 10Hz. The lysate was allowed to bind to 1.8 volumes of Agencourt RNAClean XP (Beckman Coulter) beads for 10 mins. The plate was then applied to a plate magnet (Invitrogen) until the solution cleared and the supernatant was removed without disturbing the beads. While still on the magnet the beads were washed thrice with 70% ethanol and nucleic acid was eluted from the beads as per the manufacturer’s instructions. Samples from each row on the plate were pooled and DNase treated for 20 mins at 37 Celsius followed by addition of 1 microlitre 0.5M EDTA and inactivation at 75 Celsius for 10 mins to remove residual DNA. RNA was then cleaned using 2 volumes of Agencourt RNAClean XP (Beckman Coulter) beads under the standard protocol.
+Protocol Parameters				
+Protocol Hardware	Illumina HiSeq 2500			
+Protocol Software				
+Protocol Contact				
+				
+Term Source Name	EFO	NCBI Taxonomy	ZFS	ArrayExpress
+Term Source File	http://www.ebi.ac.uk/efo/	http://www.ncbi.nlm.nih.gov/Taxonomy/	http://purl.obolibrary.org/obo/zfs	http://www.ebi.ac.uk/arrayexpress/
+Term Source Version	2.38	2.31	2016-05-13	
+				
+SDRF File	E-ERAD-475.sdrf.txt			
+Comment [Submitted Name]	Baseline expression from transcriptional profiling of zebrafish developmental stages 3			
+Comment [SecondaryAccession]	ERP014517			
+Comment [SequenceDataURI]	http://www.ebi.ac.uk/ena/data/view/ERP014517			
+Comment [AEExperimentType]	RNA-seq of coding RNA			
+Comment[ArrayExpressAccession]	E-ERAD-475			
+Comment [SRASubmissionDate]	2016-03-09			
+Comment [AEExperimentDisplayName]	Baseline expression from transcriptional profiling of zebrafish developmental stages			

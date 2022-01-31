@@ -152,6 +152,97 @@ setup() {
   [ "$status" -eq 0 ]
 }
 
+@test "[external] Update experiment designs" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
+  fi
+
+  export CONDA_PREFIX=/opt/conda
+  export ACCESSIONS=E-MTAB-4754,E-MTAB-5072
+
+  # shorten lines in exp design file to check that update re-instates them
+  FILE_TO_CHECK=$EXPERIMENT_FILES/expdesign/ExpDesign-E-MTAB-4754.tsv
+  sed -i '$ d' $FILE_TO_CHECK
+
+  run update_experiment_designs_cli.sh
+  echo "output = ${output}"
+  # we should see an increase from 4 to 5 lines
+  exp_design_4754_lines=$(wc -l $FILE_TO_CHECK | awk '{ print $1 }')
+  [ "$exp_design_4754_lines" -eq 5 ]
+  [ "$status" -eq 0 ]
+}
+
+@test "[external] Update experiment designs which errors out" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
+  fi
+
+  export CONDA_PREFIX=/opt/conda
+  export ACCESSIONS=E-ERAD-475
+
+  # shorten lines in exp design file to check that update re-instates them
+  FILE_TO_CHECK=$EXPERIMENT_FILES/expdesign/ExpDesign-E-ERAD-475.tsv
+
+  run update_experiment_designs_cli.sh
+  echo "output = ${output}"
+  grep_count=$(echo $output | grep -c 'Only in XML configuration file: ERR1442629, ERR1442663, ERR1442683, ERR1442695, ERR1442731')
+  (( grep_count == 1 ))
+  [ "$status" -eq 1 ]
+}
+
+@test "[external] Fail to update experiment designs" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
+  fi
+
+  export CONDA_PREFIX=/opt/conda
+  # first accession is not available,
+  # so it fails on that one and leaves it in the failed file
+  export ACCESSIONS=E-MTAB-4700,E-MTAB-5072
+  export failed_accessions_output="/tmp/failed_accessions_exp_design.txt"
+
+  run update_experiment_designs_cli.sh
+  echo "output = ${output}"
+
+  failed_acc=$(wc -l $failed_accessions_output | awk '{ print $1 }')
+  [ "$status" -eq 1 ]
+  [ "$failed_acc" -eq 1 ]
+  [ -f "$failed_accessions_output" ]
+}
+
+
+@test "[external] Update coexpressions" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
+  fi
+
+  export CONDA_PREFIX=/opt/conda
+  export ACCESSIONS=E-MTAB-5072,E-MTAB-4754
+
+  run update_coexpressions_cli.sh
+  # TODO it would be nice to add here a query against
+  # rnaseq_bsln_ce_profiles table, once the index-base container includes
+  # psql - for now I have checked that the table gets populated.
+  echo "output = ${output}"
+  [ "$status" -eq 0 ]
+}
+
+@test "[external] Try failed coexpression" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
+  fi
+
+  export CONDA_PREFIX=/opt/conda
+  # try with one experiment that doesn't exist and see if it fails as expected
+  export ACCESSIONS=E-MTAB-4444,E-MTAB-5072
+
+  run update_coexpressions_cli.sh
+  echo "output = ${output}"
+  # TODO ideally we would want this to fail in the future - make sure web application
+  # complains when reading a faulty file and set below to 1.
+  [ "$status" -eq 0 ]
+}
+
 @test "[bioentities] Generate analytics JSONL files for human" {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
@@ -161,9 +252,69 @@ setup() {
   export BIN_MAP=$BATS_TEST_DIRNAME
   export SPECIES=homo_sapiens
   export ACCESSIONS=E-MTAB-4754
+
+  export JAVA_OPTS="-Xmx1g"
   run generate_analytics_JSONL_files.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
+  [ -f "$( pwd )/E-MTAB-4754.jsonl" ]
+  # Check that the JSONL output exists
+}
+
+@test "[bioentities] Fail Generating analytics JSONL files for human" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
+  fi
+  export output_dir=$( pwd )
+  export CONDA_PREFIX=/opt/conda
+  export BIN_MAP=$BATS_TEST_DIRNAME
+  export SPECIES=homo_sapiens
+  export ACCESSIONS=E-MTAB-4754 # use two fake ACCESSIONS
+  export failed_accessions_output="/tmp/failed_accessions_analytics_JSONL.txt"
+
+  mkdir -p /tmp/magetab
+  mkdir -p /tmp/expdesign
+  cp -r $EXPERIMENT_FILES/magetab/E-MTAB-4754 /tmp/magetab/
+  cp $EXPERIMENT_FILES/expdesign/ExpDesign-E-MTAB-4754.tsv /tmp/expdesign/
+  cp $EXPERIMENT_FILES/*.json /tmp/
+  rm /tmp/magetab/E-MTAB-4754/E-MTAB-4754.idf.txt
+
+  export EXPERIMENT_FILES=/tmp
+
+  export JAVA_OPTS="-Xmx1g"
+  run generate_analytics_JSONL_files.sh
+  echo "output = ${output}"
+  failed_acc=$(wc -l $failed_accessions_output | awk '{ print $1 }')
+  [ "$status" -eq 1 ]
+  [ "$failed_acc" -eq 1 ]
+  [ -f "$( pwd )/E-MTAB-4754.jsonl" ]
+  [ -f "$failed_accessions_output" ]
+  # Check that the JSONL output exists
+}
+
+@test "[bioentities] Fail Generating analytics JSONL files for human without failed acc file" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
+  fi
+  export output_dir=$( pwd )
+  export CONDA_PREFIX=/opt/conda
+  export BIN_MAP=$BATS_TEST_DIRNAME
+  export SPECIES=homo_sapiens
+  export ACCESSIONS=E-MTAB-4754 # use two fake ACCESSIONS
+
+  mkdir -p /tmp/magetab
+  mkdir -p /tmp/expdesign
+  cp -r $EXPERIMENT_FILES/magetab/E-MTAB-4754 /tmp/magetab/
+  cp $EXPERIMENT_FILES/expdesign/ExpDesign-E-MTAB-4754.tsv /tmp/expdesign/
+  cp $EXPERIMENT_FILES/*.json /tmp/
+  rm /tmp/magetab/E-MTAB-4754/E-MTAB-4754.idf.txt
+
+  export EXPERIMENT_FILES=/tmp
+
+  export JAVA_OPTS="-Xmx1g"
+  run generate_analytics_JSONL_files.sh
+  echo "output = ${output}"
+  [ "$status" -eq 1 ]
   [ -f "$( pwd )/E-MTAB-4754.jsonl" ]
   # Check that the JSONL output exists
 }
@@ -182,7 +333,19 @@ setup() {
     skip "SOLR_HOST not defined, skipping load to Solr"
   fi
   export ACCESSIONS=E-MTAB-4754
-  export output_dir=$( pwd )
+  export analytics_jsonl_dir=$( pwd )
+  run load_analytics_files_in_Solr.sh
+  echo "output = ${output}"
+  [ "$status" -eq 0 ]
+}
+
+@test "[bioentities] Load analytics files into SOLR with previous deletion" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping load to Solr"
+  fi
+  export ACCESSIONS=E-MTAB-4754
+  export analytics_jsonl_dir=$( pwd )
+  export delete_existing=true
   run load_analytics_files_in_Solr.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
