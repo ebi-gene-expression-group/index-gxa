@@ -5,7 +5,7 @@ SCHEMA_VERSION=1
 HOST=${SOLR_HOST:-"localhost:8983"}
 COLLECTION=${SOLR_COLLECTION:-"bulk-analytics-v${SCHEMA_VERSION}"}
 
-echo "Optimising bioentities..."
+echo "Optimising analytics..."
 # creates a new file descriptor 3 that redirects to 1 (STDOUT)
 exec 3>&1
 
