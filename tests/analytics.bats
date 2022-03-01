@@ -366,7 +366,7 @@ setup() {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping load to Solr"
   fi
-  run bioentities-check-optimisation.sh
+  run analytics-check-optimisation.sh
 
   echo "output = ${output}"
   [ "${status}" -eq 0 ]
