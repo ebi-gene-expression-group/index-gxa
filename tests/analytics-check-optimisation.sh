@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+SCHEMA_VERSION=1
 HOST=${SOLR_HOST:-"localhost:8983"}
 COLLECTION=${SOLR_COLLECTION:-"bulk-analytics-v$SCHEMA_VERSION"}
 
