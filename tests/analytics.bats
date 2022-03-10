@@ -243,7 +243,7 @@ setup() {
   [ "$status" -eq 0 ]
 }
 
-@test "[bioentities] Generate analytics JSONL files for human" {
+@test "[analytics] Generate analytics JSONL files for human" {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
   fi
@@ -261,7 +261,7 @@ setup() {
   # Check that the JSONL output exists
 }
 
-@test "[bioentities] Fail Generating analytics JSONL files for human" {
+@test "[analytics] Fail Generating analytics JSONL files for human" {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
   fi
@@ -292,7 +292,7 @@ setup() {
   # Check that the JSONL output exists
 }
 
-@test "[bioentities] Fail Generating analytics JSONL files for human without failed acc file" {
+@test "[analytics] Fail Generating analytics JSONL files for human without failed acc file" {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
   fi
@@ -319,7 +319,7 @@ setup() {
   # Check that the JSONL output exists
 }
 
-@test "[bioentities] Enable automatic field generation in the Solr collection" {
+@test "[analytics] Enable automatic field generation in the Solr collection" {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping suggestions of known gene symbol"
   fi
@@ -328,7 +328,7 @@ setup() {
   [ "$status" -eq 0 ]
 }
 
-@test "[bioentities] Load analytics files into SOLR" {
+@test "[analytics] Load analytics files into SOLR" {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping load to Solr"
   fi
@@ -339,7 +339,7 @@ setup() {
   [ "$status" -eq 0 ]
 }
 
-@test "[bioentities] Load analytics files into SOLR with previous deletion" {
+@test "[analytics] Load analytics files into SOLR with previous deletion" {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping load to Solr"
   fi
@@ -349,6 +349,27 @@ setup() {
   run load_analytics_files_in_Solr.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
+}
+
+@test "[analytics] Optimise collection" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping load to Solr"
+  fi
+
+  run optimise-analytics.sh
+
+  echo "output = ${output}"
+  [ "${status}" -eq 0 ]
+}
+
+@test "[analytics] Check that optimisation worked" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping load to Solr"
+  fi
+  run analytics-check-optimisation.sh
+
+  echo "output = ${output}"
+  [ "${status}" -eq 0 ]
 }
 
 @test "[bioentities] Disable automatic field generation in the Solr collection" {
