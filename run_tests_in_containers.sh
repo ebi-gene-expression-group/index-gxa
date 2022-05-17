@@ -120,11 +120,11 @@ docker exec -i --user=solr my_solr bin/solr create_collection -c bulk-analytics-
 docker run --rm -i --net $DOCKER_NET -v $( pwd )/tests:/usr/local/tests:rw \
   -v $( pwd )/bin:/usr/local/bin \
   -v $(pwd)/lib/solr-ontology-update-processor-$BIOSOLR_VERSION.jar:$BIOSOLR_REMOTE_JAR_PATH \
-  -v $(pwd)/$SIGNING_PRIVATE_KEY:/packages/$SIGNING_PRIVATE_KEY \
+  -v $(pwd)/$SIGNING_PRIVATE_KEY:/tmp/$SIGNING_PRIVATE_KEY \
   -e SOLR_HOST=$SOLR_HOST -e ZK_HOST=$ZK_HOST -e ZK_PORT=$ZK_PORT \
   -e BIOSOLR_JAR_PATH=$BIOSOLR_REMOTE_JAR_PATH \
   -e BIOSOLR_VERSION=$BIOSOLR_VERSION \
-  -e SIGNING_PRIVATE_KEY=/packages/$SIGNING_PRIVATE_KEY \
+  -e SIGNING_PRIVATE_KEY=/tmp/$SIGNING_PRIVATE_KEY \
   -e POSTGRES_USER=$POSTGRES_USER \
   -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD \
   -e jdbc_url=$jdbc_url --entrypoint=/usr/local/tests/run-tests.sh quay.io/ebigxa/atlas-index-base:1.5
