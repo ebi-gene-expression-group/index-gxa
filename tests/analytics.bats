@@ -43,6 +43,16 @@ setup() {
     [ $ASSAY_COUNT = $UNIQUE_ASSAY_COUNT ]
 }
 
+@test "Upload biosolr lib" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping loading of schema on Solr"
+  fi
+
+  run upload-biosolr-lib.sh
+  echo "output = ${output}"
+  [ "$status" -eq 0 ]
+}
+
 @test "[analytics] Create collection on Solr" {
   if [ -z ${SOLR_HOST+x} ]; then
     skip "SOLR_HOST not defined, skipping loading of schema on Solr"
@@ -102,15 +112,6 @@ setup() {
   fi
   export EXP_ID=E-MTAB-111
   run delete_gxa_analytics_index.sh
-  echo "output = ${output}"
-  [ "$status" -eq 0 ]
-}
-
-@test "[analytics] BioSolr ontology update processor" {
-  if [ -z ${SOLR_HOST+x} ]; then
-    skip "SOLR_HOST not defined, skipping BioSolr update processor test"
-  fi
-  run add-biosolr-lib.sh
   echo "output = ${output}"
   [ "$status" -eq 0 ]
 }
