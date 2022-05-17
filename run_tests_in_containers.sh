@@ -24,6 +24,7 @@ docker network create $DOCKER_NET
 docker run --rm --net $DOCKER_NET --name $ZK_HOST -d \
     -p $ZK_PORT:$ZK_PORT \
     -e ZOO_MY_ID=1 \
+    -e ZOO_4LW_COMMANDS_WHITELIST="mntr,conf,ruok" \
     -e ZOO_SERVERS="server.1=$ZK_HOST:2888:3888;$ZK_PORT" \
     -t zookeeper:$ZK_VERSION
 
