@@ -22,6 +22,7 @@ fi
 
 # Sign biosolr JAR
 echo $SIGNING_PRIVATE_KEY
+ls -l $SIGNING_PRIVATE_KEY
 SIGNATURE=$(openssl dgst -sha1 -sign $SIGNING_PRIVATE_KEY $BIOSOLR_JAR_PATH | openssl enc -base64 | sed 's/+/%2B/g' | tr -d \\n )
 
 if [ ! -f $BIOSOLR_JAR_PATH ]; then
