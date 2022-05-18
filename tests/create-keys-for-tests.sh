@@ -13,3 +13,4 @@ openssl genrsa -out $SIGNING_PRIVATE_KEY 512
 openssl rsa -in $SIGNING_PRIVATE_KEY -pubout -outform DER -out $SIGNING_PUBLIC_KEY_DER
 # upload key to package store inside the solr process
 # $ bin/solr package add-key my_key.der
+chmod a+r $SIGNING_PRIVATE_KEY
