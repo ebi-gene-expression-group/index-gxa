@@ -37,6 +37,23 @@ setup() {
     [  $? -eq 0 ]
 }
 
+@test "[solr-auth] Create definitive users" {
+  if [ -z ${SOLR_HOST+x} ]; then
+    skip "SOLR_HOST not defined, skipping loading of schema on Solr"
+  fi
+
+  # default user to start - admin user will be used by other tasks
+  export SOLR_USER=solr
+  export SOLR_PASS=SolrRocks
+
+  echo "Solr user: $SOLR_USER"
+  echo "Solr pwd: $SOLR_PASS"
+
+  run create-users.sh
+  echo "output = ${output}"
+  [ "${status}" -eq 0 ]
+}
+
 @test "Check that filtering doesn't remove any assays" {
     ASSAY_COUNT=`condSdrf2tsvForGXAJSONFactorsIndex.sh $BATS_TEST_DIRNAME/example-bulk-conds-sdrf.tsv | jsonFilterEmptyFields.sh | grep \"assay\": | sort -u | wc -l`
     UNIQUE_ASSAY_COUNT=`condSdrf2tsvForGXAJSONFactorsIndex.sh $BATS_TEST_DIRNAME/example-bulk-conds-sdrf.tsv | grep \"assay\": | sort -u | wc -l`

@@ -17,6 +17,11 @@ SOLR_AUTH="-u $SOLR_USER:$SOLR_PASS"
 echo $SIGNING_PRIVATE_KEY
 SIGNATURE=$(openssl dgst -sha1 -sign $SIGNING_PRIVATE_KEY $BIOSOLR_JAR_PATH | openssl enc -base64 | sed 's/+/%2B/g' | tr -d \\n )
 
+if [ ! -f $BIOSOLR_JAR_PATH ]; then
+   echo "BIOSOLR_JAR_PATH ($BIOSOLR_JAR_PATH) doesn't point to a readable file..."
+   exit 1
+fi
+
 #creates a new file descriptor 3 that redirects to 1 (STDOUT)
 exec 3>&1
 

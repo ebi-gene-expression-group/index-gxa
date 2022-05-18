@@ -115,7 +115,7 @@ docker run --rm -i --net $DOCKER_NET \
 
 BIOSOLR_REMOTE_JAR_PATH=/packages/solr-ontology-update-processor-$BIOSOLR_VERSION.jar
 
-docker exec -i --user=solr my_solr bin/solr create_collection -c bulk-analytics-v1
+docker exec -i --user=solr $SOLR_CONT_NAME bin/solr create_collection -c bulk-analytics-v1
 
 docker run --rm -i --net $DOCKER_NET -v $( pwd )/tests:/usr/local/tests:rw \
   -v $( pwd )/bin:/usr/local/bin \
@@ -127,6 +127,10 @@ docker run --rm -i --net $DOCKER_NET -v $( pwd )/tests:/usr/local/tests:rw \
   -e SIGNING_PRIVATE_KEY=/tmp/$SIGNING_PRIVATE_KEY \
   -e POSTGRES_USER=$POSTGRES_USER \
   -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD \
+  -e ADMIN_USER=atlas \
+  -e ADMIN_U_PWD=fjaso983dada \
+  -e QUERY_USER=queryu \
+  -e QUERY_U_PWD=fsaf897asd3 \
   -e jdbc_url=$jdbc_url --entrypoint=/usr/local/tests/run-tests.sh quay.io/ebigxa/atlas-index-base:1.5
 
 
