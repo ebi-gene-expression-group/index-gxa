@@ -13,6 +13,13 @@ SOLR_AUTH="-u $SOLR_USER:$SOLR_PASS"
 [ -z ${BIOSOLR_VERSION+x} ] && echo "BIOSOLR_VERSION env var is needed." && exit 1
 [ -z ${SIGNING_PRIVATE_KEY+x} ] && echo "SIGNING_PRIVATE_KEY env var is needed." && exit 1
 
+if [ ! -f $SIGNING_PRIVATE_KEY ]; then
+   echo "SIGNING KEY $SIGNING_PRIVATE_KEY is not a valid file or is not available"
+   ls -l $SIGNING_PRIVATE_KEY
+   ls -l $(dirname $SIGNING_PRIVATE_KEY)
+   exit 1
+fi
+
 # Sign biosolr JAR
 echo $SIGNING_PRIVATE_KEY
 SIGNATURE=$(openssl dgst -sha1 -sign $SIGNING_PRIVATE_KEY $BIOSOLR_JAR_PATH | openssl enc -base64 | sed 's/+/%2B/g' | tr -d \\n )
