@@ -53,10 +53,12 @@ docker run --net $DOCKER_NET \
 
 sleep 5
 
+docker exec -d $SOLR_CONT_NAME ls -l /opt/tests/$SIGNING_PUBLIC_KEY_DER
+
 # Upload der to Solr
 echo "Upload public der key to Solr"
 docker exec -d $SOLR_CONT_NAME \
-    "ls -l /opt/tests/$SIGNING_PUBLIC_KEY_DER && bin/solr package add-key /opt/tests/$SIGNING_PUBLIC_KEY_DER"
+    bin/solr package add-key /opt/tests/$SIGNING_PUBLIC_KEY_DER
 
 if [ "$?" -gt "0" ]; then
   echo "Could not add public DER key to solr cloud"
