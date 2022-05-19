@@ -39,7 +39,7 @@ HTTP_STATUS=$(curl $SOLR_AUTH -w "%{http_code}" -o >(cat >&3) --data-binary @$BI
 
 if [[ ! $HTTP_STATUS == 2* ]];
 then
-	# HTTP Status is not a 2xx code, so it is an error.
+   # HTTP Status is not a 2xx code, so it is an error.
    echo "Failed to upload the signed JAR file"
    exit 1
 fi
@@ -48,7 +48,7 @@ fi
 HTTP_STATUS=$(curl $SOLR_AUTH -w "%{http_code}" -o >(cat >&3) "http://$HOST/api/node/files/biosolr/$BIOSOLR_VERSION?omitHeader=true" )
 if [[ ! $HTTP_STATUS == 2* ]];
 then
-	# HTTP Status is not a 2xx code, so it is an error.
+   # HTTP Status is not a 2xx code, so it is an error.
    echo "Could not verify biosolr jar for http://$HOST/api/node/files/biosolr/$BIOSOLR_VERSION?omitHeader=true"
    exit 1
 fi
@@ -63,7 +63,7 @@ HTTP_STATUS=$(curl $SOLR_AUTH -w "%{http_code}" -o >(cat >&3) "http://$HOST/api/
 
 if [[ ! $HTTP_STATUS == 2* ]];
 then
-	# HTTP Status is not a 2xx code, so it is an error.
+   # HTTP Status is not a 2xx code, so it is an error.
    echo "Failed to create the remote biosolr package for $REMOTE_BIOSOLR_PATH"
    exit 1
 fi
@@ -73,7 +73,7 @@ HTTP_STATUS=$(curl $SOLR_AUTH -w "%{http_code}" -o >(cat >&3) "http://$HOST/api/
 
 if [[ ! $HTTP_STATUS == 2* ]];
 then
-	# HTTP Status is not a 2xx code, so it is an error.
+   # HTTP Status is not a 2xx code, so it is an error.
    echo "Failed to create the remote biosolr package for $REMOTE_BIOSOLR_PATH"
    exit 1
 fi
@@ -81,18 +81,5 @@ fi
 
 # # Deploy the package
 # # This is not needed since it happens on schema creation of the update-processor
-# HTTP_STATUS=$(curl $SOLR_AUTH -w "%{http_code}" -o >(cat >&3) "http://$HOST/api/cluster/package" -H 'Content-type:application/json' -d '
-# {"deploy": {
-#          "package" : "biosolr",
-#          "version":"'$BIOSOLR_VERSION'",
-#          }')
-
-
-# if [[ ! $HTTP_STATUS == 2* ]];
-# then
-# 	# HTTP Status is not a 2xx code, so it is an error.
-#    echo "Failed to create the remote biosolr package for $REMOTE_BIOSOLR_PATH"
-#    exit 1
-# fi
 
 echo "The package for biosolr should now be ready for attaching it to a handler/processor during schema creation."

@@ -21,7 +21,7 @@ HTTP_STATUS=$(curl $SOLR_AUTH -w "%{http_code}" -o >(cat >&3) -H 'Content-type:a
 
 if [[ ! $HTTP_STATUS == 2* ]];
 then
-	# HTTP Status is not a 2xx code, so it is an error.
+   # HTTP Status is not a 2xx code, so it is an error.
    echo "Failed to add admin and query users"
    exit 1
 fi
@@ -34,7 +34,7 @@ HTTP_STATUS=$(curl $SOLR_AUTH -w "%{http_code}" -o >(cat >&3) -H 'Content-type:a
 
 if [[ ! $HTTP_STATUS == 2* ]];
 then
-	# HTTP Status is not a 2xx code, so it is an error.
+   # HTTP Status is not a 2xx code, so it is an error.
    echo "Failed to set admin and guest roles"
    exit 1
 fi
@@ -45,12 +45,11 @@ HTTP_STATUS=$(curl $SOLR_AUTH -w "%{http_code}" -o >(cat >&3) -H 'Content-type:a
   "set-permission": {"name": "read", "role":"guest", "path":"/suggest"},
   "set-permission": {"name": "all", "role":"admin"}
 }' http://$HOST/solr/admin/authorization)
-# "set-permission": {"name": "read", "role":"guest", "path":"/suggest"},
 
 
 if [[ ! $HTTP_STATUS == 2* ]];
 then
-	# HTTP Status is not a 2xx code, so it is an error.
+   # HTTP Status is not a 2xx code, so it is an error.
    echo "Failed to set permissions to admin and guest roles"
    exit 1
 fi
@@ -65,7 +64,7 @@ HTTP_STATUS=$(curl $SOLR_AUTH -w "%{http_code}" -o >(cat >&3) -H 'Content-type:a
 
 if [[ ! $HTTP_STATUS == 2* ]];
 then
-	# HTTP Status is not a 2xx code, so it is an error.
+   # HTTP Status is not a 2xx code, so it is an error.
    echo "Failed to delete original $SOLR_USER"
    exit 1
 fi
@@ -77,7 +76,7 @@ HTTP_STATUS=$(curl $SOLR_AUTH -w "%{http_code}" -o >(cat >&3) -H 'Content-type:a
 
 if [[ ! $HTTP_STATUS == 2* ]];
 then
-	# HTTP Status is not a 2xx code, so it is an error.
+   # HTTP Status is not a 2xx code, so it is an error.
    echo "Failed to set blockUnknown to true to activate authentication"
    exit 1
 fi
