@@ -51,10 +51,12 @@ docker run --net $DOCKER_NET \
     -d -v $( pwd )/tests/security.json:$SECURITY_JSON \
     -t solr:$SOLR_VERSION bin/solr zk cp file:$SECURITY_JSON zk:/security.json -z $ZK_HOST:$ZK_PORT
 
+sleep 5
+
 # Upload der to Solr
 echo "Upload public der key to Solr"
 docker exec -d $SOLR_CONT_NAME \
-    bin/solr package add-key /opt/tests/$SIGNING_PUBLIC_KEY_DER
+    ls -l /opt/tests/$SIGNING_PUBLIC_KEY_DER && bin/solr package add-key /opt/tests/$SIGNING_PUBLIC_KEY_DER
 
 # For atlas-web-bulk-cli application context
 docker run --rm --net $DOCKER_NET --name $POSTGRES_HOST \
