@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 export SCHEMA_VERSION=1
-export SOLR_COLLECTION=gxa-analytics-v$SCHEMA_VERSION
+export SOLR_COLLECTION=bulk-analytics-v$SCHEMA_VERSION
 HOST=${SOLR_HOST:-localhost:8983}
 
 set -e

@@ -1,0 +1,33 @@
+Comment[ArrayExpressAccession]	E-MTAB-5072
+MAGE-TAB Version	1.1	
+Investigation Title	Arabidopsis lyrata strain:MN47 Transcriptome or Gene expression	
+Comment[Submitted Name]	Arabidopsis lyrata strain:MN47 Transcriptome or Gene expression
+Experiment Description	Illumina, strand-specific RNA sequencing of A lyrata for gene annotation.	
+Experimental Factor Name	organism part	
+Experimental Factor Type	organism part	
+Person Last Name	Clark	Blanchette
+Person First Name	Richard	Mathieu
+Person Email	clark@biology.utah.edu	blanchem@cs.mcgill.ca
+Person Address	Department of Biology, University of Utah	School of Computer Science, McGill University, Montreal, Quebec, Canada
+Person Affiliation	BioProject	
+Person Roles	submitter	
+Public Release Date	2013-06-26	
+Protocol Name	SEQUENCING_PROTOCOL_1	LIBRARY_CONSTRUCTION_PROTOCOL_1
+Protocol Type	nucleic acid sequencing protocol	nucleic acid library construction protocol
+Protocol Term Source REF	EFO	EFO
+Protocol Term Accession Number	EFO_0004170	EFO_0004184
+Protocol Description	Illumina Genome Analyzer IIx	
+Protocol Hardware	Illumina Genome Analyzer IIx	
+Term Source Name	NCBI Taxonomy	EFO
+Term Source File	http://www.ncbi.nlm.nih.gov/Taxonomy/	http://www.ebi.ac.uk/efo
+Term Source Version		2.38
+Comment[SecondaryAccession]	SRP024292	
+Comment[SequenceDataURI]	http://www.ebi.ac.uk/ena/data/view/SRP024292	
+Comment[AEExperimentType]	RNA-seq of coding RNA	
+Comment[SRASubmissionDate]	2013-06-26	
+Publication Title	An atlas of over 90,000 conserved noncoding sequences provides insight into crucifer regulatory regions	
+Publication Author List	Haudry A, Platts AE, Vello E, Hoen DR, Leclercq M, Williamson RJ, Forczek E, Joly-Lopez Z, Steffen JG, Hazzouri KM, Dewar K, Stinchcombe JR, Schoen DJ, Wang X, Schmutz J, Town CD, Edger PP, Pires JC, Schumaker KS, Jarvis DE, MandÃ¡kovÃ¡ T, Lysak MA, van den Bergh E, Schranz ME, Harrison PM, Moses AM, Bureau TE, Wright SI, Blanchette M	
+PubMed ID	23817568	
+Publication DOI	10.1038/ng.2684	
+Comment[AEExperimentDisplayName]	Transcription profiling by high throughput sequencing of seeds, roots and flower buds from Arabidopsis lyrata	
+SDRF File	E-MTAB-5072.sdrf.txt

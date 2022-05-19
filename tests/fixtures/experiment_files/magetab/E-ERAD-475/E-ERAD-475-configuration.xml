@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration experimentType="rnaseq_mrna_baseline" r_data="1">
+    <analytics>
+        <assay_groups>
+            <assay_group id="g1" label="blastula 128-cell">
+                <assay technical_replicate_id="t11">ERR1442631</assay>
+                <assay technical_replicate_id="t11">ERR1442901</assay>
+                <assay technical_replicate_id="t12">ERR1442722</assay>
+                <assay technical_replicate_id="t12">ERR1442902</assay>
+                <assay technical_replicate_id="t12">ERR1442632</assay>
+                <assay technical_replicate_id="t12">ERR1442812</assay>
+                <assay technical_replicate_id="t13">ERR1442903</assay>
+                <assay technical_replicate_id="t13">ERR1442723</assay>
+                <assay technical_replicate_id="t13">ERR1442633</assay>
+                <assay technical_replicate_id="t14">ERR1442634</assay>
+                <assay technical_replicate_id="t14">ERR1442904</assay>
+                <assay technical_replicate_id="t15">ERR1442635</assay>
+                <assay technical_replicate_id="t15">ERR1442725</assay>
+                <assay technical_replicate_id="t15">ERR1442905</assay>
+                <assay technical_replicate_id="t15">ERR1442815</assay>
+            </assay_group>
+            <assay_group id="g10" label="larval day 5">
+                <assay technical_replicate_id="t86">ERR1442596</assay>
+                <assay technical_replicate_id="t86">ERR1442866</assay>
+                <assay technical_replicate_id="t86">ERR1442776</assay>
+                <assay technical_replicate_id="t86">ERR1442686</assay>
+                <assay technical_replicate_id="t87">ERR1442777</assay>
+                <assay technical_replicate_id="t87">ERR1442687</assay>
+                <assay technical_replicate_id="t87">ERR1442597</assay>
+                <assay technical_replicate_id="t88">ERR1442868</assay>
+                <assay technical_replicate_id="t88">ERR1442598</assay>
+                <assay technical_replicate_id="t89">ERR1442869</assay>
+                <assay technical_replicate_id="t89">ERR1442689</assay>
+                <assay technical_replicate_id="t89">ERR1442599</assay>
+                <assay technical_replicate_id="t90">ERR1442690</assay>
+                <assay technical_replicate_id="t90">ERR1442600</assay>
+                <assay technical_replicate_id="t90">ERR1442870</assay>
+                <assay technical_replicate_id="t90">ERR1442780</assay>
+            </assay_group>
+            <assay_group id="g11" label="larval protruding mouth">
+                <assay technical_replicate_id="t76">ERR1442586</assay>
+                <assay technical_replicate_id="t76">ERR1442766</assay>
+                <assay technical_replicate_id="t76">ERR1442676</assay>
+                <assay technical_replicate_id="t77">ERR1442677</assay>
+                <assay technical_replicate_id="t77">ERR1442587</assay>
+                <assay technical_replicate_id="t77">ERR1442767</assay>
+                <assay technical_replicate_id="t78">ERR1442588</assay>
+                <assay technical_replicate_id="t78">ERR1442858</assay>
+                <assay technical_replicate_id="t79">ERR1442589</assay>
+                <assay technical_replicate_id="t79">ERR1442859</assay>
+                <assay technical_replicate_id="t79">ERR1442679</assay>
+                <assay technical_replicate_id="t80">ERR1442770</assay>
+                <assay technical_replicate_id="t80">ERR1442680</assay>
+                <assay technical_replicate_id="t80">ERR1442860</assay>
+                <assay technical_replicate_id="t80">ERR1442590</assay>
+            </assay_group>
+            <assay_group id="g12" label="pharyngula prim-15">
+                <assay technical_replicate_id="t61">ERR1442571</assay>
+                <assay technical_replicate_id="t61">ERR1442751</assay>
+                <assay technical_replicate_id="t61">ERR1442661</assay>
+                <assay technical_replicate_id="t61">ERR1442841</assay>
+                <assay technical_replicate_id="t62">ERR1442662</assay>
+                <assay technical_replicate_id="t62">ERR1442752</assay>
+                <assay technical_replicate_id="t62">ERR1442572</assay>
+                <assay technical_replicate_id="t62">ERR1442842</assay>
+                <assay technical_replicate_id="t63">ERR1442663</assay>
+                <assay technical_replicate_id="t64">ERR1442664</assay>
+                <assay technical_replicate_id="t64">ERR1442574</assay>
+                <assay technical_replicate_id="t64">ERR1442754</assay>
+                <assay technical_replicate_id="t64">ERR1442844</assay>
+                <assay technical_replicate_id="t65">ERR1442755</assay>
+                <assay technical_replicate_id="t65">ERR1442845</assay>
+                <assay technical_replicate_id="t65">ERR1442575</assay>
+                <assay technical_replicate_id="t65">ERR1442665</assay>
+            </assay_group>
+            <assay_group id="g13" label="pharyngula prim-25">
+                <assay technical_replicate_id="t66">ERR1442576</assay>
+                <assay technical_replicate_id="t66">ERR1442666</assay>
+                <assay technical_replicate_id="t67">ERR1442577</assay>
+                <assay technical_replicate_id="t67">ERR1442757</assay>
+                <assay technical_replicate_id="t67">ERR1442847</assay>
+                <assay technical_replicate_id="t68">ERR1442578</assay>
+                <assay technical_replicate_id="t68">ERR1442668</assay>
+                <assay technical_replicate_id="t68">ERR1442758</assay>
+                <assay technical_replicate_id="t69">ERR1442759</assay>
+                <assay technical_replicate_id="t69">ERR1442669</assay>
+                <assay technical_replicate_id="t69">ERR1442849</assay>
+                <assay technical_replicate_id="t69">ERR1442579</assay>
+                <assay technical_replicate_id="t70">ERR1442760</assay>
+                <assay technical_replicate_id="t70">ERR1442670</assay>
+                <assay technical_replicate_id="t70">ERR1442580</assay>
+            </assay_group>
+            <assay_group id="g14" label="pharyngula prim-5">
+                <assay technical_replicate_id="t56">ERR1442656</assay>
+                <assay technical_replicate_id="t56">ERR1442566</assay>
+                <assay technical_replicate_id="t56">ERR1442746</assay>
+                <assay technical_replicate_id="t57">ERR1442567</assay>
+                <assay technical_replicate_id="t57">ERR1442747</assay>
+                <assay technical_replicate_id="t57">ERR1442657</assay>
+                <assay technical_replicate_id="t58">ERR1442658</assay>
+                <assay technical_replicate_id="t58">ERR1442568</assay>
+                <assay technical_replicate_id="t58">ERR1442748</assay>
+                <assay technical_replicate_id="t58">ERR1442838</assay>
+                <assay technical_replicate_id="t59">ERR1442749</assay>
+                <assay technical_replicate_id="t59">ERR1442569</assay>
+                <assay technical_replicate_id="t59">ERR1442839</assay>
+                <assay technical_replicate_id="t59">ERR1442659</assay>
+                <assay technical_replicate_id="t60">ERR1442570</assay>
+                <assay technical_replicate_id="t60">ERR1442660</assay>
+                <assay technical_replicate_id="t60">ERR1442840</assay>
+                <assay technical_replicate_id="t60">ERR1442750</assay>
+            </assay_group>
+            <assay_group id="g15" label="segmentation 1-4 somites">
+                <assay technical_replicate_id="t41">ERR1442636</assay>
+                <assay technical_replicate_id="t41">ERR1442726</assay>
+                <assay technical_replicate_id="t42">ERR1442907</assay>
+                <assay technical_replicate_id="t42">ERR1442727</assay>
+                <assay technical_replicate_id="t42">ERR1442637</assay>
+                <assay technical_replicate_id="t42">ERR1442817</assay>
+                <assay technical_replicate_id="t43">ERR1442638</assay>
+                <assay technical_replicate_id="t43">ERR1442818</assay>
+                <assay technical_replicate_id="t44">ERR1442729</assay>
+                <assay technical_replicate_id="t44">ERR1442909</assay>
+                <assay technical_replicate_id="t44">ERR1442639</assay>
+                <assay technical_replicate_id="t44">ERR1442819</assay>
+                <assay technical_replicate_id="t45">ERR1442640</assay>
+                <assay technical_replicate_id="t45">ERR1442820</assay>
+            </assay_group>
+            <assay_group id="g16" label="segmentation 14-19 somites">
+                <assay technical_replicate_id="t46">ERR1442611</assay>
+                <assay technical_replicate_id="t46">ERR1442701</assay>
+                <assay technical_replicate_id="t46">ERR1442791</assay>
+                <assay technical_replicate_id="t47">ERR1442702</assay>
+                <assay technical_replicate_id="t47">ERR1442792</assay>
+                <assay technical_replicate_id="t47">ERR1442612</assay>
+                <assay technical_replicate_id="t48">ERR1442793</assay>
+                <assay technical_replicate_id="t48">ERR1442613</assay>
+                <assay technical_replicate_id="t48">ERR1442883</assay>
+                <assay technical_replicate_id="t49">ERR1442794</assay>
+                <assay technical_replicate_id="t49">ERR1442614</assay>
+                <assay technical_replicate_id="t49">ERR1442704</assay>
+                <assay technical_replicate_id="t49">ERR1442884</assay>
+                <assay technical_replicate_id="t50">ERR1442885</assay>
+                <assay technical_replicate_id="t50">ERR1442795</assay>
+            </assay_group>
+            <assay_group id="g17" label="segmentation 20-25 somites">
+                <assay technical_replicate_id="t51">ERR1442796</assay>
+                <assay technical_replicate_id="t51">ERR1442706</assay>
+                <assay technical_replicate_id="t51">ERR1442886</assay>
+                <assay technical_replicate_id="t51">ERR1442616</assay>
+                <assay technical_replicate_id="t52">ERR1442707</assay>
+                <assay technical_replicate_id="t52">ERR1442617</assay>
+                <assay technical_replicate_id="t52">ERR1442797</assay>
+                <assay technical_replicate_id="t53">ERR1442618</assay>
+                <assay technical_replicate_id="t53">ERR1442798</assay>
+                <assay technical_replicate_id="t53">ERR1442888</assay>
+                <assay technical_replicate_id="t53">ERR1442708</assay>
+                <assay technical_replicate_id="t54">ERR1442619</assay>
+                <assay technical_replicate_id="t54">ERR1442889</assay>
+                <assay technical_replicate_id="t54">ERR1442799</assay>
+                <assay technical_replicate_id="t54">ERR1442709</assay>
+                <assay technical_replicate_id="t55">ERR1442620</assay>
+                <assay technical_replicate_id="t55">ERR1442800</assay>
+            </assay_group>
+            <assay_group id="g18" label="zygote">
+                <assay technical_replicate_id="t1">ERR1442826</assay>
+                <assay technical_replicate_id="t1">ERR1442646</assay>
+                <assay technical_replicate_id="t2">ERR1442917</assay>
+                <assay technical_replicate_id="t2">ERR1442737</assay>
+                <assay technical_replicate_id="t2">ERR1442647</assay>
+                <assay technical_replicate_id="t2">ERR1442827</assay>
+                <assay technical_replicate_id="t3">ERR1442648</assay>
+                <assay technical_replicate_id="t3">ERR1442738</assay>
+                <assay technical_replicate_id="t3">ERR1442828</assay>
+                <assay technical_replicate_id="t4">ERR1442829</assay>
+                <assay technical_replicate_id="t4">ERR1442919</assay>
+                <assay technical_replicate_id="t4">ERR1442739</assay>
+                <assay technical_replicate_id="t5">ERR1442920</assay>
+                <assay technical_replicate_id="t5">ERR1442830</assay>
+                <assay technical_replicate_id="t5">ERR1442650</assay>
+            </assay_group>
+            <assay_group id="g2" label="blastula 1k-cell">
+                <assay technical_replicate_id="t16">ERR1442731</assay>
+                <assay technical_replicate_id="t17">ERR1442822</assay>
+                <assay technical_replicate_id="t17">ERR1442732</assay>
+                <assay technical_replicate_id="t17">ERR1442642</assay>
+                <assay technical_replicate_id="t18">ERR1442643</assay>
+                <assay technical_replicate_id="t18">ERR1442823</assay>
+                <assay technical_replicate_id="t18">ERR1442733</assay>
+                <assay technical_replicate_id="t18">ERR1442913</assay>
+                <assay technical_replicate_id="t19">ERR1442644</assay>
+                <assay technical_replicate_id="t19">ERR1442824</assay>
+                <assay technical_replicate_id="t19">ERR1442914</assay>
+                <assay technical_replicate_id="t20">ERR1442645</assay>
+                <assay technical_replicate_id="t20">ERR1442735</assay>
+            </assay_group>
+            <assay_group id="g3" label="blastula dome">
+                <assay technical_replicate_id="t21">ERR1442891</assay>
+                <assay technical_replicate_id="t21">ERR1442621</assay>
+                <assay technical_replicate_id="t22">ERR1442802</assay>
+                <assay technical_replicate_id="t22">ERR1442892</assay>
+                <assay technical_replicate_id="t22">ERR1442712</assay>
+                <assay technical_replicate_id="t23">ERR1442623</assay>
+                <assay technical_replicate_id="t23">ERR1442713</assay>
+                <assay technical_replicate_id="t23">ERR1442803</assay>
+                <assay technical_replicate_id="t24">ERR1442894</assay>
+                <assay technical_replicate_id="t24">ERR1442624</assay>
+                <assay technical_replicate_id="t25">ERR1442625</assay>
+                <assay technical_replicate_id="t25">ERR1442895</assay>
+                <assay technical_replicate_id="t25">ERR1442805</assay>
+            </assay_group>
+            <assay_group id="g4" label="cleavage 2-cell">
+                <assay technical_replicate_id="t10">ERR1442630</assay>
+                <assay technical_replicate_id="t10">ERR1442810</assay>
+                <assay technical_replicate_id="t6">ERR1442716</assay>
+                <assay technical_replicate_id="t6">ERR1442896</assay>
+                <assay technical_replicate_id="t6">ERR1442806</assay>
+                <assay technical_replicate_id="t6">ERR1442626</assay>
+                <assay technical_replicate_id="t7">ERR1442717</assay>
+                <assay technical_replicate_id="t7">ERR1442807</assay>
+                <assay technical_replicate_id="t7">ERR1442897</assay>
+                <assay technical_replicate_id="t8">ERR1442628</assay>
+                <assay technical_replicate_id="t8">ERR1442898</assay>
+                <assay technical_replicate_id="t9">ERR1442629</assay>
+            </assay_group>
+            <assay_group id="g5" label="gastrula 50%-epiboly">
+                <assay technical_replicate_id="t26">ERR1442741</assay>
+                <assay technical_replicate_id="t26">ERR1442831</assay>
+                <assay technical_replicate_id="t26">ERR1442561</assay>
+                <assay technical_replicate_id="t26">ERR1442651</assay>
+                <assay technical_replicate_id="t27">ERR1442562</assay>
+                <assay technical_replicate_id="t27">ERR1442832</assay>
+                <assay technical_replicate_id="t27">ERR1442652</assay>
+                <assay technical_replicate_id="t27">ERR1442742</assay>
+                <assay technical_replicate_id="t28">ERR1442653</assay>
+                <assay technical_replicate_id="t28">ERR1442833</assay>
+                <assay technical_replicate_id="t28">ERR1442743</assay>
+                <assay technical_replicate_id="t28">ERR1442563</assay>
+                <assay technical_replicate_id="t29">ERR1442744</assay>
+                <assay technical_replicate_id="t29">ERR1442564</assay>
+                <assay technical_replicate_id="t29">ERR1442834</assay>
+                <assay technical_replicate_id="t29">ERR1442654</assay>
+                <assay technical_replicate_id="t30">ERR1442565</assay>
+                <assay technical_replicate_id="t30">ERR1442835</assay>
+                <assay technical_replicate_id="t30">ERR1442745</assay>
+                <assay technical_replicate_id="t30">ERR1442655</assay>
+            </assay_group>
+            <assay_group id="g6" label="gastrula 75%-epiboly">
+                <assay technical_replicate_id="t36">ERR1442876</assay>
+                <assay technical_replicate_id="t36">ERR1442606</assay>
+                <assay technical_replicate_id="t36">ERR1442786</assay>
+                <assay technical_replicate_id="t37">ERR1442697</assay>
+                <assay technical_replicate_id="t37">ERR1442607</assay>
+                <assay technical_replicate_id="t37">ERR1442877</assay>
+                <assay technical_replicate_id="t37">ERR1442787</assay>
+                <assay technical_replicate_id="t38">ERR1442878</assay>
+                <assay technical_replicate_id="t38">ERR1442608</assay>
+                <assay technical_replicate_id="t39">ERR1442879</assay>
+                <assay technical_replicate_id="t39">ERR1442789</assay>
+                <assay technical_replicate_id="t40">ERR1442610</assay>
+                <assay technical_replicate_id="t40">ERR1442790</assay>
+                <assay technical_replicate_id="t40">ERR1442880</assay>
+            </assay_group>
+            <assay_group id="g7" label="gastrula shield">
+                <assay technical_replicate_id="t31">ERR1442601</assay>
+                <assay technical_replicate_id="t31">ERR1442871</assay>
+                <assay technical_replicate_id="t31">ERR1442781</assay>
+                <assay technical_replicate_id="t31">ERR1442691</assay>
+                <assay technical_replicate_id="t32">ERR1442692</assay>
+                <assay technical_replicate_id="t32">ERR1442872</assay>
+                <assay technical_replicate_id="t32">ERR1442782</assay>
+                <assay technical_replicate_id="t32">ERR1442602</assay>
+                <assay technical_replicate_id="t33">ERR1442693</assay>
+                <assay technical_replicate_id="t33">ERR1442783</assay>
+                <assay technical_replicate_id="t33">ERR1442603</assay>
+                <assay technical_replicate_id="t34">ERR1442784</assay>
+                <assay technical_replicate_id="t34">ERR1442874</assay>
+                <assay technical_replicate_id="t34">ERR1442694</assay>
+                <assay technical_replicate_id="t34">ERR1442604</assay>
+                <assay technical_replicate_id="t35">ERR1442695</assay>
+            </assay_group>
+            <assay_group id="g8" label="hatching long-pec">
+                <assay technical_replicate_id="t71">ERR1442761</assay>
+                <assay technical_replicate_id="t71">ERR1442851</assay>
+                <assay technical_replicate_id="t71">ERR1442671</assay>
+                <assay technical_replicate_id="t71">ERR1442581</assay>
+                <assay technical_replicate_id="t72">ERR1442672</assay>
+                <assay technical_replicate_id="t72">ERR1442582</assay>
+                <assay technical_replicate_id="t73">ERR1442673</assay>
+                <assay technical_replicate_id="t73">ERR1442583</assay>
+                <assay technical_replicate_id="t73">ERR1442853</assay>
+                <assay technical_replicate_id="t74">ERR1442584</assay>
+                <assay technical_replicate_id="t74">ERR1442854</assay>
+                <assay technical_replicate_id="t74">ERR1442764</assay>
+                <assay technical_replicate_id="t74">ERR1442674</assay>
+                <assay technical_replicate_id="t75">ERR1442675</assay>
+                <assay technical_replicate_id="t75">ERR1442585</assay>
+                <assay technical_replicate_id="t75">ERR1442765</assay>
+            </assay_group>
+            <assay_group id="g9" label="larval day 4">
+                <assay technical_replicate_id="t81">ERR1442591</assay>
+                <assay technical_replicate_id="t81">ERR1442681</assay>
+                <assay technical_replicate_id="t81">ERR1442771</assay>
+                <assay technical_replicate_id="t82">ERR1442772</assay>
+                <assay technical_replicate_id="t82">ERR1442592</assay>
+                <assay technical_replicate_id="t82">ERR1442682</assay>
+                <assay technical_replicate_id="t83">ERR1442683</assay>
+                <assay technical_replicate_id="t84">ERR1442594</assay>
+                <assay technical_replicate_id="t84">ERR1442774</assay>
+                <assay technical_replicate_id="t84">ERR1442864</assay>
+                <assay technical_replicate_id="t84">ERR1442684</assay>
+                <assay technical_replicate_id="t85">ERR1442595</assay>
+                <assay technical_replicate_id="t85">ERR1442775</assay>
+                <assay technical_replicate_id="t85">ERR1442685</assay>
+                <assay technical_replicate_id="t85">ERR1442865</assay>
+            </assay_group>
+        </assay_groups>
+    </analytics>
+</configuration>
