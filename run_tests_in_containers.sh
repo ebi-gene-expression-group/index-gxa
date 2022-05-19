@@ -104,9 +104,8 @@ docker run --rm -i --net $DOCKER_NET \
   quay.io/ebigxa/atlas-schemas-base:1.0 \
     /tmp/load_experiment_query.sh E-ERAD-475 RNASEQ_MRNA_BASELINE 'Danio rerio'
 
-# Lets accumulate some delay for solr before uploading the der key
-# For some reason the CI claims that the key wasn't uploaded if we don't do this, and fails then in uploading biosolr
-# docker exec -d $SOLR_CONT_NAME ls -l /opt/tests/$SIGNING_PUBLIC_KEY_DER
+# Lets accumulate some delay for solr before uploading the der key, by doing the database ops in the middle
+# We really need more professional orchestration here with proper waits.
 
 # Upload der to Solr
 echo "Upload public der key to Solr"
