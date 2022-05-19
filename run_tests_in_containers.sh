@@ -51,20 +51,6 @@ docker run --net $DOCKER_NET \
     -d -v $( pwd )/tests/security.json:$SECURITY_JSON \
     -t solr:$SOLR_VERSION bin/solr zk cp file:$SECURITY_JSON zk:/security.json -z $ZK_HOST:$ZK_PORT
 
-sleep 5
-
-docker exec -d $SOLR_CONT_NAME ls -l /opt/tests/$SIGNING_PUBLIC_KEY_DER
-
-# Upload der to Solr
-echo "Upload public der key to Solr"
-docker exec -d $SOLR_CONT_NAME \
-    bin/solr package add-key /opt/tests/$SIGNING_PUBLIC_KEY_DER
-
-if [ "$?" -gt "0" ]; then
-  echo "Could not add public DER key to solr cloud"
-  exit 1
-fi
-
 # For atlas-web-bulk-cli application context
 docker run --rm --net $DOCKER_NET --name $POSTGRES_HOST \
   -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD \
@@ -108,15 +94,29 @@ docker run --rm -i --net $DOCKER_NET \
   quay.io/ebigxa/atlas-schemas-base:1.0 \
     /tmp/load_experiment_query.sh E-MTAB-5072 RNASEQ_MRNA_BASELINE 'Arabidopsis lyrata'
 
-    docker run --rm -i --net $DOCKER_NET \
-      -v $( pwd )/tests/load_experiment_query.sh:/tmp/load_experiment_query.sh \
-      -e PGPASSWORD=$POSTGRES_PASSWORD \
-      -e PGUSER=$POSTGRES_USER \
-      -e PGDATABASE=$POSTGRES_DB \
-      -e PGPORT=$POSTGRES_PORT \
-      -e PGHOST=$POSTGRES_HOST \
-      quay.io/ebigxa/atlas-schemas-base:1.0 \
-        /tmp/load_experiment_query.sh E-ERAD-475 RNASEQ_MRNA_BASELINE 'Danio rerio'
+docker run --rm -i --net $DOCKER_NET \
+  -v $( pwd )/tests/load_experiment_query.sh:/tmp/load_experiment_query.sh \
+  -e PGPASSWORD=$POSTGRES_PASSWORD \
+  -e PGUSER=$POSTGRES_USER \
+  -e PGDATABASE=$POSTGRES_DB \
+  -e PGPORT=$POSTGRES_PORT \
+  -e PGHOST=$POSTGRES_HOST \
+  quay.io/ebigxa/atlas-schemas-base:1.0 \
+    /tmp/load_experiment_query.sh E-ERAD-475 RNASEQ_MRNA_BASELINE 'Danio rerio'
+
+# Lets accumulate some delay for solr before uploading the der key
+# For some reason the CI claims that the key wasn't uploaded if we don't do this, and fails then in uploading biosolr
+# docker exec -d $SOLR_CONT_NAME ls -l /opt/tests/$SIGNING_PUBLIC_KEY_DER
+
+# Upload der to Solr
+echo "Upload public der key to Solr"
+docker exec -d $SOLR_CONT_NAME \
+    bin/solr package add-key /opt/tests/$SIGNING_PUBLIC_KEY_DER
+
+if [ "$?" -gt "0" ]; then
+  echo "Could not add public DER key to solr cloud"
+  exit 1
+fi
 
 
 # disable data driven schema functionality - not recommended for production
