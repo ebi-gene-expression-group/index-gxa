@@ -8,6 +8,9 @@ SOLR_USER=${SOLR_USER:-"solr"}
 SOLR_PASS=${SOLR_PASS:-"SolrRocks"}
 SOLR_AUTH="-u $SOLR_USER:$SOLR_PASS"
 
+#creates a new file descriptor 3 that redirects to 1 (STDOUT)
+exec 3>&1
+
 #############################################################################################
 
 printf "\n\nDelete field experiment_accession\n"
@@ -529,7 +532,7 @@ curl $SOLR_AUTH -X POST -H 'Content-type:application/json' --data-binary '{
 
 
 printf "\n\nCreate dedupe update processor\n"
-curl $SOLR_AUTH -X POST -H 'Content-type:application/json' --data-binary '{
+HTTP_STATUS=$(curl $SOLR_AUTH -w "%{http_code}" -o >(cat >&3) -X POST -H 'Content-type:application/json' --data-binary '{
   "add-updateprocessor":
   {
     "name": "dedupe"
@@ -540,4 +543,10 @@ curl $SOLR_AUTH -X POST -H 'Content-type:application/json' --data-binary '{
     "fields": "experiment_accession,bioentity_identifier,assay_group_id,contrast_id",
     "signatureClass": "solr.processor.Lookup3Signature"
   }
-}' http://${HOST}/solr/${COLLECTION}/config
+}' http://${HOST}/solr/${COLLECTION}/config)
+
+if [[ ! $HTTP_STATUS == 2* ]]; then
+  # HTTP Status is not a 2xx code, so it is an error.
+  echo "Failed to create the dedupe update processor"
+  exit 1
+fi
