@@ -16,7 +16,7 @@ curl $SOLR_AUTH "http://$HOST/solr/$CORE/schema?wt=json" \
   | sort > analytics_loaded_fields.txt
 
 echo "Parsing creation script"
-grep -A 2 '\("add-field"\|"add-dynamic-field"\)' "$(dirname "${BASH_SOURCE[0]}")"/../bin/create-gxa-analytics-schema.sh \
+grep -A 2 '\("add-field"\|"add-dynamic-field"\)' "$(dirname "${BASH_SOURCE[0]}")"/../bin/create-bulk-analytics-schema.sh \
   | grep '"name"' | awk -F':' '{ print $2 }' | sed 's/[\", ]//g' \
   | sort > analytics_expected_loaded_fields.txt
 

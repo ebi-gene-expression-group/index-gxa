@@ -10,11 +10,11 @@ echo $HOST
 echo $COLLECTION
 
 if [ $PROCESSOR ] && [ $ONTOLOGY_PROCESSOR ]; then
-	PROCESSOR="&processor="$PROCESSOR","$ONTOLOGY_PROCESSOR
+    PROCESSOR="&processor="$PROCESSOR","$ONTOLOGY_PROCESSOR
 elif [ $PROCESSOR ]; then
-	PROCESSOR="&processor="$PROCESSOR
+    PROCESSOR="&processor="$PROCESSOR
 elif [ $ONTOLOGY_PROCESSOR ]; then
-	PROCESSOR="&processor="$ONTOLOGY_PROCESSOR
+    PROCESSOR="&processor="$ONTOLOGY_PROCESSOR
 fi
 
 # Create a new file descriptor 3 that redirects to 1 (STDOUT)
@@ -24,9 +24,8 @@ exec 3>&1
 # and send the content to this command’s STDOUT with -o >(cat >&3)
 HTTP_STATUS=$(curl $SOLR_AUTH -w "%{http_code}" -o >(cat >&3) "http://$HOST/solr/$COLLECTION/update?commit=true$PROCESSOR" --data-binary @- -H 'Content-type:application/json')
 
-
 if [[ ! $HTTP_STATUS == 2* ]];
 then
-	 # HTTP Status is not a 2xx code
-   exit 1
+    # HTTP Status is not a 2xx code
+    exit 1
 fi
