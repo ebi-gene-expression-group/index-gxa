@@ -14,6 +14,8 @@ if [[ "$ACCESSIONS" == *","* ]]; then
   ACCESSIONS=$( echo $ACCESSIONS | sed 's/,/ /g')
 fi
 
+export SOLR_PROCESSORS=dedupe
+
 if [ ! -z ${failed_accessions_output+x} ]; then
   rm -f $failed_accessions_output
   touch $failed_accessions_output 
