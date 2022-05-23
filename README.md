@@ -19,7 +19,7 @@ docker run --rm -i --net mynet -v $( pwd )/tests:/usr/local/tests \
   -e POSTGRES_USER=$POSTGRES_USER \
   -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD \
   -e SOLR_USER=<an-existing-solr-username-that-can-write-or-read> \
-  -e SOLR_PASS=<passsword-forl-that-solr-user> \
+  -e SOLR_PASS=<password-for-that-solr-user> \
   -e jdbc_url=$jdbc_url quay.io/ebigxa/atlas-index-base:1.5 bash <desired-script> -i /data/<relevant-data>
 ```
 
@@ -40,7 +40,7 @@ export SOLR_USER=<new-user>
 export SOLR_PASS=<new-pass>
 ```
 
-To use default auth in a new solr cloud instance, upload `test/security.json` to ZK as shown in the `Setup auth` part of the `run_tests_in_containers.sh`. To setup users in a production setting the script [create-users.sh](bin/create-users.sh) will receive two set of users:
+To use default auth in a new SolrCloud instance, upload `test/security.json` to ZK as shown in the `Setup auth` part of the [run_tests_in_containers.sh](run_tests_in_containers.sh). To setup users in a production setting the script [create-users.sh](bin/create-users.sh) will receive two set of users:
 
 ```
 ADMIN_USER=<admin-username>
