@@ -38,8 +38,18 @@ post_json() {
 
   # The update/json/docs handler supports both regular JSON and JSON Lines:
   # https://solr.apache.org/guide/7_1/transforming-and-indexing-custom-json.html#multiple-documents-in-a-single-payload
-  local HTTP_STATUS=$(curl $SOLR_AUTH -o >(cat >&3) -w "%{http_code}" "http://${HOST}/solr/${COLLECTION}/update/json/docs$PROCESSOR" --data-binary "@${1}" -H 'Content-type:application/json')
-
+  n=0
+  until [ "$n" -ge 5 ]; do
+    # retry the loading command up to 5 times before failing
+    HTTP_STATUS=$(curl $SOLR_AUTH -o >(cat >&3) -w "%{http_code}" "http://${HOST}/solr/${COLLECTION}/update/json/docs$PROCESSOR" --data-binary "@${1}" -H 'Content-type:application/json')
+    if [[ ${HTTP_STATUS} == 2* ]]
+    then
+      break
+    fi 
+    n=$((n+1)) 
+    sleep 10
+  done
+  
   if [[ ! ${HTTP_STATUS} == 2* ]]
   then
     echo "Error during update!" && exit 1
