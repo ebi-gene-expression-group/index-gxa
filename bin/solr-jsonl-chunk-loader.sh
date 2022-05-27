@@ -47,6 +47,7 @@ post_json() {
       break
     fi 
     n=$((n+1)) 
+    echo "Got error, retrying same load in 10 seconds..."
     sleep 10
   done
   
