@@ -36,6 +36,9 @@ java_opts="$java_opts -Djdbc.username=$jdbc_username"
 java_opts="$java_opts -Djdbc.password=$jdbc_password"
 java_opts="$java_opts -Djdbc.max_pool_size=2"
 java_opts="$java_opts -Dserver.port=$server_port"
+# for solr auth
+java_opts="$java_opts -Dsolr.httpclient.builder.factory=org.apache.solr.client.solrj.impl.PreemptiveBasicAuthClientBuilderFactory"
+java_opts="$java_opts -Dbasicauth=$SOLR_USER:$SOLR_PASS"
 
 # Generate JSONL files from bulk experiments
 

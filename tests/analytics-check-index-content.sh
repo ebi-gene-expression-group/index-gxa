@@ -5,6 +5,9 @@ SCHEMA_VERSION=1
 # on developers environment export SOLR_HOST_PORT and export SOLR_COLLECTION before running
 HOST=${SOLR_HOST:-"localhost:8983"}
 CORE=${SOLR_COLLECTION:-"bulk-analytics-v$SCHEMA_VERSION"}
+SOLR_USER=${QUERY_USER:-"solr"}
+SOLR_PASS=${QUERY_U_PWD:-"SolrRocks"}
+SOLR_AUTH="-u $SOLR_USER:$SOLR_PASS"
 
 # This is the dependant of the example file.
 # We will query for organism_part and assay SRR6257788
@@ -24,12 +27,12 @@ while [ "$numRecordsLoaded" -eq 0 ]; do
     exit 1
   fi
   sleep 20
-  numRecordsLoaded=$(curl -s "http://$HOST/solr/$CORE/select?fl=characteristic_name,characteristic_value&q=assay:$assay%20AND%20characteristic_name:$characteristic" | jq '.response.numFound')
+  numRecordsLoaded=$(curl $SOLR_AUTH -s "http://$HOST/solr/$CORE/select?fl=characteristic_name,characteristic_value&q=assay:$assay%20AND%20characteristic_name:$characteristic" | jq '.response.numFound')
   ((++pings))
 done
 echo "Pings: $pings"
 
-response=$(curl "http://$HOST/solr/$CORE/select?q=assay:$assay%20AND%20characteristic_name:$characteristic" | jq .response)
+response=$(curl $SOLR_AUTH "http://$HOST/solr/$CORE/select?q=assay:$assay%20AND%20characteristic_name:$characteristic" | jq .response)
 
 # Check number of returned documents
 numberOfDocuments=$(echo "${response}" | jq .numFound)

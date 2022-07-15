@@ -14,6 +14,8 @@ if [[ "$ACCESSIONS" == *","* ]]; then
   ACCESSIONS=$( echo $ACCESSIONS | sed 's/,/ /g')
 fi
 
+export SOLR_PROCESSORS=dedupe
+
 if [ ! -z ${failed_accessions_output+x} ]; then
   rm -f $failed_accessions_output
   touch $failed_accessions_output 
@@ -21,7 +23,7 @@ fi
 for EXP_ID in $ACCESSIONS; do
   export EXP_ID # needed for delete to see it
   if [ ! -z ${delete_existing+x} ]; then
-    $scriptDir/delete_gxa_analytics_index.sh
+    $scriptDir/delete_bulk_analytics_index.sh
   fi
   INPUT_JSONL=${analytics_jsonl_dir}/${EXP_ID}.jsonl SOLR_COLLECTION=bulk-analytics SCHEMA_VERSION=1 solr-jsonl-chunk-loader.sh  # SOLR_COLLECTION=bulk-analytics SOLR_PROCESSORS=dedupe
   if [ $? -ne 0 ]; then
