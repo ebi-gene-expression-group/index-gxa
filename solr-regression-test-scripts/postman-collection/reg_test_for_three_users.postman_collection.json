@@ -1,0 +1,4377 @@
+{
+	"info": {
+		"_postman_id": "e8aa4147-bf99-4a2e-8ed7-4c1a63c49d6e",
+		"name": "Reg_test_for_three_users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2320185"
+	},
+	"item": [
+		{
+			"name": "query1-BRCA1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"bioentityIdentifier\":{\"type\":\"terms\",\"field\":\"bioentity_identifier_search\",\"limit\":2}}&q=bioentity_identifier_search:{{geneSymbols}}",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"bioentityIdentifier\":{\"type\":\"terms\",\"field\":\"bioentity_identifier_search\",\"limit\":2}}"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "query2-BRCA1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"bioentityIdentifier\":{\"type\":\"terms\",\"field\":\"bioentity_identifier\",\"limit\":2}}&q=keyword_symbol:{{geneSymbols}}",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"bioentityIdentifier\":{\"type\":\"terms\",\"field\":\"bioentity_identifier\",\"limit\":2}}"
+						},
+						{
+							"key": "q",
+							"value": "keyword_symbol:{{geneSymbols}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "query3-BRCA1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?q=bioentity_identifier_search:{{geneSymbols}}&fq=((experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))OR+(p_value:[*+TO+0.05]+AND+((experiment_type:(RNASEQ_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_2COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MICRORNA_DIFFERENTIAL)+AND+fold_change:([*+TO+-1.0]+OR+[1.0+TO+*]))+OR+(experiment_type:PROTEOMICS_DIFFERENTIAL+AND+fold_change:([*+TO+-0.5]+OR+[0.5+TO+*])))))&fq=is_private:false&omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\"}}",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}"
+						},
+						{
+							"key": "fq",
+							"value": "((experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))OR+(p_value:[*+TO+0.05]+AND+((experiment_type:(RNASEQ_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_2COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MICRORNA_DIFFERENTIAL)+AND+fold_change:([*+TO+-1.0]+OR+[1.0+TO+*]))+OR+(experiment_type:PROTEOMICS_DIFFERENTIAL+AND+fold_change:([*+TO+-0.5]+OR+[0.5+TO+*])))))"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\"}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "query4-BRCA1",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?q=keyword_symbol:{{geneSymbols}}&fq=((experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))OR+(p_value:[*+TO+0.05]+AND+((experiment_type:(RNASEQ_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_2COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MICRORNA_DIFFERENTIAL)+AND+fold_change:([*+TO+-1.0]+OR+[1.0+TO+*]))+OR+(experiment_type:PROTEOMICS_DIFFERENTIAL+AND+fold_change:([*+TO+-0.5]+OR+[0.5+TO+*])))))&fq=is_private:false&rows=0&omitHeader=true&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\"}}",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "keyword_symbol:{{geneSymbols}}"
+						},
+						{
+							"key": "fq",
+							"value": "((experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))OR+(p_value:[*+TO+0.05]+AND+((experiment_type:(RNASEQ_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_2COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MICRORNA_DIFFERENTIAL)+AND+fold_change:([*+TO+-1.0]+OR+[1.0+TO+*]))+OR+(experiment_type:PROTEOMICS_DIFFERENTIAL+AND+fold_change:([*+TO+-0.5]+OR+[0.5+TO+*])))))"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\"}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query5-BRCA1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?fq=is_private:false&omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query6-BRCA1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// const species = [\"Brachypodium distachyon\",\"Canis lupus familiaris\",\"Chlamydomonasreinhardtii\",\"Arabidopsis lyrata subsp. lyrata\",\"Oryza sativa\",\"Brassica rapa subsp. rapa\",\"Brassica napus\",\"Drosophila melanogaster\",\"Papio anubis\",\"Macaca mulatta\",\"Vitis vinifera\",\"Arabidopsis thaliana\",\"Oryza sativa Indica Group\",",
+							"// \"Triticum aestivum\",\"Gallus gallus\",\"Aegilops tauschii\",\"Sus scrofa\",\"Brassica rapa subsp. pekinensis\",\"Triticum urartu\",\"Beta vulgaris subsp. vulgaris\",",
+							"// \"Populus trichocarpa\",\"Bos taurus\",\"Homo sapiens\",\"Musa acuminata\",\"Chlorocebus sabaeus\",\"Hordeum vulgare subsp. vulgare\",\"Brassica oleracea var. capitata\",",
+							"// \"Musa acuminata AAA Group\",\"Anas platyrhynchos\",\"Equus caballus\",\"Arabidopsis lyrata\",\"Brassica oleracea\",\"Medicago truncatula\",\"Solanum lycopersicum\",",
+							"// \"Oryza sativa Indica group\",\"Hordeum vulgare\",\"Zea mays subsp. mays\",\"Mus musculus domesticus\",\"Trifolium pratense\",\"Xenopus tropicalis\",\"Zea mays\",",
+							"// \"Caenorhabditis elegans\",",
+							"// \"Solanum tuberosum\",",
+							"// \"Beta vulgaris\",",
+							"// \"Oryza sativa Japonica Group\",",
+							"// \"Theobroma cacao\",",
+							"// \"Sorghum bicolor\",",
+							"// \"Glycine max\",",
+							"// \"Anopheles gambiae\",",
+							"// \"Mus musculus\",",
+							"// \"Oryctolagus cuniculus\",",
+							"// \"Prunus persica\",",
+							"// \"Setaria italica\",",
+							"// \"Brassica rapa\",",
+							"// \"Aspergillus fumigatus\",",
+							"// \"Saccharomyces cerevisiae\",",
+							"// \"Rattus norvegicus\",",
+							"// \"Physcomitrella patens\",",
+							"// \"Schistosoma mansoni\",",
+							"// \"Anolis carolinensis\",",
+							"// \"Schizosaccharomyces pombe\",",
+							"// \"Ovis aries\",",
+							"// \"Monodelphis domestica\",",
+							"// \"Brassica rapa subsp. oleifera\",",
+							"// \"Danio rerio\"];",
+							"// console.log(species);",
+							"// pm.variables.set('species',species);",
+							"",
+							"// pm.test(\"Status code is 200\", function () {",
+							"//     pm.response.to.have.status(200);",
+							"// });"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=keyword_symbol:{{geneSymbols}}",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "keyword_symbol:{{geneSymbols}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query35-BRCA1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"kingdom\":{\"type\":\"terms\",\"field\":\"kingdom\"},\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":40},\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\"},\"factors\":{\"type\":\"terms\",\"field\":\"factors\",\"limit\":100},\"numReplicates\":{\"type\":\"terms\",\"field\":\"num_replicates\"},\"regulation\":{\"type\":\"terms\",\"field\":\"regulation\"}}&fq=is_private:false&fq=p_value:[*+TO+0.05]+AND+((experiment_type:(RNASEQ_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_2COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MICRORNA_DIFFERENTIAL)+AND+fold_change:([*+TO+-1.0]+OR+[1.0+TO+*]))+OR+(experiment_type:PROTEOMICS_DIFFERENTIAL+AND+fold_change:([*+TO+-0.5]+OR+[0.5+TO+*])))&q=keyword_symbol:{{geneSymbols}}",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"kingdom\":{\"type\":\"terms\",\"field\":\"kingdom\"},\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":40},\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\"},\"factors\":{\"type\":\"terms\",\"field\":\"factors\",\"limit\":100},\"numReplicates\":{\"type\":\"terms\",\"field\":\"num_replicates\"},\"regulation\":{\"type\":\"terms\",\"field\":\"regulation\"}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "p_value:[*+TO+0.05]+AND+((experiment_type:(RNASEQ_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_2COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MICRORNA_DIFFERENTIAL)+AND+fold_change:([*+TO+-1.0]+OR+[1.0+TO+*]))+OR+(experiment_type:PROTEOMICS_DIFFERENTIAL+AND+fold_change:([*+TO+-0.5]+OR+[0.5+TO+*])))"
+						},
+						{
+							"key": "q",
+							"value": "keyword_symbol:{{geneSymbols}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Brachypodium distachyon",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Brachypodium distachyon\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Brachypodium distachyon\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Canis lupus familiaris",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Canis lupus familiaris\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Canis lupus familiaris\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chlamydomonasreinhardtii",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Chlamydomonasreinhardtii\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Chlamydomonasreinhardtii\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Arabidopsis lyrata subsp. lyrata",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Arabidopsis lyrata subsp. lyrata\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Arabidopsis lyrata subsp. lyrata\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Oryza sativa",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Oryza sativa\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Oryza sativa\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Brassica rapa subsp. rapa",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Brassica rapa subsp. rapa\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Brassica rapa subsp. rapa\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Brassica napus",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Brassica napus\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Brassica napus\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Drosophila melanogaster",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Drosophila melanogaster\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Drosophila melanogaster\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Papio anubis",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Papio anubis\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Papio anubis\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Macaca mulatta",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Macaca mulatta\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Macaca mulatta\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vitis vinifera",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Vitis vinifera\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Vitis vinifera\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Arabidopsis thaliana",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Arabidopsis thaliana\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Arabidopsis thaliana\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Oryza sativa Indica Group",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Oryza sativa Indica Group\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Oryza sativa Indica Group\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "'Gallus gallus'",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=keyword_symbol:\"BRCA1\"+AND+species: 'Gallus gallus'+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "keyword_symbol:\"BRCA1\"+AND+species: 'Gallus gallus'+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "'Aegilops tauschii'",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=keyword_symbol:\"BRCA1\"+AND+species:  'Aegilops tauschii'+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "keyword_symbol:\"BRCA1\"+AND+species:  'Aegilops tauschii'+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Triticum aestivum",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Triticum aestivum\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Triticum aestivum\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sus scrofa",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Sus scrofa\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Sus scrofa\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Brassica rapa subsp. pekinensis",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Brassica rapa subsp. pekinensis\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Brassica rapa subsp. pekinensis\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Triticum urartu",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Triticum urartu\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Triticum urartu\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Beta vulgaris subsp. vulgaris",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Beta vulgaris subsp. vulgaris\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Beta vulgaris subsp. vulgaris\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Populus trichocarpa",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Populus trichocarpa\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Populus trichocarpa\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bos taurus",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Bos taurus\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Bos taurus\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Homo sapiens",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Homo sapiens\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Homo sapiens\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Musa acuminata",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Musa acuminata\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Musa acuminata\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chlorocebus sabaeus",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Chlorocebus sabaeus\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Chlorocebus sabaeus\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Hordeum vulgare subsp. vulgare",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Hordeum vulgare subsp. vulgare\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Hordeum vulgare subsp. vulgare\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Brassica oleracea var. capitata",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Brassica oleracea var. capitata\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Brassica oleracea var. capitata\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Musa acuminata AAA Group",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Musa acuminata AAA Group\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Musa acuminata AAA Group\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Anas platyrhynchos",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Anas platyrhynchos\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Anas platyrhynchos\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Equus caballus",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Equus caballus\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Equus caballus\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Arabidopsis lyrata",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Arabidopsis lyrata\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Arabidopsis lyrata\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Brassica oleracea",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Brassica oleracea\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Brassica oleracea\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Medicago truncatula",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Medicago truncatula\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Medicago truncatula\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Solanum lycopersicum",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Solanum lycopersicum\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Solanum lycopersicum\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Oryza sativa Indica group",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Oryza sativa Indica group\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Oryza sativa Indica group\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Hordeum vulgare",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Hordeum vulgare\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Hordeum vulgare\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Zea mays subsp. mays",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Zea mays subsp. mays\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Zea mays subsp. mays\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mus musculus domesticus",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Mus musculus domesticus\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Mus musculus domesticus\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trifolium pratense",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Trifolium pratense\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Trifolium pratense\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Xenopus tropicalis",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Xenopus tropicalis\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Xenopus tropicalis\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Zea mays",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Zea mays\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Zea mays\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Caenorhabditis elegans",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Caenorhabditis elegans\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Caenorhabditis elegans\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Solanum tuberosum",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Solanum tuberosum\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Solanum tuberosum\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Beta vulgaris",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Beta vulgaris\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Beta vulgaris\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Oryza sativa Japonica Group",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Oryza sativa Japonica Group\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Oryza sativa Japonica Group\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Theobroma cacao",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Theobroma cacao\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Theobroma cacao\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sorghum bicolor",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Sorghum bicolor\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Sorghum bicolor\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Glycine max",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Glycine max\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Glycine max\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Anopheles gambiae",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Anopheles gambiae\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Anopheles gambiae\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mus musculus",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Mus musculus\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Mus musculus\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Oryctolagus cuniculus",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Oryctolagus cuniculus\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Oryctolagus cuniculus\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Prunus persica",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Prunus persica\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Prunus persica\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Setaria italica",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Setaria italica\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Setaria italica\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Brassica rapa",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Brassica rapa\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Brassica rapa\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aspergillus fumigatus",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Aspergillus fumigatus\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Aspergillus fumigatus\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Saccharomyces cerevisiae",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Saccharomyces cerevisiae\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Saccharomyces cerevisiae\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rattus norvegicus",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Rattus norvegicus\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Rattus norvegicus\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Physcomitrella patens",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Physcomitrella patens\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Physcomitrella patens\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Schistosoma mansoni",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Schistosoma mansoni\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Schistosoma mansoni\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Anolis carolinensis",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Anolis carolinensis\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Anolis carolinensis\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Schizosaccharomyces pombe",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Schizosaccharomyces pombe\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Schizosaccharomyces pombe\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ovis aries",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Ovis aries\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Ovis aries\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Monodelphis domestica",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Monodelphis domestica\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Monodelphis domestica\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Brassica rapa subsp. oleifera",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Brassica rapa subsp. oleifera\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Brassica rapa subsp. oleifera\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Danio rerio",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Danio rerio\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:\"Danio rerio\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"const geneSymbols = [\"BRCA1\",\"BRCA2\",\"REG1B\"]",
+					"console.log(geneSymbols)",
+					"pm.collectionVariables.set('geneSymbols',geneSymbols);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "species",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "species",
+			"value": ""
+		},
+		{
+			"key": "species1",
+			"value": ""
+		},
+		{
+			"key": "geneSymbols",
+			"value": ""
+		}
+	]
+}

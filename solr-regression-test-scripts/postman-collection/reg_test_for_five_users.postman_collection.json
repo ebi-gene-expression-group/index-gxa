@@ -1,0 +1,674 @@
+{
+	"info": {
+		"_postman_id": "ba244044-0ae0-4c62-9b95-44433952d332",
+		"name": "Reg_test_for_five_users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2320185"
+	},
+	"item": [
+		{
+			"name": "query1-BRCA1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"bioentityIdentifier\":{\"type\":\"terms\",\"field\":\"bioentity_identifier_search\",\"limit\":2}}&q=bioentity_identifier_search:{{geneSymbols}}",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"bioentityIdentifier\":{\"type\":\"terms\",\"field\":\"bioentity_identifier_search\",\"limit\":2}}"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "query2-BRCA1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"bioentityIdentifier\":{\"type\":\"terms\",\"field\":\"bioentity_identifier\",\"limit\":2}}&q=keyword_symbol:{{geneSymbols}}",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"bioentityIdentifier\":{\"type\":\"terms\",\"field\":\"bioentity_identifier\",\"limit\":2}}"
+						},
+						{
+							"key": "q",
+							"value": "keyword_symbol:{{geneSymbols}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "query3-BRCA1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?q=bioentity_identifier_search:{{geneSymbols}}&fq=((experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))OR+(p_value:[*+TO+0.05]+AND+((experiment_type:(RNASEQ_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_2COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MICRORNA_DIFFERENTIAL)+AND+fold_change:([*+TO+-1.0]+OR+[1.0+TO+*]))+OR+(experiment_type:PROTEOMICS_DIFFERENTIAL+AND+fold_change:([*+TO+-0.5]+OR+[0.5+TO+*])))))&fq=is_private:false&omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\"}}",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}"
+						},
+						{
+							"key": "fq",
+							"value": "((experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))OR+(p_value:[*+TO+0.05]+AND+((experiment_type:(RNASEQ_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_2COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MICRORNA_DIFFERENTIAL)+AND+fold_change:([*+TO+-1.0]+OR+[1.0+TO+*]))+OR+(experiment_type:PROTEOMICS_DIFFERENTIAL+AND+fold_change:([*+TO+-0.5]+OR+[0.5+TO+*])))))"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\"}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "query4-BRCA1",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?q=keyword_symbol:{{geneSymbols}}&fq=((experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))OR+(p_value:[*+TO+0.05]+AND+((experiment_type:(RNASEQ_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_2COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MICRORNA_DIFFERENTIAL)+AND+fold_change:([*+TO+-1.0]+OR+[1.0+TO+*]))+OR+(experiment_type:PROTEOMICS_DIFFERENTIAL+AND+fold_change:([*+TO+-0.5]+OR+[0.5+TO+*])))))&fq=is_private:false&rows=0&omitHeader=true&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\"}}",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "keyword_symbol:{{geneSymbols}}"
+						},
+						{
+							"key": "fq",
+							"value": "((experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))OR+(p_value:[*+TO+0.05]+AND+((experiment_type:(RNASEQ_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_2COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MICRORNA_DIFFERENTIAL)+AND+fold_change:([*+TO+-1.0]+OR+[1.0+TO+*]))+OR+(experiment_type:PROTEOMICS_DIFFERENTIAL+AND+fold_change:([*+TO+-0.5]+OR+[0.5+TO+*])))))"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\"}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query5-BRCA1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?fq=is_private:false&omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query6-BRCA1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const species = [\"Brachypodium distachyon\",\"Canis lupus familiaris\",\"Chlamydomonasreinhardtii\",\"Arabidopsis lyrata subsp. lyrata\",\"Oryza sativa\",\"Brassica rapa subsp. rapa\",\"Brassica napus\",\"Drosophila melanogaster\",\"Papio anubis\",\"Macaca mulatta\",\"Vitis vinifera\",\"Arabidopsis thaliana\",\"Oryza sativa Indica Group\",",
+							"\"Triticum aestivum\",\"Gallus gallus\",\"Aegilops tauschii\",\"Sus scrofa\",\"Brassica rapa subsp. pekinensis\",\"Triticum urartu\",\"Beta vulgaris subsp. vulgaris\",",
+							"\"Populus trichocarpa\",\"Bos taurus\",\"Homo sapiens\",\"Musa acuminata\",\"Chlorocebus sabaeus\",\"Hordeum vulgare subsp. vulgare\",\"Brassica oleracea var. capitata\",",
+							"\"Musa acuminata AAA Group\",\"Anas platyrhynchos\",\"Equus caballus\",\"Arabidopsis lyrata\",\"Brassica oleracea\",\"Medicago truncatula\",\"Solanum lycopersicum\",",
+							"\"Oryza sativa Indica group\",\"Hordeum vulgare\",\"Zea mays subsp. mays\",\"Mus musculus domesticus\",\"Trifolium pratense\",\"Xenopus tropicalis\",\"Zea mays\",",
+							"\"Caenorhabditis elegans\",",
+							"\"Solanum tuberosum\",",
+							"\"Beta vulgaris\",",
+							"\"Oryza sativa Japonica Group\",",
+							"\"Theobroma cacao\",",
+							"\"Sorghum bicolor\",",
+							"\"Glycine max\",",
+							"\"Anopheles gambiae\",",
+							"\"Mus musculus\",",
+							"\"Oryctolagus cuniculus\",",
+							"\"Prunus persica\",",
+							"\"Setaria italica\",",
+							"\"Brassica rapa\",",
+							"\"Aspergillus fumigatus\",",
+							"\"Saccharomyces cerevisiae\",",
+							"\"Rattus norvegicus\",",
+							"\"Physcomitrella patens\",",
+							"\"Schistosoma mansoni\",",
+							"\"Anolis carolinensis\",",
+							"\"Schizosaccharomyces pombe\",",
+							"\"Ovis aries\",",
+							"\"Monodelphis domestica\",",
+							"\"Brassica rapa subsp. oleifera\",",
+							"\"Danio rerio\"];",
+							"console.log(species);",
+							"pm.variables.set('species',species);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=keyword_symbol:{{geneSymbols}}",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "keyword_symbol:{{geneSymbols}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query7-BRCA1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const species = pm.variables.get('species');",
+							"pm.variables.set('currentSpecies',species.shift());",
+							"",
+							"if(Array.isArray(species) && species.length > 0) {",
+							"    postman.setNextRequest('Query7-BRCA1');",
+							"}",
+							"else",
+							"postman.setNextRequest(null);",
+							"",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:{{geneSymbols}}+AND+species:{{currentSpecies}}+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:{{geneSymbols}}+AND+species:{{currentSpecies}}+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query35-BRCA1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"kingdom\":{\"type\":\"terms\",\"field\":\"kingdom\"},\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":40},\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\"},\"factors\":{\"type\":\"terms\",\"field\":\"factors\",\"limit\":100},\"numReplicates\":{\"type\":\"terms\",\"field\":\"num_replicates\"},\"regulation\":{\"type\":\"terms\",\"field\":\"regulation\"}}&fq=is_private:false&fq=p_value:[*+TO+0.05]+AND+((experiment_type:(RNASEQ_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_2COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MICRORNA_DIFFERENTIAL)+AND+fold_change:([*+TO+-1.0]+OR+[1.0+TO+*]))+OR+(experiment_type:PROTEOMICS_DIFFERENTIAL+AND+fold_change:([*+TO+-0.5]+OR+[0.5+TO+*])))&q=keyword_symbol:{{geneSymbols}}",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"kingdom\":{\"type\":\"terms\",\"field\":\"kingdom\"},\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":40},\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\"},\"factors\":{\"type\":\"terms\",\"field\":\"factors\",\"limit\":100},\"numReplicates\":{\"type\":\"terms\",\"field\":\"num_replicates\"},\"regulation\":{\"type\":\"terms\",\"field\":\"regulation\"}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "p_value:[*+TO+0.05]+AND+((experiment_type:(RNASEQ_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_2COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MICRORNA_DIFFERENTIAL)+AND+fold_change:([*+TO+-1.0]+OR+[1.0+TO+*]))+OR+(experiment_type:PROTEOMICS_DIFFERENTIAL+AND+fold_change:([*+TO+-0.5]+OR+[0.5+TO+*])))"
+						},
+						{
+							"key": "q",
+							"value": "keyword_symbol:{{geneSymbols}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"const geneSymbols = [\"BRCA1\",\"BRCA2\",\"REG1B\"]",
+					"console.log(geneSymbols)",
+					"pm.collectionVariables.set('geneSymbols',geneSymbols);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "species",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "species",
+			"value": ""
+		},
+		{
+			"key": "species1",
+			"value": ""
+		},
+		{
+			"key": "geneSymbols",
+			"value": ""
+		}
+	]
+}
