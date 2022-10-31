@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: jenkins-ci-regression-test
+spec:
+  # If we set workspaceVolume dynamicPVC() or workspaceVolume persistentVolumeClaimWorkspaceVolume() we need to add a
+  # fsGroup 1000 to make the /home/jenkins/agent directory writable. Otherwise we get the following exception in the
+  # jnlp container:
+  # Exception in thread "main" java.io.IOException: The specified working directory should be fully accessible to the remoting executable (RWX): /home/jenkins/agent
+  # The securityContext in the pod is inherited, as it becomes the default pod template
+  securityContext:
+    fsGroup: 1000
+  containers:
+    - name: openjdk
+      image: openjdk:11
+      resources:
+        requests:
+          memory: "1.5Gi"
+        limits:
+          memory: "2Gi"
+
+    - name: node
+        image: node:8
+        resources:
+          requests:
+            memory: "100Mi"
+          limits:
+            memory: "200Mi"
+
+    - name: newman
+      image: postman/newman
+      resources:
+        requests:
+          memory: "100Mi"
+        limits:
+          memory: "200Mi"
+
+    - name: htmlextra
+        image: dannydainton/htmlextra
+        resources:
+          requests:
+            memory: "100Mi"
+          limits:
+            memory: "200Mi"
+
+
+    working_dir: /home/node/app
+    volumes:
+      - ./:/home/node/app
+    expose:
+      - "8081"
+      env:
+        - NODE_ENV=production
+  volumes:
+    - name: application_repository
+      persistentVolumeClaim:
+        claimName:
+    - name: openjdk-root-gradle-wrapper
+      persistentVolumeClaim:
+        claimName: openjdk-root-gradle-wrapper-claim
