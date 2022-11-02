@@ -20,8 +20,8 @@ spec:
           memory: "2Gi"
 
     - name: node
-        image: node:8
-        resources:
+      image: node:8
+      resources:
           requests:
             memory: "100Mi"
           limits:
@@ -36,25 +36,12 @@ spec:
           memory: "200Mi"
 
     - name: htmlextra
-        image: dannydainton/htmlextra
-        resources:
+      image: dannydainton/htmlextra
+      resources:
           requests:
             memory: "100Mi"
           limits:
             memory: "200Mi"
 
 
-    working_dir: /home/node/app
-    volumes:
-      - ./:/home/node/app
-    expose:
-      - "8081"
-      env:
-        - NODE_ENV=production
-  volumes:
-    - name: application_repository
-      persistentVolumeClaim:
-        claimName:
-    - name: openjdk-root-gradle-wrapper
-      persistentVolumeClaim:
-        claimName: openjdk-root-gradle-wrapper-claim
+
