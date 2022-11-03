@@ -1,4 +1,4 @@
-pipeline {
+   pipeline {
       options {
         disableConcurrentBuilds()
         buildDiscarder(logRotator(numToKeepStr: '5'))
@@ -7,7 +7,7 @@ pipeline {
       agent {
         kubernetes {
           cloud 'gke-autopilot'
-          //workspaceVolume dynamicPVC(storageClassNames: 'ssd-cinder', accessModes: 'ReadWriteOnce')
+          workspaceVolume dynamicPVC(storageClassNames: 'fast', accessModes: 'ReadWriteOnce', requestsSize: '5Gi')
           defaultContainer 'openjdk'
           yamlFile 'jenkins-k8s-pod.yaml'
         }
