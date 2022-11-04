@@ -20,7 +20,7 @@
            }
            steps {
             echo 'testing stage........'
-             sh 'newman run /Users/ukumbham/atlas/atlas-solr-regression-test-scripts/bulk-postman-collection/reg_test_for_8_users.postman_collection.json -d /Users/ukumbham/atlas/atlas-solr-regression-test-scripts/bulk-data-files/gene-symbols-set1.csv -e /Users/ukumbham/atlas/atlas-solr-regression-test-scripts/bulk-postman-collection/regression-testing.postman_environment.json  -r htmlextra'
+             sh 'newman run ~/solr-regression-test-scripts/postman-collection/Reg_tests_with_threshould_limit.postman_collection.json -d ~/solr-regression-test-scripts/data-files/popular-gene-symbols.csv -e ~/solr-regression-test-scripts/postman-collection/regression-testing.postman_environment.json  -r htmlextra'
            }
          }
        }
