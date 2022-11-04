@@ -35,7 +35,7 @@ spec:
             memory: "200Mi"
 
     - name: newman
-      image: postman/newman
+      image: postman/newman:latest
       resources:
         requests:
           memory: "100Mi"
