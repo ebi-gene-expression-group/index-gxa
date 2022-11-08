@@ -10,7 +10,7 @@ spec:
   # The securityContext in the pod is inherited, as it becomes the default pod template
   securityContext:
     fsGroup: 1000
-#  containers:
+  containers:
 #    - name: jnlp
 #      resources:
 #        requests:
