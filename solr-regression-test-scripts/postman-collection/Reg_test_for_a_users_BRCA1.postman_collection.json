@@ -1,0 +1,2470 @@
+{
+	"info": {
+		"_postman_id": "1a0cf14d-ee3d-48c0-9877-dfdab0835452",
+		"name": "Reg_test_for_a_users_BRCA1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2320185"
+	},
+	"item": [
+		{
+			"name": "query1-BRCA1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"bioentityIdentifier\":{\"type\":\"terms\",\"field\":\"bioentity_identifier_search\",\"limit\":2}}&q=bioentity_identifier_search:\"BRCA1\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"bioentityIdentifier\":{\"type\":\"terms\",\"field\":\"bioentity_identifier_search\",\"limit\":2}}"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:\"BRCA1\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "query2-BRCA1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"bioentityIdentifier\":{\"type\":\"terms\",\"field\":\"bioentity_identifier\",\"limit\":2}}&q=keyword_symbol:\"BRCA1\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"bioentityIdentifier\":{\"type\":\"terms\",\"field\":\"bioentity_identifier\",\"limit\":2}}"
+						},
+						{
+							"key": "q",
+							"value": "keyword_symbol:\"BRCA1\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "query3-BRCA1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?q=bioentity_identifier_search:\"BRCA1\"&fq=((experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))OR+(p_value:[*+TO+0.05]+AND+((experiment_type:(RNASEQ_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_2COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MICRORNA_DIFFERENTIAL)+AND+fold_change:([*+TO+-1.0]+OR+[1.0+TO+*]))+OR+(experiment_type:PROTEOMICS_DIFFERENTIAL+AND+fold_change:([*+TO+-0.5]+OR+[0.5+TO+*])))))&fq=is_private:false&omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\"}}",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:\"BRCA1\""
+						},
+						{
+							"key": "fq",
+							"value": "((experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))OR+(p_value:[*+TO+0.05]+AND+((experiment_type:(RNASEQ_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_2COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MICRORNA_DIFFERENTIAL)+AND+fold_change:([*+TO+-1.0]+OR+[1.0+TO+*]))+OR+(experiment_type:PROTEOMICS_DIFFERENTIAL+AND+fold_change:([*+TO+-0.5]+OR+[0.5+TO+*])))))"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\"}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "query4-BRCA1",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?q=keyword_symbol:\"BRCA1\"&fq=((experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))OR+(p_value:[*+TO+0.05]+AND+((experiment_type:(RNASEQ_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_2COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MICRORNA_DIFFERENTIAL)+AND+fold_change:([*+TO+-1.0]+OR+[1.0+TO+*]))+OR+(experiment_type:PROTEOMICS_DIFFERENTIAL+AND+fold_change:([*+TO+-0.5]+OR+[0.5+TO+*])))))&fq=is_private:false&rows=0&omitHeader=true&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\"}}",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "keyword_symbol:\"BRCA1\""
+						},
+						{
+							"key": "fq",
+							"value": "((experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))OR+(p_value:[*+TO+0.05]+AND+((experiment_type:(RNASEQ_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_2COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MICRORNA_DIFFERENTIAL)+AND+fold_change:([*+TO+-1.0]+OR+[1.0+TO+*]))+OR+(experiment_type:PROTEOMICS_DIFFERENTIAL+AND+fold_change:([*+TO+-0.5]+OR+[0.5+TO+*])))))"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\"}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query5-BRCA1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?fq=is_private:false&omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:\"BRCA1\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:\"BRCA1\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query6-BRCA1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=keyword_symbol:\"BRCA1\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "keyword_symbol:\"BRCA1\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query7-BRCA1-species-anolis+carolinensis",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:\"BRCA1\"+AND+species:\"anolis+carolinensis\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:\"BRCA1\"+AND+species:\"anolis+carolinensis\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query8-BRCA1-species-homo+sapiens",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:\"BRCA1\"+AND+species:\"homo+sapiens\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:\"BRCA1\"+AND+species:\"homo+sapiens\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query9-BRCA1-species-bos+taurus",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:\"BRCA1\"+AND+species:\"bos+taurus\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:\"BRCA1\"+AND+species:\"bos+taurus\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query10-BRCA1-species-monodelphis+domestica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:\"BRCA1\"+AND+species:\"monodelphis+domestica\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:\"BRCA1\"+AND+species:\"monodelphis+domestica\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query11-BRCA1-species-gallus+gallus",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:\"BRCA1\"+AND+species:\"gallus+gallus\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:\"BRCA1\"+AND+species:\"gallus+gallus\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query12-BRCA1-species-macaca+mulatta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:\"BRCA1\"+AND+species:\"macaca+mulatta\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:\"BRCA1\"+AND+species:\"macaca+mulatta\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query13-BRCA1-species-rattus+norvegicus",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:\"BRCA1\"+AND+species:\"rattus+norvegicus\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:\"BRCA1\"+AND+species:\"rattus+norvegicus\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query14-BRCA1-bioentity-identifier-search",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=1000&fq=is_private:false&fq=p_value:[*+TO+0.05]+AND+((experiment_type:(RNASEQ_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_2COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MICRORNA_DIFFERENTIAL)+AND+fold_change:([*+TO+-1.0]+OR+[1.0+TO+*]))+OR+(experiment_type:PROTEOMICS_DIFFERENTIAL+AND+fold_change:([*+TO+-0.5]+OR+[0.5+TO+*])))&q=bioentity_identifier_search:\"BRCA1\"&sort=+p_value+asc&sort=abs(fold_change)+desc",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "1000"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "p_value:[*+TO+0.05]+AND+((experiment_type:(RNASEQ_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_2COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MICRORNA_DIFFERENTIAL)+AND+fold_change:([*+TO+-1.0]+OR+[1.0+TO+*]))+OR+(experiment_type:PROTEOMICS_DIFFERENTIAL+AND+fold_change:([*+TO+-0.5]+OR+[0.5+TO+*])))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:\"BRCA1\""
+						},
+						{
+							"key": "sort",
+							"value": "+p_value+asc"
+						},
+						{
+							"key": "sort",
+							"value": "abs(fold_change)+desc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query15-BRCA1-species-papio+anubis",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:\"BRCA1\"+AND+species:\"papio+anubis\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:\"BRCA1\"+AND+species:\"papio+anubis\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query16-BRCA1-species-equus+caballus",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:\"BRCA1\"+AND+species:\"equus+caballus\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:\"BRCA1\"+AND+species:\"equus+caballus\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query17-BRCA1-species-oryctolagus+cuniculus",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:\"BRCA1\"+AND+species:\"oryctolagus+cuniculus\"+AND+default_query_factor_type:\"DEVELOPMENTAL_STAGE\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:\"BRCA1\"+AND+species:\"oryctolagus+cuniculus\"+AND+default_query_factor_type:\"DEVELOPMENTAL_STAGE\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query18-BRCA1-bioentity-identifier-search",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"kingdom\":{\"type\":\"terms\",\"field\":\"kingdom\"},\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":40},\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\"},\"factors\":{\"type\":\"terms\",\"field\":\"factors\",\"limit\":100},\"numReplicates\":{\"type\":\"terms\",\"field\":\"num_replicates\"},\"regulation\":{\"type\":\"terms\",\"field\":\"regulation\"}}&fq=is_private:false&fq=p_value:[*+TO+0.05]+AND+((experiment_type:(RNASEQ_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_2COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MICRORNA_DIFFERENTIAL)+AND+fold_change:([*+TO+-1.0]+OR+[1.0+TO+*]))+OR+(experiment_type:PROTEOMICS_DIFFERENTIAL+AND+fold_change:([*+TO+-0.5]+OR+[0.5+TO+*])))&q=bioentity_identifier_search:\"BRCA1\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"kingdom\":{\"type\":\"terms\",\"field\":\"kingdom\"},\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":40},\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\"},\"factors\":{\"type\":\"terms\",\"field\":\"factors\",\"limit\":100},\"numReplicates\":{\"type\":\"terms\",\"field\":\"num_replicates\"},\"regulation\":{\"type\":\"terms\",\"field\":\"regulation\"}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "p_value:[*+TO+0.05]+AND+((experiment_type:(RNASEQ_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_2COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MICRORNA_DIFFERENTIAL)+AND+fold_change:([*+TO+-1.0]+OR+[1.0+TO+*]))+OR+(experiment_type:PROTEOMICS_DIFFERENTIAL+AND+fold_change:([*+TO+-0.5]+OR+[0.5+TO+*])))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:\"BRCA1\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query19-BRCA1-species-arabidopsis+thaliana",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:\"BRCA1\"+AND+species:\"arabidopsis+thaliana\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:\"BRCA1\"+AND+species:\"arabidopsis+thaliana\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query20-BRCA1-species-mus+musculus",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:\"BRCA1\"+AND+species:\"mus+musculus\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:\"BRCA1\"+AND+species:\"mus+musculus\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query21-BRCA1-species-sus+scrofa",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=bioentity_identifier_search:\"BRCA1\"+AND+species:\"sus+scrofa\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "bioentity_identifier_search:\"BRCA1\"+AND+species:\"sus+scrofa\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query22-BRCA1-species-monodelphis+domestica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=keyword_symbol:\"BRCA1\"+AND+species:\"monodelphis+domestica\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "keyword_symbol:\"BRCA1\"+AND+species:\"monodelphis+domestica\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query23-BRCA1-species-gallus+gallus",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=keyword_symbol:\"BRCA1\"+AND+species:\"gallus+gallus\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "keyword_symbol:\"BRCA1\"+AND+species:\"gallus+gallus\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query24-BRCA1-species-bos+taurus",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=keyword_symbol:\"BRCA1\"+AND+species:\"bos+taurus\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "keyword_symbol:\"BRCA1\"+AND+species:\"bos+taurus\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query25-BRCA1-species-anolis+carolinensis",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=keyword_symbol:\"BRCA1\"+AND+species:\"anolis+carolinensis\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "keyword_symbol:\"BRCA1\"+AND+species:\"anolis+carolinensis\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query26-BRCA1-species-homo+sapiens",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=keyword_symbol:\"BRCA1\"+AND+species:\"homo+sapiens\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "keyword_symbol:\"BRCA1\"+AND+species:\"homo+sapiens\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query27-BRCA1-species-macaca+mulatta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=keyword_symbol:\"BRCA1\"+AND+species:\"macaca+mulatta\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "keyword_symbol:\"BRCA1\"+AND+species:\"macaca+mulatta\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query28-BRCA1-species-equus+caballus",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=keyword_symbol:\"BRCA1\"+AND+species:\"equus+caballus\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "keyword_symbol:\"BRCA1\"+AND+species:\"equus+caballus\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query29-BRCA1-species-arabidopsis+thaliana",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=keyword_symbol:\"BRCA1\"+AND+species:\"arabidopsis+thaliana\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "keyword_symbol:\"BRCA1\"+AND+species:\"arabidopsis+thaliana\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query30-BRCA1-species-papio+anubis",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=keyword_symbol:\"BRCA1\"+AND+species:\"papio+anubis\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "keyword_symbol:\"BRCA1\"+AND+species:\"papio+anubis\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query31-BRCA1-species-sus+scrofa",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=keyword_symbol:\"BRCA1\"+AND+species:\"sus+scrofa\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "keyword_symbol:\"BRCA1\"+AND+species:\"sus+scrofa\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query32-BRCA1-species-rattus+norvegicus",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=keyword_symbol:\"BRCA1\"+AND+species:\"rattus+norvegicus\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "keyword_symbol:\"BRCA1\"+AND+species:\"rattus+norvegicus\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query33-BRCA1-species-mus+musculus",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=keyword_symbol:\"BRCA1\"+AND+species:\"mus+musculus\"+AND+default_query_factor_type:\"ORGANISM_PART\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "keyword_symbol:\"BRCA1\"+AND+species:\"mus+musculus\"+AND+default_query_factor_type:\"ORGANISM_PART\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query34-BRCA1-species-oryctolagus+cuniculus",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}&fq=is_private:false&fq=(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))&q=keyword_symbol:\"BRCA1\"+AND+species:\"oryctolagus+cuniculus\"+AND+default_query_factor_type:\"DEVELOPMENTAL_STAGE\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\",\"facet\":{\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":-1,\"facet\":{\"defaultQueryFactorType\":{\"type\":\"terms\",\"field\":\"default_query_factor_type\",\"facet\":{\"experimentAccession\":{\"type\":\"terms\",\"field\":\"experiment_accession\",\"limit\":-1,\"facet\":{\"assayGroupId\":{\"type\":\"terms\",\"field\":\"assay_group_id\",\"limit\":-1,\"facet\":{\"sumExpressionLevel\":\"sum(expression_level)\"}},\"uniqueIdentifiers\":\"unique(bioentity_identifier)\"}}}}}}}}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "(experiment_type:RNASEQ_MRNA_BASELINE+AND+expression_level:[0.5+TO+*])+OR+(experiment_type:(PROTEOMICS_BASELINE+OR+PROTEOMICS_BASELINE_DIA))"
+						},
+						{
+							"key": "q",
+							"value": "keyword_symbol:\"BRCA1\"+AND+species:\"oryctolagus+cuniculus\"+AND+default_query_factor_type:\"DEVELOPMENTAL_STAGE\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query35-BRCA1-keyword_symbol",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "BgvfDDcpQL6Ed2a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "atlas_admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{solrBaseUrl}}/select?omitHeader=true&rows=0&json.facet={\"kingdom\":{\"type\":\"terms\",\"field\":\"kingdom\"},\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":40},\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\"},\"factors\":{\"type\":\"terms\",\"field\":\"factors\",\"limit\":100},\"numReplicates\":{\"type\":\"terms\",\"field\":\"num_replicates\"},\"regulation\":{\"type\":\"terms\",\"field\":\"regulation\"}}&fq=is_private:false&fq=p_value:[*+TO+0.05]+AND+((experiment_type:(RNASEQ_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_2COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MICRORNA_DIFFERENTIAL)+AND+fold_change:([*+TO+-1.0]+OR+[1.0+TO+*]))+OR+(experiment_type:PROTEOMICS_DIFFERENTIAL+AND+fold_change:([*+TO+-0.5]+OR+[0.5+TO+*])))&q=keyword_symbol:\"BRCA1\"",
+					"host": [
+						"{{solrBaseUrl}}"
+					],
+					"path": [
+						"select"
+					],
+					"query": [
+						{
+							"key": "omitHeader",
+							"value": "true"
+						},
+						{
+							"key": "rows",
+							"value": "0"
+						},
+						{
+							"key": "json.facet",
+							"value": "{\"kingdom\":{\"type\":\"terms\",\"field\":\"kingdom\"},\"species\":{\"type\":\"terms\",\"field\":\"species\",\"limit\":40},\"experimentType\":{\"type\":\"terms\",\"field\":\"experiment_type\"},\"factors\":{\"type\":\"terms\",\"field\":\"factors\",\"limit\":100},\"numReplicates\":{\"type\":\"terms\",\"field\":\"num_replicates\"},\"regulation\":{\"type\":\"terms\",\"field\":\"regulation\"}}"
+						},
+						{
+							"key": "fq",
+							"value": "is_private:false"
+						},
+						{
+							"key": "fq",
+							"value": "p_value:[*+TO+0.05]+AND+((experiment_type:(RNASEQ_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_2COLOUR_MRNA_DIFFERENTIAL+OR+MICROARRAY_1COLOUR_MICRORNA_DIFFERENTIAL)+AND+fold_change:([*+TO+-1.0]+OR+[1.0+TO+*]))+OR+(experiment_type:PROTEOMICS_DIFFERENTIAL+AND+fold_change:([*+TO+-0.5]+OR+[0.5+TO+*])))"
+						},
+						{
+							"key": "q",
+							"value": "keyword_symbol:\"BRCA1\""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
