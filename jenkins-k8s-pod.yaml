@@ -11,43 +11,12 @@ spec:
   securityContext:
     fsGroup: 1000
   containers:
-#    - name: jnlp
-#      resources:
-#        requests:
-#          memory: "512Mi"
-#        limits:
-#          memory: "512Mi"
-#    - name: openjdk
-#      image: openjdk:11
-#      resources:
-#          requests:
-#            memory: "1Gi"
-#            ephemeral-storage: "5Gi"
-#          limits:
-#            memory: "1.5Gi"
-
-    - name: node
-      image: node:8
-      resources:
-          requests:
-            memory: "100Mi"
-          limits:
-            memory: "200Mi"
-
     - name: newman
       image: postman/newman:5-alpine
       resources:
         requests:
           memory: "100Mi"
         limits:
-            memory: "200Mi"
-
-    - name: htmlextra
-      image: dannydainton/htmlextra
-      resources:
-          requests:
-            memory: "100Mi"
-          limits:
             memory: "200Mi"
 
 

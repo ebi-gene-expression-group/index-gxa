@@ -8,7 +8,7 @@
         kubernetes {
           cloud 'gke-autopilot'
           workspaceVolume dynamicPVC(storageClassNames: 'fast', accessModes: 'ReadWriteOnce', requestsSize: '5Gi')
-          defaultContainer 'openjdk'
+          defaultContainer 'newman'
           yamlFile 'jenkins-k8s-pod.yaml'
         }
       }
