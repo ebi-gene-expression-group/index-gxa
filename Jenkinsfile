@@ -8,6 +8,7 @@
         kubernetes {
           defaultContainer 'newman'
           yamlFile 'jenkins-k8s-pod.yaml'
+          cloud 'atlas-admin-2'
         }
       }
 
