@@ -17,7 +17,7 @@ MAX_SHARDS_PER_NODE=${SOLR_MAX_SHARDS_PER_NODE:-1}
 printf "\n\nDeleting collection $COLLECTION based on $HOST\n"
 curl $SOLR_AUTH "http://$HOST/solr/admin/collections?action=DELETE&name=$COLLECTION"
 
-printf "\n\nCreating collection $COLLECTION based on $HOST\n"
+printf "\n\nCreating collection $COLLECTION based on $HOST numShards $NUMSHARDS replicationFactor $REPLICATES maxShardsPerNode $MAX_SHARDS_PER_NODE\n"
 curl $SOLR_AUTH "http://$HOST/solr/admin/collections?action=CREATE&name=$COLLECTION&numShards=$NUMSHARDS&replicationFactor=$REPLICATES&maxShardsPerNode=$MAX_SHARDS_PER_NODE"
 
 #############################################################################################
