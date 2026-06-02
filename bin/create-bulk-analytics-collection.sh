@@ -1,72 +1,53 @@
 #!/usr/bin/env bash
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+SCHEMA_VERSION=1
 
-. ${DIR}/schema-version.env
-. ${DIR}/common_routines.sh
-
-# Exit on error and fail pipelines if any command fails
 set -e
-set -o pipefail
 
 # On developers environment export SOLR_HOST and export SOLR_COLLECTION before running
 HOST=${SOLR_HOST:-"localhost:8983"}
+COLLECTION=${SOLR_COLLECTION:-"bulk-analytics-v$SCHEMA_VERSION"}
 SOLR_USER=${SOLR_USER:-"solr"}
 SOLR_PASS=${SOLR_PASS:-"SolrRocks"}
-SOLR_AUTH="-u ${SOLR_USER}:${SOLR_PASS}"
-COLLECTION=${SOLR_COLLECTION:-"bulk-analytics-v${SCHEMA_VERSION}"}
-DEBUG_POPULATION=${DEBUG_POPULATION:-"false"}
+SOLR_AUTH="-u $SOLR_USER:$SOLR_PASS"
 
-NUM_SHARDS=${SOLR_NUM_SHARDS:-1}
-REPLICATION_FACTOR=${SOLR_REPLICATION_FACTOR:-1}
-# Default curl behavior: silent progress, show errors, fail on HTTP errors
-export CURL_OUTPUT_PARSER=$(which jq > /dev/null && echo jq || echo tee)
+NUMSHARDS=${SOLR_NUM_SHARDS:-1}
+REPLICATES=${SOLR_REPLICATION_FACTOR:-1}
+MAX_SHARDS_PER_NODE=${SOLR_MAX_SHARDS_PER_NODE:-1}
 
-CURL_OPTS="${SOLR_AUTH} --fail"
-if [ "${DEBUG_POPULATION}" = "true" ]; then
-  set -vx
-  CURL_OPTS="$CURL_OPTS -v"
-fi
+printf "\n\nDeleting collection $COLLECTION based on $HOST\n"
+curl $SOLR_AUTH "http://$HOST/solr/admin/collections?action=DELETE&name=$COLLECTION"
 
-info "Deleting alias 'bulk-analytics' if exists"
-curl $CURL_OPTS "http://${HOST}/solr/admin/collections?action=DELETEALIAS&name=bulk-analytics" > /dev/null 2>&1 || warn "Alias delete may have been unnecessary"
-
-info "Deleting collection ${COLLECTION} on ${HOST} (ignore if not exists)"
-curl ${CURL_OPTS} "http://${HOST}/solr/admin/collections?action=DELETE&name=${COLLECTION}" || warn "Collection delete may have been unnecessary"
-
-info "Creating collection ${COLLECTION} on ${HOST}"
-curl ${CURL_OPTS} "http://${HOST}/solr/admin/collections?action=CREATE&name=${COLLECTION}&numShards=${NUM_SHARDS}&replicationFactor=${REPLICATION_FACTOR}" | $CURL_OUTPUT_PARSER
-success "Collection ensured: ${COLLECTION}"
+printf "\n\nCreating collection $COLLECTION based on $HOST\n"
+curl $SOLR_AUTH "http://$HOST/solr/admin/collections?action=CREATE&name=$COLLECTION&numShards=$NUMSHARDS&replicationFactor=$REPLICATES&maxShardsPerNode=$MAX_SHARDS_PER_NODE"
 
 #############################################################################################
 
-info "Disabling auto-commit and soft auto-commit in ${COLLECTION}"
-curl ${CURL_OPTS} "http://${HOST}/solr/${COLLECTION}/config" -H 'Content-type:application/json' -d '{
+printf "\n\nAliasing base collection atlas-bulk to latest iteration $COLLECTION\n"
+curl $SOLR_AUTH "http://$HOST/solr/admin/collections?action=CREATEALIAS&name=bulk-analytics&collections=$COLLECTION"
+
+#############################################################################################
+
+printf "\n\nDisabling auto-commit and soft auto-commit in $COLLECTION\n"
+curl $SOLR_AUTH "http://$HOST/solr/$COLLECTION/config" -H 'Content-type:application/json' -d '{
   "set-property": {
     "updateHandler.autoCommit.maxTime":-1
   }
-}' | $CURL_OUTPUT_PARSER
+}'
 
-curl ${CURL_OPTS} "http://${HOST}/solr/${COLLECTION}/config" -H 'Content-type:application/json' -d '{
+curl $SOLR_AUTH "http://$HOST/solr/$COLLECTION/config" -H 'Content-type:application/json' -d '{
   "set-property": {
     "updateHandler.autoCommit.maxDocs":-1
   }
-}' | $CURL_OUTPUT_PARSER
+}'
 
-curl ${CURL_OPTS} "http://${HOST}/solr/${COLLECTION}/config" -H 'Content-type:application/json' -d '{
+curl $SOLR_AUTH "http://$HOST/solr/$COLLECTION/config" -H 'Content-type:application/json' -d '{
   "set-property": {
     "updateHandler.autoSoftCommit.maxTime":-1
   }
-}' | $CURL_OUTPUT_PARSER
+}'
 
-curl ${CURL_OPTS} "http://${HOST}/solr/${COLLECTION}/config" -H 'Content-type:application/json' -d '{
+curl $SOLR_AUTH "http://$HOST/solr/$COLLECTION/config" -H 'Content-type:application/json' -d '{
   "set-property": {
     "updateHandler.autoSoftCommit.maxDocs":-1
   }
-}' | $CURL_OUTPUT_PARSER
-#############################################################################################
-
-info "Creating alias 'bulk-analytics' -> ${COLLECTION}"
-printf "\n\nAliasing base collection atlas-bulk to latest iteration ${COLLECTION}\n"
-curl ${CURL_OPTS} "http://${HOST}/solr/admin/collections?action=CREATEALIAS&name=bulk-analytics&collections=${COLLECTION}" | $CURL_OUTPUT_PARSER
-
-success "created collection ${COLLECTION}"
+}'
