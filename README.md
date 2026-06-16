@@ -177,3 +177,48 @@ bash reduce_dataset_to_ids.sh slim_list.txt ../tmp/ fixtures/experiment_files/ma
 ```
 
 4.- Clean up `tmp`.
+
+#Atlas Solr Regression Testing
+
+This project has required Postman collections, datafiles and bash scripts to do Solr stress testing.
+
+- Clone repository:
+
+    ``` bash
+    git clone https://gitlab.ebi.ac.uk/ebi-gene-expression/atlas-solr-regression-test.git
+    or
+    git clone git@gitlab.ebi.ac.uk:ebi-gene-expression/atlas-solr-regression-test.git
+    ```
+
+- Pre requisites:
+
+      Before running these bash scripts, we need to install Newman of the Postman tool
+      
+      Here is the web link to follow -
+      (https://support.postman.com/hc/en-us/articles/115003703325-How-to-install-Newman)
+
+- Run below bash script to run Solr queries asynchronously and grab console output on respective output files:
+
+``` Bash
+cd ~/atlas-solr-regression-test/bulk-regression-scripts
+./solr-reg-test-with-console-output.sh
+```
+
+*Check all output files in the mentioned path.*
+
+- Run below bash script to run Solr queries asynchronously and generate Newman html report for the ran queries
+
+``` Bash
+cd ~/atlas-solr-regression-test/bulk-regression-scripts
+./solr-reg-test-with-report.sh
+```
+
+*Check all the reports under newman folder in the current directory by default. But if you mention path for the reports,
+you will see all reports in defined path.*
+
+- Troubleshooting
+
+Check bash script permissions before execution
+
+````
+Chmod +x - execution permission 
